@@ -1,0 +1,57 @@
+% Template:     Articulo LaTeX
+% Documento:    Archivo principal
+% Versión:      0.0.1 (06/09/2021)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R.
+%        pablo@ppizarror.com
+%
+% Manual template: [https://latex.ppizarror.com/articulo]
+% Licencia MIT:    [https://opensource.org/licenses/MIT]
+
+% CREACIÓN DEL DOCUMENTO
+\documentclass[letterpaper,oneside]{article}
+
+% INFORMACIÓN DEL DOCUMENTO
+\def\titulodeldocumento {Título del reporte}
+\def\subtitulodocumento {}
+\def\temaatratar {Tema a tratar}
+\def\fechadocumento {\today}
+
+\def\autordeldocumento {Nombre del autor}
+\def\nombredelcurso {Curso}
+\def\codigodelcurso {CO-1234}
+
+\def\nombreuniversidad {Universidad de Chile}
+\def\nombrefacultad {Facultad de Ciencias Físicas y Matemáticas}
+\def\departamentouniversidad {Departamento de la Universidad}
+\def\imagendepartamento {departamentos/fcfm}
+\def\localizacionuniversidad {Santiago de Chile}
+
+% IMPORTACIÓN DEL TEMPLATE
+\input{template}
+
+% INICIO DE PÁGINAS
+\begin{document}
+	
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\templatePagecfg
+
+% CONFIGURACIONES FINALES
+\templateFinalcfg
+
+% ======================= INICIO DEL DOCUMENTO =======================
+
+% Título y nombre del autor
+\inserttitle
+
+% Resumen o Abstract
+\begin{abstract}
+	\lipsum[11]
+\end{abstract}
+
+% Ejemplo, se puede borrar
+\input{example}
+
+% FIN DEL DOCUMENTO
+\end{document}
