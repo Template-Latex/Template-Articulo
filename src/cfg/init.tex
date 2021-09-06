@@ -10,28 +10,12 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\autordeldocumento}
-\checkvardefined{\codigodelcurso}
-\checkvardefined{\departamentouniversidad}
-\checkvardefined{\localizacionuniversidad}
-\checkvardefined{\nombredelcurso}
-\checkvardefined{\nombrefacultad}
-\checkvardefined{\nombreuniversidad}
-\checkvardefined{\temaatratar}
 \checkvardefined{\titulodeldocumento}
 
 % -----------------------------------------------------------------------------
 % Se añade \xspace a las variables
 % -----------------------------------------------------------------------------
 \makeatletter
-	\g@addto@macro\autordeldocumento\xspace
-	\g@addto@macro\codigodelcurso\xspace
-	\g@addto@macro\departamentouniversidad\xspace
-	\g@addto@macro\localizacionuniversidad\xspace
-	\g@addto@macro\nombredelcurso\xspace
-	\g@addto@macro\nombrefacultad\xspace
-	\g@addto@macro\nombreuniversidad\xspace
-	\g@addto@macro\temaatratar\xspace
 	\g@addto@macro\titulodeldocumento\xspace
 \makeatother
 
@@ -66,34 +50,15 @@
 	\def\cfgpdfpagemode {UseNone}
 }
 \ifthenelse{\equal{\usepdfmetadata}{true}}{
-	\def\pdfmetainfoautor {\autordeldocumento}
-	\def\pdfmetainfocodigodelcurso {\codigodelcurso}
-	\def\pdfmetainfonombredelcurso {\nombredelcurso}
-	\def\pdfmetainfotema {\temaatratar}
 	\def\pdfmetainfotitulo {\titulodeldocumento}
-	\def\pdfmetainfounidepto {\departamentouniversidad}
-	\def\pdfmetainfounifacultad {\nombrefacultad}
-	\def\pdfmetainfouninombre {\nombreuniversidad}
-	\def\pdfmetainfouniubicacion {\localizacionuniversidad}
-	\author{\pdfmetainfoautor}
-	\title{\pdfmetainfotitulo}
 }{
-	\def\pdfmetainfoautor {}
-	\def\pdfmetainfocodigodelcurso {}
-	\def\pdfmetainfonombredelcurso {}
-	\def\pdfmetainfotema {}
 	\def\pdfmetainfotitulo {}
-	\def\pdfmetainfounidepto {}
-	\def\pdfmetainfounifacultad {}
-	\def\pdfmetainfouninombre {}
-	\def\pdfmetainfouniubicacion {}
 }
 \hypersetup{
 	keeppdfinfo,
 	bookmarksopen={\cfgpdfbookmarkopen},
 	bookmarksopenlevel={\cfgbookmarksopenlevel},
 	bookmarkstype={toc},
-	pdfauthor={\pdfmetainfoautor},
 	pdfcenterwindow={\cfgpdfcenterwindow},
 	pdfcopyright={\cfgpdfcopyright},
 	pdfcreator={LaTeX},
@@ -101,10 +66,6 @@
 	pdfencoding={unicode},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Curso.Codigo={\pdfmetainfocodigodelcurso},
-		Curso.Nombre={\pdfmetainfonombredelcurso},
-		Documento.Autor={\pdfmetainfoautor},
-		Documento.Tema={\pdfmetainfotema},
 		Documento.Titulo={\pdfmetainfotitulo},
 		Template.Autor.Alias={ppizarror},
 		Template.Autor.Email={pablo@ppizarror.com},
@@ -115,27 +76,22 @@
 		Template.Latex.Compilador={pdflatex},
 		Template.Licencia.Tipo={MIT},
 		Template.Licencia.Web={https://opensource.org/licenses/MIT},
-		Template.Nombre={Template-Reporte},
+		Template.Nombre={Template-Articulo},
 		Template.Tipo={Normal},
-		Template.Version.Dev={0.0.1-1-REPT},
-		Template.Version.Hash={1A3463BDC9FD22D34366699052155DB8},
+		Template.Version.Dev={0.0.1-1-ARTC},
+		Template.Version.Hash={D195FF2A9997C9BB5C4A3BA695921B00},
 		Template.Version.Release={0.0.1},
-		Template.Web.Dev={https://github.com/Template-Latex/Template-Reporte},
-		Template.Web.Manual={https://latex.ppizarror.com/reporte},
-		Universidad.Departamento={\pdfmetainfounidepto},
-		Universidad.Facultad={\pdfmetainfounifacultad},
-		Universidad.Nombre={\pdfmetainfouninombre},
-		Universidad.Ubicacion={\pdfmetainfouniubicacion}
+		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
+		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
 	pdfkeywords={\cfgpdfkeywords},
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Reporte v0.0.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v0.0.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdfsubject={\pdfmetainfotema},
 	pdftitle={\pdfmetainfotitulo},
 	pdftoolbar={\cfgpdftoolbar}
 }
@@ -748,38 +704,3 @@
 \renewcommand{\labelitemiii}{\sitemizeiii}
 \renewcommand{\labelitemiv}{\sitemizeiv}
 
-% -----------------------------------------------------------------------------
-% Operaciones especiales Template-Reporte
-% -----------------------------------------------------------------------------
-\title{\titulodeldocumento}
-\author{\autordeldocumento}
-\date{\fechadocumento}
-\def\predocpageromannumber {false}
-\def\predocresetpagenumber {false}
-\def\tablaintegrantes {}
-\makeatletter
-\def\inserttitle {
-	\null
-	\vskip \titlesupmargin
-	\begin{center}
-		\let \footnote \thanks
-		{\titlefontsize \titlefontstyle \@title \par}
-		\ifthenelse{\equal{\titleshowauthor}{true}}{
-			\vskip \titlelinemargin
-			{\normalsize
-				\begin{tabular}[t]{c}
-					\@author
-				\end{tabular}\par}
-		}{}
-		\ifthenelse{\equal{\titleshowcourse}{true}}{
-			\vskip 0.5em
-			{\normalsize \codigodelcurso\ \hfpdashcharstyle\ \nombredelcurso}
-		}{}
-		\ifthenelse{\equal{\titleshowdate}{true}}{
-			\vskip 1em
-			{\normalsize \@date}
-		}{}
-	\end{center}
-	\par
-	\vskip \titlelinemargin}
-\makeatother

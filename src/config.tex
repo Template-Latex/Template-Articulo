@@ -11,9 +11,9 @@
 
 % CONFIGURACIONES GENERALES
 \def\compilertype {pdf2latex}      % Compilador {pdf2latex,xelatex,lualatex}
-\def\documentfontsize {11}         % Tamaño de la fuente del documento [pt]
+\def\documentfontsize {10}         % Tamaño de la fuente del documento [pt]
 \def\documentinterline {1.025}     % Interlineado del documento [factor]
-\def\fontdocument {lmodern}        % Tipografía base, ver soportadas en manual
+\def\fontdocument {libertine}      % Tipografía base, ver soportadas en manual
 \def\fonttypewriter {tmodern}      % Tipografía de \texttt, ver manual
 \def\fonturl {same}                % Tipo de fuente url {tt,sf,rm,same}
 \def\graphicxdraft {false}         % En true no carga las imágenes (modo draft)
@@ -25,17 +25,7 @@
 
 % ESTILO PORTADA Y HEADER-FOOTER
 \def\disablehfrightmark {false}    % Desactiva el rightmark del header-footer
-\def\hfstyle {style7}              % Estilo header-footer (16 estilos)
-\def\hfwidthcourse {0.35}          % Tamaño máximo del curso en header-footer
-\def\hfwidthtitle {0.6}            % Tamaño máximo del título en header-footer
-\def\hfwidthwrap {false}           % Activa el tamaño máximo en header-footer
-\def\titlefontsize {\Large}        % Tamaño del título principal
-\def\titlefontstyle {\normalfont}  % Estilo del título principal
-\def\titlelinemargin {1.5em}       % Margen líneas del título principal
-\def\titleshowauthor {true}        % Muestra el autor en el título principal
-\def\titleshowcourse {false}       % Muestra el curso en el título principal
-\def\titleshowdate {true}          % Muestra la fecha en el título principal
-\def\titlesupmargin {2em}          % Margen superior del título principal
+\def\hfstyle {style1}              % Estilo header-footer (7 estilos)
 
 % CONFIGURACIÓN DE LAS LEYENDAS - CAPTION
 \def\captionalignment {justified}  % Posición {centered,justified,left,right}
@@ -119,7 +109,6 @@
 \def\footnotepagetoprule {false}   % Footnote en pag. tienen separador superior
 \def\footnoterestart {none}        % N° footnote {none,chap,page,(s/ss/sss/ssss)ec}
 \def\fpremovetopbottomcenter{true} % Elimina espacio vertical al centrar con b!,t!
-\def\hfpdashcharstyle {--}         % Estilo del guión en portadas,header-footer,etc
 \def\imagedefaultplacement {H}     % Posición por defecto de las imágenes
 \def\marginalignbottom {-0.4}      % Margen inferior entorno align [cm]
 \def\marginalignedbottom {-0.2}    % Margen inferior entorno aligned [cm]
@@ -187,10 +176,10 @@
 \def\urlcolor {magenta}            % Color de los enlaces web (\href,\url)
 
 % MÁRGENES DE PÁGINA
-\def\pagemarginbottom {2.5}        % Margen inferior página [cm]
-\def\pagemarginleft {3.81}         % Margen izquierdo página [cm]
-\def\pagemarginright {3.81}        % Margen derecho página [cm]
-\def\pagemargintop {2.5}           % Margen superior página [cm]
+\def\pagemarginbottom {1.91}       % Margen inferior página [cm]
+\def\pagemarginleft {1.27}        % Margen izquierdo página [cm]
+\def\pagemarginright {1.27}       % Margen derecho página [cm]
+\def\pagemargintop {1.91}          % Margen superior página [cm]
 
 % OPCIONES DEL PDF COMPILADO
 \def\cfgbookmarksopenlevel {1}     % Nivel marcadores en pdf (1:secciones)

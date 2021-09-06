@@ -30,7 +30,7 @@
 	% toma un primer parámetro opcional para definir una etiqueta (dentro de
 	% los corchetes), luego toma la dirección de la imagen, sus parámetros
 	% (en este caso se definió la escala de 0.14) y una leyenda opcional
-	\insertimage[\label{img:testimage}]{ejemplos/test-image.png}{scale=0.14}{Where are you? de \quotes{Internet}.}
+	\insertimage[\label{img:testimage}]{test-image.png}{scale=0.14}{Where are you? de \quotes{Internet}.}
 
 	A continuación\footnote{Como se puede observar las funciones \texttt{\textbackslash insert...} añaden un párrafo automáticamente.} se muestra un ejemplo de inserción de ecuaciones simples con el comando \href{https://latex.ppizarror.com/informe.html#hlp-formulae}{\textbackslash insertequation}:
 
@@ -71,7 +71,6 @@
 % ------------------------------------------------------------------------------
 % NUEVA SECCIÓN
 % ------------------------------------------------------------------------------
-\clearpage
 \section{Aquí un nuevo tema}
 
 % SUB-SECCIÓN
@@ -83,7 +82,7 @@
 	% (un 30% del ancho de página) y por último su leyenda. Para insertar una
 	% imagen flotante en la derecha se utiliza \insertimageright usando los
 	% mismos parámetros
-	\insertimageleft[\label{img:imagen-izquierda}]{ejemplos/test-image-wrap}{0.3}{Apolo flotando a la izquierda.}
+	\insertimageleft[\label{img:imagen-izquierda}]{test-image-wrap}{0.3}{Apolo flotando a la izquierda.}
 
 	~ \lipsum[1]
 
@@ -100,7 +99,6 @@
 	\lipsum[1]
 
 % Inserta un subtítulo sin número
-\clearpage
 \subsection{Otros párrafos más normales}
 
 	% Párrafos
@@ -113,27 +111,19 @@
 	}
 
 	% Nuevo párrafo
-	\lipsum[4]
-
-	% Se inserta un multicols, con esto se pueden escribir párrafos en varias columnas
-	\begin{multicols}{2}
-
-		% Párrafo 1
-		\lipsum[4-5]
-		
-		% Ecuación encerrada en una caja
-		\insertequation[]{ \boxed{f(x) = \fracdpartial{u}{t}} }
-		
-		% Párrafo 2
-		\lipsum[6]
-		
-		% Inserta una imagen simple dentro del párrafo
-		\insertimage{ejemplos/test-image-wrap}{width=4cm}{Imagen dentro de párrafo.}
-		
-		% Párrafo 3 del multicols
-		\lipsum[11-14]
-
-	\end{multicols}
+	\lipsum[4-5]
+	
+	% Ecuación encerrada en una caja
+	\insertequation[]{ \boxed{f(x) = \fracdpartial{u}{t}} }
+	
+	% Párrafo 2
+	\lipsum[6]
+	
+	% Inserta una imagen simple dentro del párrafo
+	\insertimage{test-image-wrap}{width=4cm}{Imagen dentro de párrafo.}
+	
+	% Párrafo 3 del multicols
+	\lipsum[11-14]
 
 % SUB-SECCIÓN
 \subsection{Ejemplos de inserción de código fuente}
@@ -177,11 +167,19 @@ public class Hola extends GenericServlet {
 
 \begin{sourcecode}{matlab}{Ejemplo en Matlab.}
 % Se crea gráfico
-f = figure(1); hold on; movegui(f, 'center');
+f = figure(1);
+hold on;
+movegui(f, 'center');
 xlabel('td/Tn');
 ylabel('FAD=Umax/Uf0');
-title('Espectro de pulso de desplazamiento');
-plot(x, y);
+
+for j = 1:length(BETA)
+	fad = ones(1, NDATOS); % Arreglo para el FAD
+	for i = 1:NDATOS
+		[t, u_t, ~, ~] = main(BETA(j), r(i), M, K, F0, 0);
+		fad(i) = max(abs(u_t)) / uf0;
+	end
+end
 \end{sourcecode}
 
 \begin{sourcecode}{pseudocode}{Algoritmo Non-Max supression.}
@@ -205,28 +203,22 @@ function NMS(B,c)
 
 \begin{sourcecode}{latex}{}
 \begin{images}[\label{imagenmultiple}]{Ejemplo de imagen múltiple.}
-	\addimage[\label{ciudadfoto}]{ejemplos/test-image}{width=6.5cm}{Ciudad}
-	\addimageanum{ejemplos/test-image-wrap}{height=4cm}
-	\imagesnewline
-	\addimage{ejemplos/test-image}{width=11cm}{Ciudad más grande}
+	\addimage[\label{ciudadfoto}]{test-image}{width=6.5cm}{Ciudad}
+	\addimageanum{test-image-wrap}{height=4cm}
 \end{images}
 \end{sourcecode}
 
 	Obteniendo así:
 
 	\begin{images}{Ejemplo de imagen múltiple.}
-		\addimage{ejemplos/test-image}{width=6.5cm}{Ciudad}
-		\addimageanum{ejemplos/test-image-wrap}{height=4cm}
-		\imagesnewline
-		\addimage{ejemplos/test-image}{width=11cm}{Ciudad más grande}
+		\addimage{test-image}{width=4cm}{Ciudad}
+		\addimageanum{test-image-wrap}{height=4cm}
 	\end{images}
 
 
 % ------------------------------------------------------------------------------
 % NUEVA SECCIÓN
 % ------------------------------------------------------------------------------
-\clearpage
-
 % Inserta una sección sin número
 \sectionanum{Más ejemplos}
 
@@ -294,7 +286,6 @@ function NMS(B,c)
 % ------------------------------------------------------------------------------
 % REFERENCIAS (ESTILO BIBTEX), revisar configuración \stylecitereferences
 % ------------------------------------------------------------------------------
-\clearpage % Salto de página
 \begin{references}
 	\bibitem{templateinforme}
 	Template Informe en \LaTeX.
@@ -321,7 +312,6 @@ function NMS(B,c)
 % ------------------------------------------------------------------------------
 % ANEXO
 % ------------------------------------------------------------------------------
-\clearpage
 \begin{anexo}
 
 	\section{Cálculos realizados}
@@ -331,7 +321,7 @@ function NMS(B,c)
 
 	% Imagen, se numerará automáticamente con la letra del anexo según
 	% la configuración \appendixindepobjnum
-	\insertimage[\label{img:anexo-2}]{ejemplos/test-image.png}{scale=0.19}{Imagen en anexo.}
+	\insertimage[\label{img:anexo-2}]{test-image.png}{scale=0.19}{Imagen en anexo.}
 
 	\subsection{Resultados}
 	\lipsum[10]
@@ -356,7 +346,6 @@ function NMS(B,c)
 	\end{table}
 	\disabletablerowcolor % Desactiva el color de celda
 
-	\clearpage
 	\section{Más cálculos}
 
 	% Párrafo
