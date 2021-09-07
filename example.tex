@@ -123,7 +123,7 @@
 	\insertimage{test-image-wrap}{width=4cm}{Imagen dentro de párrafo.}
 	
 	% Párrafo 3 del multicols
-	\lipsum[11-14]
+	\lipsum[11-12]
 
 % SUB-SECCIÓN
 \subsection{Ejemplos de inserción de código fuente}
@@ -234,10 +234,11 @@ function NMS(B,c)
 	\end{enumerate}
 
 	También se puede cambiar el tipo de enumeración, se pueden usar letras, números romanos, entre otros. Esto se logra cambiando el \textbf{label} del objeto \texttt{enumerate}. A continuación se muestra un ejemplo usando letras con el estilo \texttt{\textbackslash alph}\footnote{Con \texttt{\textbackslash Alph} las letras aparecen en mayúscula.}, números romanos con \texttt{\textbackslash roman}\footnote{Con \texttt{\textbackslash Roman} los números romanos salen en mayúscula.} o números griegos con \texttt{\textbackslash greek}\footnote{Una característica propia del template, con \texttt{\textbackslash Greek} las letras griegas están escritas en mayúscula.}:
+	\themulticoldepth\GLOBALenvmulticol
 
 	\begin{multicols}{3}
 		\begin{enumeratebf}[label=\alph*) ] % Fuente en negrita
-			\item Peras
+			\item Peras \themulticoldepth\GLOBALenvmulticol
 			\item Manzanas
 			\item Naranjas
 		\end{enumeratebf}
@@ -254,7 +255,7 @@ function NMS(B,c)
 			\item Filosofía
 		\end{enumerate}
 	\end{multicols}
-
+	\themulticoldepth\GLOBALenvmulticol
 	Para hacer listas sin numerar con \LaTeX\ hay que usar el comando \texttt{\textbackslash begin\{itemize\}}, cada elemento empieza por \texttt{\textbackslash item}, resultando:
 
 	\begin{multicols}{3}
@@ -308,6 +309,7 @@ function NMS(B,c)
 	\url{https://www.tablesgenerator.com}
 \end{references}
 
+\insertimagemc[\label{img:anexo-2}]{test-image.png}{scale=0.19}{fixed2}{Imagen en anexo que usa todas las columnas}
 
 % ------------------------------------------------------------------------------
 % ANEXO
@@ -321,7 +323,8 @@ function NMS(B,c)
 
 	% Imagen, se numerará automáticamente con la letra del anexo según
 	% la configuración \appendixindepobjnum
-	\insertimage[\label{img:anexo-2}]{test-image.png}{scale=0.19}{Imagen en anexo.}
+	\GLOBALenvmulticol
+	% \insertimagemc[\label{img:anexo-2}]{test-image.png}{scale=0.19}{fixed2}{Imagen en anexo que usa todas las columnas}
 
 	\subsection{Resultados}
 	\lipsum[10]

@@ -49,3 +49,8 @@ dist/
 
 # Otros
 .vscode
+
+# Autores
+*.authn
+*.authd
+*.authnd
