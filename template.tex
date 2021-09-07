@@ -808,6 +808,7 @@
 % Definición de variables globales
 \global\def\GLOBALcaptiondefn {EMPTY-VAR}       % Definición del caption
 \global\def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
+\global\def\GLOBALenvanexo {false}              % Indica que el entorno anexo está activo
 \global\def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
 \global\def\GLOBALenvimageinitialized {false}   % Entorno images activo
 \global\def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
@@ -957,6 +958,14 @@
 \newcommand{\checkinsidemulticol}{%
 	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{%
 		\throwwarning{Esta funcion solo puede usarse dentro de multicols}%
+		\stop}{%
+	}
+}
+
+% Chequea que las funciones puedan usarse fuera del entorno anexo
+\newcommand{\checkoutsideanexo}{%
+	\ifthenelse{\equal{\GLOBALenvanexo}{true}}{%
+		\throwwarning{Esta funcion solo puede usarse fuera de anexo}%
 		\stop}{%
 	}
 }
@@ -2051,25 +2060,29 @@
 	\emptyvarerr{\insertimageboxedmc}{#5}{Posicion de la imagen no definida}%
 	\checkoutsideenvimage%
 	\checkinsidemulticol%
+	\checkoutsideanexo%
 	\setcaptionmargincm{\captionlrmarginmc}%
 	\ifthenelse{\equal{#5}{bottom}}{%
+		\begin{samepage}%
 		\begin{figure*}[hb]
 	}{
 	\ifthenelse{\equal{#5}{top}}{%
+		\begin{samepage}%
 		\begin{figure*}[ht]
 	}{
 	\ifthenelse{\equal{#5}{fixed2}}{%
-		termina
 		\end{multicols}
-		savage
+		\begin{samepage}%
 		\begin{figure*}[h]
 	}{
 	\ifthenelse{\equal{#5}{fixed2b}}{%
 		\end{multicols}
+		\begin{samepage}%
 		\begin{figure*}[b]
 	}{
 	\ifthenelse{\equal{#5}{fixed2t}}{%
 		\end{multicols}
+		\begin{samepage}%
 		\begin{figure*}[t]
 	}{
 	\ifthenelse{\equal{#5}{fixed3}}{%
@@ -2079,23 +2092,27 @@
 	}{
 	\ifthenelse{\equal{#5}{fixed3b}}{%
 		\end{multicols}
+		\begin{samepage}%
 		\begin{figure*}[b]
 	}{
 	\ifthenelse{\equal{#5}{fixed3t}}{%
 		\end{multicols}
+		\begin{samepage}%
 		\begin{figure*}[t]
 	}{
 	\ifthenelse{\equal{#5}{fixed4}}{%
 		\end{multicols}
+		\begin{samepage}%
 		\begin{figure*}[h]
 	}{
 	\ifthenelse{\equal{#5}{fixed4b}}{%
 		\end{multicols}
-
+		\begin{samepage}%
 		\begin{figure*}[h]
 	}{
 	\ifthenelse{\equal{#5}{fixed4t}}{%
 		\end{multicols}
+		\begin{samepage}%
 		\begin{figure*}[h]
 	}{
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
@@ -2115,10 +2132,9 @@
 			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
-		wenas #5
 	\end{figure*}
+	\end{samepage}
 	\ifthenelse{\equal{#5}{fixed2}}{%
-		inicia
 		\begin{multicols}{2}
 	}{
 	\ifthenelse{\equal{#5}{fixed2b}}{%
@@ -2146,7 +2162,6 @@
 		\begin{multicols}{4}
 	}{
 	}}}}}}}}}
-	epic
 	\setcaptionmargincm{\captionlrmargin}
 	\resetindexcaption
 }
@@ -3650,6 +3665,7 @@
 
 % Crea una sección de anexos
 \newenvironment{anexo}{
+	\global\def\GLOBALenvanexo {true}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
 	\phantomsection
@@ -3899,7 +3915,7 @@
 	
 	% Configura caption y márgenes
 	\vspace{\marginimagetop cm}%
-	\setcaptionmargincm{\captionmarginmultimg}%
+	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
 	
 	% Inicia la figura
 	\begin{samepage}%
@@ -3937,6 +3953,7 @@
 	\global\def\GLOBALenvimageinitialized {true}
 	\global\def\GLOBALenvimageadded {false}
 	\checkinsidemulticol%
+	\checkoutsideanexo%
 	
 	% Configura caption y márgenes
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
@@ -3964,7 +3981,7 @@
 	\end{figure*}%
 	
 	% Restablece caption y márgenes
-	\setcaptionmargincm{\captionlrmargin}%
+	\setcaptionmargincm{\captionlrmarginmc}%
 	
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}
@@ -5125,7 +5142,7 @@
 		Template.Nombre={Template-Articulo},
 		Template.Tipo={Normal},
 		Template.Version.Dev={0.0.1-1-ARTC},
-		Template.Version.Hash={D195FF2A9997C9BB5C4A3BA695921B00},
+		Template.Version.Hash={E8EAA6BFA330C87294805F103BB3650E},
 		Template.Version.Release={0.0.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
