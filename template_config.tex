@@ -12,7 +12,7 @@
 % CONFIGURACIONES GENERALES
 \def\compilertype {pdf2latex}      % Compilador {pdf2latex,xelatex,lualatex}
 \def\documentfontsize {10}         % Tamaño de la fuente del documento [pt]
-\def\documentinterline {1.025}     % Interlineado del documento [factor]
+\def\documentinterline {1}         % Interlineado del documento [factor]
 \def\fontdocument {libertine}      % Tipografía base, ver soportadas en manual
 \def\fonttypewriter {tmodern}      % Tipografía de \texttt, ver manual
 \def\fonturl {same}                % Tipo de fuente url {tt,sf,rm,same}
@@ -51,7 +51,7 @@
 \def\captionsubchar {.}            % Caracter entre N° objeto y N° subfigura/tabla
 \def\captiontbmarginfigure {9.35}  % Margen sup/inf de la leyenda en figuras [pt]
 \def\captiontbmargintable {7}      % Margen sup/inf de la leyenda en tablas [pt]
-\def\captiontextbold {false}       % Etiqueta (código,figura,tabla) en negrita
+\def\captiontextbold {true}        % Etiqueta (código,figura,tabla) en negrita
 \def\captiontextcolor {black}      % Color de la leyenda
 \def\captiontextsubnumbold {false} % N° subfigura/subtabla en negrita
 \def\codecaptiontop {true}         % Leyenda arriba del código fuente
@@ -91,13 +91,13 @@
 \def\bibtexrefsep {6}              % Separación entre refs. {bibtex} [pt]
 \def\bibtexstyle {ieeetr}          % Formato referencias bibtex {apa,ieeetr,etc...}
 \def\bibtextextalign {justify}     % Alineación bibtex {justify,left,right,center}
-\def\fontsizerefbibl {\normalsize} % Tamaño de fuentes al usar \bibliography{file}
+\def\fontsizerefbibl {\small}      % Tamaño de fuentes al usar \bibliography{file}
 \def\natbibrefcitecharclose {]}    % Caracter final cita natbib
 \def\natbibrefcitecharopen {[}     % Caracter inicial cita natbib
 \def\natbibrefcitecompress {true}  % Comprime refererencias al citar
 \def\natbibrefcitesepcomma {true}  % Separador en coma (,) o punto y coma (;)
 \def\natbibrefcitetype {numbers}   % Tipo citación {authoryear,numbers,super}
-\def\natbibrefsep {6}              % Separación entre referencia {natbib} [pt]
+\def\natbibrefsep {3}              % Separación entre referencia {natbib} [pt]
 \def\natbibrefstyle {natsimple}    % Formato referencias natbib {apa,ieeetr,etc...}
 \def\sectionappendixlastchar {.}   % Caracter entre n° de sec. anexo y título
 \def\stylecitereferences {natbib}  % Estilo cita/ref {apacite,bibtex,natbib,custom}
