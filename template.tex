@@ -813,7 +813,7 @@
 % Definición de variables globales
 \global\def\GLOBALcaptiondefn {EMPTY-VAR}       % Definición del caption
 \global\def\GLOBALchapternumenabled {false}     % Numeración de capítulos empezó
-\global\def\GLOBALenvanexo {false}              % Indica que el entorno anexo está activo
+\global\def\GLOBALenvappendix {false}           % Indica que el entorno anexo está activo
 \global\def\GLOBALenvimageadded {false}         % Indica que una imagen ha sido añadida
 \global\def\GLOBALenvimageinitialized {false}   % Entorno images activo
 \global\def\GLOBALenvmulticol {false}           % Indica que el entorno multicol está activo
@@ -822,6 +822,10 @@
 \global\def\GLOBALsubsectionanumenabled {false} % Subsección sin numeración
 \global\def\GLOBALtablerowcolorindex {2}        % Índice tabla colores
 \global\def\GLOBALtablerowcolorswitch {false}   % Tabla con colores cambiados
+
+% Signo porcentaje para archivos
+\def\LOCALpercentchar#1{}
+\edef\LOCALpercentchar{\expandafter\LOCALpercentchar\string\%}
 
 % Contador global de objetos
 \newcounter{templateEquations}      % Ecuaciones
@@ -968,8 +972,8 @@
 }
 
 % Chequea que las funciones puedan usarse fuera del entorno anexo
-\newcommand{\checkoutsideanexo}{%
-	\ifthenelse{\equal{\GLOBALenvanexo}{true}}{%
+\newcommand{\checkoutsideappendix}{%
+	\ifthenelse{\equal{\GLOBALenvappendix}{true}}{%
 		\throwwarning{Esta funcion solo puede usarse fuera de anexo}%
 		\stop}{%
 	}
@@ -2065,7 +2069,7 @@
 	\emptyvarerr{\insertimageboxedmc}{#5}{Posicion de la imagen no definida}%
 	\checkoutsideenvimage%
 	\checkinsidemulticol%
-	\checkoutsideanexo%
+	\checkoutsideappendix%
 	\setcaptionmargincm{\captionlrmarginmc}%
 	\ifthenelse{\equal{#5}{bottom}}{%
 		\begin{samepage}%
@@ -3470,10 +3474,7 @@
 	\immediate\closeout\fileauthornames
 	\immediate\closeout\fileauthordata
 	\immediate\closeout\fileauthornamesdata
-}   
-
-\def\LOCALauthorpercentchar#1{}
-\edef\LOCALauthorpercentchar{\expandafter\LOCALauthorpercentchar\string\%}
+}
 
 % Define contadores
 \newcounter{authornumber}
@@ -3485,9 +3486,9 @@
 %	#3	Institución del autor
 %	#4	Correo
 \newcommand{\addauthor}[4][]{
-	\immediate\write\fileauthornames{\unexpanded{\titleauthorname}[\theauthornumber]\unexpanded{{#2}}\LOCALauthorpercentchar}
-	\immediate\write\fileauthordata{\unexpanded{\titleauthordata}[\theauthornumber]\unexpanded{{#3}{#4}{#1}}\LOCALauthorpercentchar}%
-	\immediate\write\fileauthornamesdata{\unexpanded{\titleauthornamedata}[\theauthornumber]\unexpanded{{#2}{#3}{#4}{#1}}\LOCALauthorpercentchar}%
+	\immediate\write\fileauthornames{\unexpanded{\titleauthorname}[\theauthornumber]\unexpanded{{#2}}\LOCALpercentchar}
+	\immediate\write\fileauthordata{\unexpanded{\titleauthordata}[\theauthornumber]\unexpanded{{#3}{#4}{#1}}\LOCALpercentchar}%
+	\immediate\write\fileauthornamesdata{\unexpanded{\titleauthornamedata}[\theauthornumber]\unexpanded{{#2}{#3}{#4}{#1}}\LOCALpercentchar}%
 	\stepcounter{authornumber}
 }
 
@@ -3509,9 +3510,9 @@
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
-				\textbf{\Large{\titulodeldocumento}} \\%
+				\textbf{\Large{\documenttitle}} \\%
 			}{%
-				\Large{\titulodeldocumento} \\%
+				\Large{\documenttitle} \\%
 			}
 			\vspace{0.6cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}
@@ -3548,9 +3549,9 @@
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
-				\textbf{\Large{\titulodeldocumento}} \\%
+				\textbf{\Large{\documenttitle}} \\%
 			}{%
-				\Large{\titulodeldocumento} \\%
+				\Large{\documenttitle} \\%
 			}
 			\vspace{0.7cm}%
 			\input{\jobname.authn}%
@@ -3575,9 +3576,9 @@
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
-				\textbf{\Large{\titulodeldocumento}} \\%
+				\textbf{\Large{\documenttitle}} \\%
 			}{%
-				\Large{\titulodeldocumento} \\%
+				\Large{\documenttitle} \\%
 			}
 			\vspace{0.7cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
@@ -3600,9 +3601,9 @@
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
-				\textbf{\Large{\titulodeldocumento}} \\%
+				\textbf{\Large{\documenttitle}} \\%
 			}{%
-				\Large{\titulodeldocumento} \\%
+				\Large{\documenttitle} \\%
 			}
 			\vspace{0.7cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
@@ -3613,7 +3614,7 @@
 			\def\LOCALhasname {false}%
 			\vspace{0.1cm}%
 			~ \\%
-			\small{\fechadocumento} \\
+			\small{\documentdate} \\
 			\vspace{0.3cm}%
 		\end{center}%
 		\normalsize%
@@ -3634,9 +3635,9 @@
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
-				\textbf{\Large{\titulodeldocumento}} \\%
+				\textbf{\Large{\documenttitle}} \\%
 			}{%
-				\Large{\titulodeldocumento} \\%
+				\Large{\documenttitle} \\%
 			}
 			\vspace{0.9cm}%
 			\noindent%
@@ -3691,8 +3692,8 @@
 }
 
 % Crea una sección de anexos
-\newenvironment{anexo}{
-	\global\def\GLOBALenvanexo {true}%
+\newenvironment{appendixd}{
+	\global\def\GLOBALenvappendix {true}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
 	\phantomsection
@@ -3704,7 +3705,7 @@
 	}
 	\appendixtitleon
 	\appendixtitletocon
-	%\addappheadtotoc
+	% \addappheadtotoc
 	\bookmarksetupnext{level=part}
 	\begin{appendices} % Crea la sección
 		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
@@ -3922,7 +3923,7 @@
 }
 
 % Crea una sección de resumen
-\newenvironment{resumen}{
+\newenvironment{abstractd}{
 	% Tipo de título para abstract
 	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
 	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
@@ -3980,7 +3981,7 @@
 	\global\def\GLOBALenvimageinitialized {true}
 	\global\def\GLOBALenvimageadded {false}
 	\checkinsidemulticol%
-	\checkoutsideanexo%
+	\checkoutsideappendix%
 	
 	% Configura caption y márgenes
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
@@ -5100,22 +5101,22 @@
 % CONFIGURACIÓN INICIAL DEL DOCUMENTO
 % -----------------------------------------------------------------------------
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\titulodeldocumento}
+\checkvardefined{\documenttitle}
 
 % -----------------------------------------------------------------------------
 % Se añade \xspace a las variables
 % -----------------------------------------------------------------------------
 \makeatletter
-	\g@addto@macro\titulodeldocumento\xspace
+	\g@addto@macro\documenttitle\xspace
 \makeatother
 
-\ifthenelse{\equal{\subtitulodocumento}{}}{
-	\def\titulodeldocumentohf {\titulodeldocumento}
+\ifthenelse{\equal{\documentsubtitle}{}}{
+	\def\documenttitlehf {\documenttitle}
 }{
 	\makeatletter
-		\g@addto@macro\subtitulodocumento\xspace
+		\g@addto@macro\documentsubtitle\xspace
 	\makeatother
-	\def\titulodeldocumentohf {\subtitulodocumento}
+	\def\documenttitlehf {\documentsubtitle}
 }
 
 % -----------------------------------------------------------------------------
@@ -5140,9 +5141,9 @@
 	\def\cfgpdfpagemode {UseNone}
 }
 \ifthenelse{\equal{\usepdfmetadata}{true}}{
-	\def\pdfmetainfotitulo {\titulodeldocumento}
+	\def\pdfmetainfotitle {\documenttitle}
 }{
-	\def\pdfmetainfotitulo {}
+	\def\pdfmetainfotitle {}
 }
 \hypersetup{
 	keeppdfinfo,
@@ -5156,20 +5157,20 @@
 	pdfencoding={unicode},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Documento.Titulo={\pdfmetainfotitulo},
-		Template.Autor.Alias={ppizarror},
-		Template.Autor.Email={pablo@ppizarror.com},
-		Template.Autor.Nombre={Pablo Pizarro R.},
-		Template.Autor.Web={https://ppizarror.com},
-		Template.Codificacion={UTF-8},
-		Template.Fecha={08/09/2021},
-		Template.Latex.Compilador={pdflatex},
-		Template.Licencia.Tipo={MIT},
-		Template.Licencia.Web={https://opensource.org/licenses/MIT},
-		Template.Nombre={Template-Articulo},
-		Template.Tipo={Normal},
+		Document.Title={\pdfmetainfotitle},
+		Template.Author.Alias={ppizarror},
+		Template.Author.Email={pablo@ppizarror.com},
+		Template.Author.Web={https://ppizarror.com},
+		Template.Author={Pablo Pizarro R.},
+		Template.Date={08/09/2021},
+		Template.Encoding={UTF-8},
+		Template.Latex.Compiler={pdflatex},
+		Template.License.Type={MIT},
+		Template.License.Web={https://opensource.org/licenses/MIT},
+		Template.Name={Template-Articulo},
+		Template.Type={Normal},
 		Template.Version.Dev={1.0.0-1-ARTC},
-		Template.Version.Hash={7F5FA3677F7D8E141E06375C0232B80E},
+		Template.Version.Hash={EA35C1B5CB12B93ED7361506C2753AA4},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -5182,7 +5183,7 @@
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdftitle={\pdfmetainfotitulo},
+	pdftitle={\pdfmetainfotitle},
 	pdftoolbar={\cfgpdftoolbar}
 }
 
@@ -5279,7 +5280,6 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
-	% listofformat={subparens},
 	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
@@ -5289,7 +5289,6 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
-	% listofformat={subparens},
 	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
@@ -5903,7 +5902,7 @@
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
-			\fancyhead[LE,RO]{\authorshf: \titulodeldocumentohf}
+			\fancyhead[LE,RO]{\authorshf: \documenttitlehf}
 			\fancyhead[RE,LO]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
@@ -5942,7 +5941,7 @@
 			\fancyhf{}
 			\fancyhead[LE,RO]{\thepage}
 			\fancyhead[RE]{\authorshf}
-			\fancyhead[LO]{\titulodeldocumentohf}
+			\fancyhead[LO]{\documenttitlehf}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -5972,7 +5971,7 @@
 			\fancyhf{}
 			\fancyhead[LE,RO]{\textbf{\thepage}}
 			\fancyhead[RE]{\textbf{\authorshf}}
-			\fancyhead[LO]{\textbf{\titulodeldocumentohf}}
+			\fancyhead[LO]{\textbf{\documenttitlehf}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6007,7 +6006,7 @@
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
 			\fancyhead[LE]{\thepage\quad\quad\authorshf}
-			\fancyhead[RO]{\titulodeldocumentohf\quad\quad\thepage}
+			\fancyhead[RO]{\documenttitlehf\quad\quad\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6070,7 +6069,7 @@
 		\pagestyle{fancy}
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
-			\fancyhead[R]{\small \textit{\titulodeldocumentohf}}
+			\fancyhead[R]{\small \textit{\documenttitlehf}}
 			\fancyfoot[L]{\small \journalname}
 			\fancyfoot[R]{\small \thepage\ / \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}

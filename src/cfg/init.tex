@@ -10,22 +10,22 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Se revisa si las variables no han sido borradas
-\checkvardefined{\titulodeldocumento}
+\checkvardefined{\documenttitle}
 
 % -----------------------------------------------------------------------------
 % Se añade \xspace a las variables
 % -----------------------------------------------------------------------------
 \makeatletter
-	\g@addto@macro\titulodeldocumento\xspace
+	\g@addto@macro\documenttitle\xspace
 \makeatother
 
-\ifthenelse{\equal{\subtitulodocumento}{}}{
-	\def\titulodeldocumentohf {\titulodeldocumento}
+\ifthenelse{\equal{\documentsubtitle}{}}{
+	\def\documenttitlehf {\documenttitle}
 }{
 	\makeatletter
-		\g@addto@macro\subtitulodocumento\xspace
+		\g@addto@macro\documentsubtitle\xspace
 	\makeatother
-	\def\titulodeldocumentohf {\subtitulodocumento}
+	\def\documenttitlehf {\documentsubtitle}
 }
 
 % -----------------------------------------------------------------------------
@@ -50,9 +50,9 @@
 	\def\cfgpdfpagemode {UseNone}
 }
 \ifthenelse{\equal{\usepdfmetadata}{true}}{
-	\def\pdfmetainfotitulo {\titulodeldocumento}
+	\def\pdfmetainfotitle {\documenttitle}
 }{
-	\def\pdfmetainfotitulo {}
+	\def\pdfmetainfotitle {}
 }
 \hypersetup{
 	keeppdfinfo,
@@ -66,20 +66,20 @@
 	pdfencoding={unicode},
 	pdffitwindow={\cfgpdffitwindow},
 	pdfinfo={
-		Documento.Titulo={\pdfmetainfotitulo},
-		Template.Autor.Alias={ppizarror},
-		Template.Autor.Email={pablo@ppizarror.com},
-		Template.Autor.Nombre={Pablo Pizarro R.},
-		Template.Autor.Web={https://ppizarror.com},
-		Template.Codificacion={UTF-8},
-		Template.Fecha={08/09/2021},
-		Template.Latex.Compilador={pdflatex},
-		Template.Licencia.Tipo={MIT},
-		Template.Licencia.Web={https://opensource.org/licenses/MIT},
-		Template.Nombre={Template-Articulo},
-		Template.Tipo={Normal},
+		Document.Title={\pdfmetainfotitle},
+		Template.Author.Alias={ppizarror},
+		Template.Author.Email={pablo@ppizarror.com},
+		Template.Author.Web={https://ppizarror.com},
+		Template.Author={Pablo Pizarro R.},
+		Template.Date={08/09/2021},
+		Template.Encoding={UTF-8},
+		Template.Latex.Compiler={pdflatex},
+		Template.License.Type={MIT},
+		Template.License.Web={https://opensource.org/licenses/MIT},
+		Template.Name={Template-Articulo},
+		Template.Type={Normal},
 		Template.Version.Dev={1.0.0-1-ARTC},
-		Template.Version.Hash={7F5FA3677F7D8E141E06375C0232B80E},
+		Template.Version.Hash={EA35C1B5CB12B93ED7361506C2753AA4},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -92,7 +92,7 @@
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
-	pdftitle={\pdfmetainfotitulo},
+	pdftitle={\pdfmetainfotitle},
 	pdftoolbar={\cfgpdftoolbar}
 }
 
@@ -189,7 +189,6 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
-	% listofformat={subparens},
 	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
@@ -199,7 +198,6 @@
 	labelfont={color=\captioncolor, \captiontextsubnumbold},
 	labelformat={\subcaptionlabelformat},
 	labelsep={\subcaptionlabelsep},
-	% listofformat={subparens},
 	lofdepth=1,
 	textfont={color=\captiontextcolor},
 	singlelinecheck=on
