@@ -10,21 +10,23 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % CREACIÓN DEL DOCUMENTO
-\documentclass[letterpaper,oneside]{article}
+\documentclass[letterpaper,twoside]{article}
 
 % INFORMACIÓN DEL DOCUMENTO
 \def\titulodeldocumento {Título del artículo}
 \def\subtitulodocumento {}
+
+\def\journalname {Revista, conferencia del artículo}
 \def\fechadocumento {\today}
 
 % IMPORTACIÓN DEL TEMPLATE
 \input{template}
-% \usepackage{dblfnote}
-\interfootnotelinepenalty=10000
 
 % CONFIGURA LOS AUTORES
+\def\authorshf {P. Pizarro et al.} % Nombres en header-footer
+
 \addauthor[0000-0002-8745-6638]{Pablo N. Pizarro}{MSc. en ingeniería, Universidad de Chile}{pablo@ppizarror.com}
-\addauthor{Segundo Autor}{Profesor Asociado, Universidad de Chile, Beauchef 851, Santiago, Chile, Departamento de Ingeniería Civil}{nombre2@email.com}
+\addauthor{Segundo Autor}{Profesor Asociado, Universidad de Chile}{nombre2@email.com}
 \addauthor{Tercer Autor}{Profesor, Nombre de la institución}{}
 
 % INICIO DE PÁGINAS

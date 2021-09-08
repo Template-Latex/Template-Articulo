@@ -182,11 +182,11 @@ public class Hola extends GenericServlet {
 \begin{sourcecode}{matlab}{Ejemplo en Matlab.}
 % Se crea gráfico
 f = figure(1);
+
 hold on;
-
 movegui(f, 'center');
-xlabel('td/Tn');
 
+xlabel('td/Tn');
 ylabel('FAD=Umax/Uf0');
 
 for j = 1:length(BETA)
@@ -317,7 +317,7 @@ function NMS(B,c)
 
 	% Imagen, se numerará automáticamente con la letra del anexo según
 	% la configuración \appendixindepobjnum
-	\insertimage[\label{img:anexo-2}]{test-image.png}{scale=0.15}{Imagen en anexo.}
+	\insertimage[\label{img:anexo-2}]{test-image.png}{width=1\linewidth}{Imagen en anexo.}
 
 	\subsection{Resultados}
 	\lipsum[10]
