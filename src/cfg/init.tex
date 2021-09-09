@@ -1,6 +1,6 @@
 % Template:     Articulo LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.0.0 (08/09/2021)
+% Versión:      1.0.0 (09/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -71,15 +71,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={08/09/2021},
+		Template.Date={09/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.0-4-ARTC},
-		Template.Version.Hash={FC44544C19C6F0894A9A092441023713},
+		Template.Version.Dev={1.0.0-5-ARTC},
+		Template.Version.Hash={E6329A61C818E779AF2400A20EC4E0CE},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -114,9 +114,8 @@
 % -----------------------------------------------------------------------------
 % Definición de valores e dimensiones
 % -----------------------------------------------------------------------------
-\renewcommand{\baselinestretch}{\documentinterline} % Ajuste del entrelineado
+\setstretch{\documentinterline} % Ajuste del entrelineado
 \setlength{\headheight}{64 pt} % Tamaño de la cabecera sin fancyhdr
-% \setcounter{MaxMatrixCols}{20} % Número máximo de columnas en matrices
 \setlength{\footnotemargin}{\marginfootnote pt} % Margen del footnote
 \setlength{\columnsep}{\columnsepwidth em} % Separación entre columnas
 \ifthenelse{\equal{\showlinenumbers}{true}}{
@@ -711,3 +710,11 @@
 \renewcommand{\labelitemiii}{\sitemizeiii}
 \renewcommand{\labelitemiv}{\sitemizeiv}
 
+% -----------------------------------------------------------------------------
+% Configura métodos aplicados al iniciar el documento
+% -----------------------------------------------------------------------------
+\AtBeginDocument{%
+	 \normalfont%
+	 \setlength{\parindent}{\documentparindent pt}%
+	 \setlength{\parskip}{\documentparskip pt}%
+}
