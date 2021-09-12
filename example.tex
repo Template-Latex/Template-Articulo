@@ -1,6 +1,6 @@
 % Template:     Articulo LaTeX
 % Documento:    Archivo de ejemplo
-% Versión:      1.0.0 (10/09/2021)
+% Versión:      1.0.0 (11/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -98,17 +98,24 @@
 \subsection{Otros párrafos más normales}
 
 	\begin{table*}
+		\begin{threeparttable}
 		\centering
 		\caption{Ejemplo de tabla que usa múltiples columnas.}
 		\begin{tabular}{cccc}
 			\hline
 			\textbf{Columna 1} & \textbf{Columna 2} & \textbf{Columna 3} & \textbf{Columna 4} \bigstrut\\
 			\hline
-			1 & $\omega$ & $\nu$ & $\delta$ \bigstrut[t]\\
-			2 & $\Phi$ & $\Theta$ & $\varSigma$ \\
-			3 & $\xi$ & $\kappa$ & $\varpi$ \bigstrut[b] \\
+			1 & $\omega$ & $\nu$ & $\delta$ \tnote{a} \\
+			2 & $\Phi$ & $\Theta$ & $\varSigma$ \tnote{1} \\
+			3 & $\xi$ & $\kappa$ & $\varpi$ \\
 			\hline
 		\end{tabular}
+		\begin{tablenotes}
+			Esta tabla acepta comentarios y notas al margen.
+			\item[a] Este elemento tiene una descripción debajo de la tabla
+			\item[1] Más comentarios
+		\end{tablenotes}
+		\end{threeparttable}
 	\end{table*}
 
 	% Párrafos
@@ -189,6 +196,7 @@ for j = 1:length(BETA)
 	fad = ones(1, NDATOS); % Arreglo para el FAD
 	for i = 1:NDATOS
 		[t, u_t, ~, ~] = main(BETA(j), r(i), M, K, F0, 0);
+		t2 = t * cos(r(i)) ./ BETA;
 		fad(i) = max(abs(u_t)) / uf0;
 	end
 end
