@@ -1,6 +1,6 @@
 % Template:     Articulo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.0.0 (11/09/2021)
+% Versión:      1.0.0 (12/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -186,7 +186,7 @@
 }
 
 % Agrega punto a títulos/subtítulos
-\ifthenelse{\equal{\showdotaftersnum}{true}}{
+\ifthenelse{\equal{\dotaftersnum}{true}}{
 	\usepackage{secdot}
 	\sectiondot{subsection}
 	\sectiondot{subsubsection}}{
@@ -1006,6 +1006,15 @@
 	\vspace*{\fill}%
 }
 
+\newlength{\coregluevarcm}
+\setlength{\coregluevarcm}{0.25 cm}
+
+% Inserta un espacio vertical en cm con una variación +/-
+%	#1	Espacio (en cm)
+\newcommand{\corevspacevarcm}[1]{%
+	\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%
+}
+
 % Agrega una carpeta al path de imágenes
 %	#1	Carpeta
 \makeatletter
@@ -1437,12 +1446,12 @@
 \newcommand{\insertequation}[2][]{%
 	\emptyvarerr{\insertequation}{#2}{Ecuacion no definida}%
 	\ifthenelse{\equal{\numberedequation}{true}}{%
-		\vspace{\marginequationtop cm}%
+		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation}%
 			\text{#1} #2
 		\end{equation}
-		\vspace{\marginequationbottom cm}%
+		\corevspacevarcm{\marginequationbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	}{%
@@ -1458,12 +1467,12 @@
 %	#1	Ecuación
 \newcommand{\insertequationanum}[1]{%
 	\emptyvarerr{\insertequationanum}{#1}{Ecuacion no definida}%
-	\vspace{\marginequationtop cm}%
+	\corevspacevarcm{\marginequationtop}%
 	\begin{samepage}%
 	\begin{equation*}%
 		\ensuremath{#1}
 	\end{equation*}
-	\vspace{\marginequationbottom cm}%
+	\corevspacevarcm{\marginequationbottom}%
 	\end{samepage}
 	\coreafterequationfn%
 }
@@ -1475,13 +1484,13 @@
 \newcommand{\insertindexequation}[3][]{%
 	\emptyvarerr{\insertindexequation}{#2}{Ecuacion no definida}%
 	\emptyvarerr{\insertindexequation}{#3}{Leyenda no definida}%
-	\vspace{\margineqnindextop cm}%
+	\corevspacevarcm{\margineqnindextop}%
 	\begin{samepage}%
 	\begin{align}%
 		\text{#1} \ensuremath{#2}
 	\end{align}
 	\myindexequations{#3}%
-	\vspace{\margineqnindexbottom cm}%
+	\corevspacevarcm{\margineqnindexbottom}%
 	\end{samepage}
 	\coreinsertequationcaption{\textit{#3}}%
 	\addtocounter{templateIndexEquations}{1}%
@@ -1572,14 +1581,14 @@
 		\insertequation[#1]{#2}%
 	\else
 		\ifthenelse{\equal{\numberedequation}{true}}{%
-			\vspace{\marginequationtop cm}%
+			\corevspacevarcm{\marginequationtop}%
 			\begin{samepage}%
 			\begin{equation}
 				\text{#1} #2
 			\end{equation}
-			\vspace{\margineqncaptiontop cm}%
+			\corevspacevarcm{\margineqncaptiontop}%
 			\coreinsertequationcaption{#3}%
-			\vspace{\margineqncaptionbottom cm}%
+			\corevspacevarcm{\margineqncaptionbottom}%
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
@@ -1600,14 +1609,14 @@
 	\ifx\hfuzz#2\hfuzz%
 		\insertequationanum{#1}%
 	\else
-		\vspace{\marginequationtop cm}%
+		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation*}
 			\ensuremath{#1}%
 		\end{equation*}%
-		\vspace{\margineqncaptiontop cm}%
+		\corevspacevarcm{\margineqncaptiontop}%
 		\coreinsertequationcaption{#2}%
-		\vspace{\margineqncaptionbottom cm}%
+		\corevspacevarcm{\margineqncaptionbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	\fi
@@ -1618,12 +1627,12 @@
 \newcommand{\insertgather}[1]{%
 	\emptyvarerr{\insertgather}{#1}{Ecuacion no definida}%
 	\ifthenelse{\equal{\numberedequation}{true}}{%
-		\vspace{\margingathertop cm}%
+		\corevspacevarcm{\margingathertop}%
 		\begin{samepage}%
 		\begin{gather}%
 			\ensuremath{#1}
 		\end{gather}
-		\vspace{\margingatherbottom cm}%
+		\corevspacevarcm{\margingatherbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	}{%
@@ -1635,12 +1644,12 @@
 %	#1	Ecuación
 \newcommand{\insertgatheranum}[1]{%
 	\emptyvarerr{\insertgatheranum}{#1}{Ecuacion no definida}%
-	\vspace{\margingathertop cm}%
+	\corevspacevarcm{\margingathertop}%
 	\begin{samepage}%
 	\begin{gather*}%
 		\ensuremath{#1}
 	\end{gather*}
-	\vspace{\margingatherbottom cm}%
+	\corevspacevarcm{\margingatherbottom}%
 	\end{samepage}
 	\coreafterequationfn%
 }
@@ -1654,14 +1663,14 @@
 		\insertgather{#1}%
 	\else
 		\ifthenelse{\equal{\numberedequation}{true}}{%
-			\vspace{\margingathertop cm}%
+			\corevspacevarcm{\margingathertop}%
 			\begin{samepage}%
 			\begin{gather}%
 				\ensuremath{#1}
 			\end{gather}
-			\vspace{\margingathercapttop cm}%
+			\corevspacevarcm{\margingathercapttop}%
 			\coreinsertequationcaption{#2}%
-			\vspace{\margingathercaptbottom cm}%
+			\corevspacevarcm{\margingathercaptbottom}%
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
@@ -1678,14 +1687,14 @@
 	\ifx\hfuzz#2\hfuzz%
 		\insertgatheranum{#1}%
 	\else
-		\vspace{\margingathertop cm}%
+		\corevspacevarcm{\margingathertop}%
 		\begin{samepage}%
 		\begin{gather*}%
 			\ensuremath{#1}
 		\end{gather*}
-		\vspace{\margingathercapttop cm}%
+		\corevspacevarcm{\margingathercapttop}%
 		\coreinsertequationcaption{#2}%
-		\vspace{\margingathercaptbottom cm}%
+		\corevspacevarcm{\margingathercaptbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	\fi
@@ -1697,26 +1706,26 @@
 \newcommand{\insertgathered}[2][]{%
 	\emptyvarerr{\insertgathered}{#2}{Ecuacion no definida}%
 	\ifthenelse{\equal{\numberedequation}{true}}{%
-		\vspace{\marginequationtop cm}%
+		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation}
 			\begin{gathered}
 				\text{#1} \ensuremath{#2}
 			\end{gathered}
 		\end{equation}
-		\vspace{\margingatheredbottom cm}%
+		\corevspacevarcm{\margingatheredbottom}%
 		\end{samepage}
 	}{%
 		\ifx\hfuzz#1\hfuzz
 		\else
 			\throwwarning{Label invalido en ecuacion (gathered) sin numero}
 		\fi
-		\vspace{\margingatheredtop cm}%
+		\corevspacevarcm{\margingatheredtop}%
 		\begin{samepage}%
 		\begin{gather*}%
 			\ensuremath{#2}
 		\end{gather*}
-		\vspace{\margingatheredbottom cm}%
+		\corevspacevarcm{\margingatheredbottom}%
 		\end{samepage}
 	}
 	\coreafterequationfn%
@@ -1726,7 +1735,7 @@
 %	#1	Ecuación
 \newcommand{\insertgatheredanum}[1]{%
 	\emptyvarerr{\insertgatheredanum}{#1}{Ecuacion no definida}%
-	\vspace{\margingatheredtop cm}%
+	\corevspacevarcm{\margingatheredtop}%
 	\begin{samepage}%
 	\begin{gather*}
 		\ensuremath{#1}
@@ -1746,16 +1755,16 @@
 		\insertgathered[#1]{#2}%
 	\else
 		\ifthenelse{\equal{\numberedequation}{true}}{%
-			\vspace{\marginequationtop cm}%
+			\corevspacevarcm{\marginequationtop}%
 			\begin{samepage}%
 			\begin{equation}
 				\begin{gathered}
 					\text{#1} \ensuremath{#2}
 				\end{gathered}
 			\end{equation}
-			\vspace{\margingatheredcapttop cm}%
+			\corevspacevarcm{\margingatheredcapttop}%
 			\coreinsertequationcaption{#3}%
-			\vspace{\margingatheredcaptbottom cm}%
+			\corevspacevarcm{\margingatheredcaptbottom}%
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
@@ -1776,7 +1785,7 @@
 	\ifx\hfuzz#2\hfuzz%
 		\insertgatheredanum{#1}%
 	\else
-		\vspace{\margingatheredtop cm}%
+		\corevspacevarcm{\margingatheredtop}%
 		\begin{samepage}%
 		\begin{gather*}
 			\ensuremath{#1}
@@ -1794,12 +1803,12 @@
 \newcommand{\insertalign}[1]{%
 	\emptyvarerr{\insertalign}{#1}{Ecuacion no definida}%
 	\ifthenelse{\equal{\numberedequation}{true}}{%
-		\vspace{\marginaligntop cm}%
+		\corevspacevarcm{\marginaligntop}%
 		\begin{samepage}%
 		\begin{align}
 			\ensuremath{#1}
 		\end{align}
-		\vspace{\marginalignbottom cm}%
+		\corevspacevarcm{\marginalignbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	}{%
@@ -1811,12 +1820,12 @@
 %	#1	Ecuación
 \newcommand{\insertalignanum}[1]{%
 	\emptyvarerr{\insertalignanum}{#1}{Ecuacion no definida}%
-	\vspace{\marginaligntop cm}%
+	\corevspacevarcm{\marginaligntop}%
 	\begin{samepage}%
 	\begin{align*}
 		\ensuremath{#1}
 	\end{align*}
-	\vspace{\marginalignbottom cm}%
+	\corevspacevarcm{\marginalignbottom}%
 	\end{samepage}
 	\coreafterequationfn%
 }
@@ -1830,14 +1839,14 @@
 		\insertalign{#1}%
 	\else
 		\ifthenelse{\equal{\numberedequation}{true}}{%
-			\vspace{\marginaligntop cm}%
+			\corevspacevarcm{\marginaligntop}%
 			\begin{samepage}%
 			\begin{align}
 				\ensuremath{#1}
 			\end{align}
-			\vspace{\marginaligncapttop cm}%
+			\corevspacevarcm{\marginaligncapttop}%
 			\coreinsertequationcaption{#2}%
-			\vspace{\marginaligncaptbottom cm}%
+			\corevspacevarcm{\marginaligncaptbottom}%
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
@@ -1854,14 +1863,14 @@
 	\ifx\hfuzz#2\hfuzz%
 		\insertalignanum{#1}%
 	\else
-		\vspace{\marginaligntop cm}%
+		\corevspacevarcm{\marginaligntop}%
 		\begin{samepage}%
 		\begin{align*}
 			\ensuremath{#1}
 		\end{align*}
-		\vspace{\marginaligncapttop cm}%
+		\corevspacevarcm{\marginaligncapttop}%
 		\coreinsertequationcaption{#2}%
-		\vspace{\marginaligncaptbottom cm}%
+		\corevspacevarcm{\marginaligncaptbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	\fi
@@ -1873,14 +1882,14 @@
 \newcommand{\insertaligned}[2][]{%
 	\emptyvarerr{\insertaligned}{#2}{Ecuacion no definida}%
 	\ifthenelse{\equal{\numberedequation}{true}}{%
-		\vspace{\marginequationtop cm}%
+		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation}
 			\begin{aligned}
 				\text{#1} \ensuremath{#2}
 			\end{aligned}
 		\end{equation}
-		\vspace{\marginalignedbottom cm}%
+		\corevspacevarcm{\marginalignedbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	}{%
@@ -1896,7 +1905,7 @@
 %	#1	Ecuación
 \newcommand{\insertalignedanum}[1]{%
 	\emptyvarerr{\insertalignedanum}{#1}{Ecuacion no definida}%
-	\vspace{\marginalignedtop cm}%
+	\corevspacevarcm{\marginalignedtop}%
 	\begin{samepage}%
 	\begin{align*}
 		\ensuremath{#1}
@@ -1916,16 +1925,16 @@
 		\insertaligned[#1]{#2}%
 	\else
 		\ifthenelse{\equal{\numberedequation}{true}}{%
-			\vspace{\marginequationtop cm}%
+			\corevspacevarcm{\marginequationtop}%
 			\begin{samepage}%
 			\begin{equation}
 				\begin{aligned}
 					\text{#1} \ensuremath{#2}
 				\end{aligned}
 			\end{equation}
-			\vspace{\marginalignedcapttop cm}%
+			\corevspacevarcm{\marginalignedcapttop}%
 			\coreinsertequationcaption{#3}%
-			\vspace{\marginalignedcaptbottom cm}%
+			\corevspacevarcm{\marginalignedcaptbottom}%
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
@@ -1946,16 +1955,16 @@
 	\ifx\hfuzz#2\hfuzz%
 		\insertalignedanum{#1}%
 	\else
-		\vspace{\marginequationtop cm}%
+		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation}
 			\begin{aligned}
 				\ensuremath{#1}
 			\end{aligned}
 		\end{equation}
-		\vspace{\marginalignedcapttop cm}%
+		\corevspacevarcm{\marginalignedcapttop}%
 		\coreinsertequationcaption{#2}%
-		\vspace{\marginalignedcaptbottom cm}%
+		\corevspacevarcm{\marginalignedcaptbottom}%
 		\end{samepage}
 		\coreafterequationfn%
 	\fi
@@ -2020,7 +2029,7 @@
 \newcommand{\imagesnewline}{%
 	\checkonlyonenvimage%
 	\global\def\GLOBALenvimageadded {false}%
-	\vspace{\marginimagemultbottom cm}%
+	\corevspacevarcm{\marginimagemultbottom}%
 	\linebreak\noindent%
 }
 
@@ -2060,7 +2069,7 @@
 	\emptyvarerr{\insertimageboxed}{#3}{Parametros de la imagen no definidos}%
 	\emptyvarerr{\insertimageboxed}{#4}{Ancho de la linea no definido}%
 	\checkoutsideenvimage%
-	\vspace{\marginimagetop cm}%
+	\corevspacevarcm{\marginimagetop}%
 	\begin{samepage}%
 	\begin{figure}[H]%
 		\thisfloatpagestyle{fancy}%
@@ -2071,14 +2080,14 @@
 			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup%
 		\ifx\hfuzz#5\hfuzz%
-			\vspace{\captionlessmarginimage cm}
+			\corevspacevarcm{\captionlessmarginimage}%
 		\else%
 			\hspace{0cm}%
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
 		\fi
 	\end{figure}
-	\vspace{\marginimagebottom cm}%
+	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
 	\resetindexcaption%
 }
@@ -2173,10 +2182,10 @@
 			\fbox{\includegraphics[#3]{#2}}%
 		\endgroup
 		\ifx\hfuzz#6\hfuzz%
-			\vspace{\captionlessmarginimage cm}%
+			\corevspacevarcm{\captionlessmarginimage}%
 		\else
 			\hspace{0cm}
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
 		\fi
 	\end{figure*}
@@ -2263,22 +2272,22 @@
 	\par%
 	\begin{wrapfigure}{l}{#3\linewidth}%
 		% \thisfloatpagestyle{fancy} no funciona bien
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[width=\linewidth]{#2}}%
-		\endgroup
-		\ifx\hfuzz#5\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#5\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2311,20 +2320,20 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}[#5]{l}{#3\linewidth}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[width=\linewidth]{#2}}%
-		\endgroup
-		\ifx\hfuzz#6\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
+		\endgroup%
+		\ifx\hfuzz#6\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
 		\fi
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
@@ -2355,22 +2364,22 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}{r}{#3\linewidth}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[width=\linewidth]{#2}}%
-		\endgroup
-		\ifx\hfuzz#5\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#5\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2403,22 +2412,22 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}[#5]{r}{#3\linewidth}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[width=\linewidth]{#2}}%
-		\endgroup
-		\ifx\hfuzz#6\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#6\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2454,22 +2463,22 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}{l}{#3}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#5 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#5 pt}%
+			\centering%
 			\fbox{\includegraphics[#4]{#2}}%
-		\endgroup
-		\ifx\hfuzz#6\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#6\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2505,22 +2514,22 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}[#6]{l}{#3}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#5 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#5 pt}%
+			\centering%
 			\fbox{\includegraphics[#4]{#2}}%
-		\endgroup
-		\ifx\hfuzz#7\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#7\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2556,22 +2565,22 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}{r}{#3}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#5 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#5 pt}%
+			\centering%
 			\fbox{\includegraphics[#4]{#2}}%
-		\endgroup
-		\ifx\hfuzz#6\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#6\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2607,22 +2616,22 @@
 	\vspace{-\baselineskip}%
 	\par%
 	\begin{wrapfigure}[#6]{r}{#3}%
-		\setcaptionmargincm{0}
-		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{
-			\vspace{\marginfloatimages pt}
-		}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#5 pt}
-			\centering
+		\setcaptionmargincm{0}%
+		\ifthenelse{\equal{\figurecaptiontop}{true}}{}{%
+			\vspace{\marginfloatimages pt}%
+		}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#5 pt}%
+			\centering%
 			\fbox{\includegraphics[#4]{#2}}%
-		\endgroup
-		\ifx\hfuzz#7\hfuzz
-			\vspace{\captionlessmarginimage cm}
-		\else
-			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\vspace{\captionmarginimage cm}}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}
-		\fi
+		\endgroup%
+		\ifx\hfuzz#7\hfuzz%
+			\corevspacevarcm{\captionlessmarginimage}%
+		\else%
+			\ifthenelse{\equal{\captionmarginimage}{0}}{}{\corevspacevarcm{\captionmarginimage}}%
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2670,13 +2679,13 @@
 	}
 	% Subsubsubsection
 	\ifthenelse{\equal{\GLOBALsubsectionanumenabled}{true}}{
-		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\ifthenelse{\equal{\dotaftersnum}{true}}{
 			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}.}
 		}{
 			\renewcommand{\thesubsubsubsection}{\arabic{subsubsection}.\arabic{subsubsubsection}}
 		}
 	}{
-		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\ifthenelse{\equal{\dotaftersnum}{true}}{
 			\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
 		}{
 			\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}}
@@ -2864,7 +2873,7 @@
 	\addcontentsline{toc}{subsubsection}{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
 	\setcounter{subsubsubsection}{0}%
-	\ifthenelse{\equal{\showdotaftersnum}{true}}{%
+	\ifthenelse{\equal{\dotaftersnum}{true}}{%
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}.}%
 	}{%
 		\renewcommand{\thesubsubsubsection}{\arabic{subsubsubsection}}%
@@ -3951,7 +3960,7 @@
 % Crea una sección de resumen
 \newenvironment{abstractd}{
 	% Tipo de título para abstract
-	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
+	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
 	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
 	% para que aparezca en el índice utilizar la función \sectionanumheadless
 	\sectionanumnoiheadless{\nameabstract}}{
@@ -3968,27 +3977,27 @@
 	\global\def\GLOBALenvimageadded {false}
 	
 	% Configura caption y márgenes
-	\vspace{\marginimagetop cm}%
+	\corevspacevarcm{\marginimagetop}%
 	\setcaptionmargincm{\captionmarginmultimg} % Eso es para los wrapfig
 	
 	% Inicia la figura
 	\begin{samepage}%
 	\begin{figure}[H] \centering%
 		\thisfloatpagestyle{fancy}%
-		\vspace{\marginimagemulttop cm}%
+		\corevspacevarcm{\marginimagemulttop}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
-			\vspace{\captionlessmarginimage cm}%
+			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
-			\ifthenelse{\equal{\captionmarginimages}{0}}{}{\vspace{\captionmarginimages cm}}%
+			\ifthenelse{\equal{\captionmarginimages}{0}}{}{\corevspacevarcm{\captionmarginimages}}%
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure}%
 
 	% Restablece caption y márgenes
 	\setcaptionmargincm{\captionlrmargin}%
-	\vspace{\marginimagebottom cm}%
+	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
 	
 	% Restablece globales
@@ -4023,13 +4032,13 @@
 		\stop
 	}}%
 		\thisfloatpagestyle{fancy}%
-		\vspace{\marginimagemulttop cm}%
+		\corevspacevarcm{\marginimagemulttop}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
 		\ifthenelse{\equal{\envimagescaptionvar}{}}{ % \ifx\hfuzz no sirve
-			\vspace{\captionlessmarginimage cm}%
+			\corevspacevarcm{\captionlessmarginimage}%
 		}{%
-			\ifthenelse{\equal{\captionmarginimagesmc}{0}}{}{\vspace{\captionmarginimagesmc cm}}
+			\ifthenelse{\equal{\captionmarginimagesmc}{0}}{}{\corevspacevarcm{\captionmarginimagesmc}}
 			\caption{\envimagescaptionvar\envimageslabelvar}%
 		}%
 	\end{figure*}%
@@ -5196,15 +5205,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={11/09/2021},
+		Template.Date={12/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.0-7-ARTC},
-		Template.Version.Hash={FD5EF7BC49202070075B0E853C772474},
+		Template.Version.Dev={1.0.0-2-ARTC},
+		Template.Version.Hash={17CFD0BB99CF2725066579D4A8BFB73A},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -5278,8 +5287,8 @@
 		urlcolor=\urlcolor
 	}
 }
-\ifthenelse{\equal{\colorpage}{white}}{}{
-	\pagecolor{\colorpage}
+\ifthenelse{\equal{\pagescolor}{white}}{}{
+	\pagecolor{\pagescolor}
 }
 
 % -----------------------------------------------------------------------------
@@ -5488,7 +5497,7 @@
 % -----------------------------------------------------------------------------
 % Configuración anexo
 % -----------------------------------------------------------------------------
-\patchcmd{\appendices}{\quad}{\sectionappendixlastchar\quad}{}{}
+\patchcmd{\appendices}{\quad}{\appendixsectionlastchar\quad}{}{}
 
 % -----------------------------------------------------------------------------
 % Se añade listings (código fuente) a tocloft
@@ -5555,12 +5564,6 @@
 \strictpagecheck
 
 % -----------------------------------------------------------------------------
-% Actualización margen títulos
-% -----------------------------------------------------------------------------
-\titlespacing{\section}{0pt}{20pt}{10pt}
-\titlespacing{\subsection}{0pt}{15pt}{10pt}
-
-% -----------------------------------------------------------------------------
 % Se activa el word-wrap para textos con \texttt{}
 % -----------------------------------------------------------------------------
 \ttfamily \hyphenchar\the\font=`\-
@@ -5609,7 +5612,7 @@
 % Crea las sub-sub-sub-secciones
 % -----------------------------------------------------------------------------
 \newcounter{subsubsubsection}[subsubsection]
-\ifthenelse{\equal{\showdotaftersnum}{true}}{ % Agrega punto tras el número
+\ifthenelse{\equal{\dotaftersnum}{true}}{ % Agrega punto tras el número
 	\renewcommand{\thesubsubsubsection}{\thesubsubsection.\arabic{subsubsubsection}.}
 	\renewcommand{\theparagraph}{\thesubsubsubsection.\arabic{paragraph}.}
 }{
@@ -5625,15 +5628,7 @@
 	\def\toclevel@subsubsubsection {4}
 	\def\toclevel@paragraph {5}
 	\def\toclevel@subparagraph {6}
-	\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}
-		{3.25ex \@plus 1ex \@minus .2ex}
-		{-1em}
-		{\normalfont\normalsize\bfseries}}
-	\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}
-		{3.25ex \@plus 1ex \@minus .2ex}
-		{-1em}
-		{\normalfont\normalsize\bfseries}}
-	\ifthenelse{\equal{\showdotaftersnum}{true}}{
+	\ifthenelse{\equal{\dotaftersnum}{true}}{
 		\def\l@subsubsubsection {\@dottedtocline{4}{7.83em}{4.15em}} % Incremento 0.77+3.35 a 3.35
 		\def\l@paragraph {\@dottedtocline{5}{11.98em}{4.92em}}
 		\def\l@subparagraph {\@dottedtocline{6}{14.65em}{5.69em}}
@@ -5642,6 +5637,24 @@
 		\def\l@paragraph {\@dottedtocline{5}{10.97em}{5em}}
 		\def\l@subparagraph {\@dottedtocline{6}{14em}{6em}}
 	}
+\makeatother
+
+% -----------------------------------------------------------------------------
+% Actualización margen títulos
+% -----------------------------------------------------------------------------
+\titlespacing{\section}{\sectionspacingleft pt}{\sectionspacingtop pt plus 0pt minus 4pt}{\sectionspacingbottom pt plus 0pt minus 2pt}
+\titlespacing{\subsection}{\ssectionspacingleft pt}{\ssectionspacingtop pt plus 0pt minus 2pt}{\ssectionspacingbottom pt plus 0pt minus 2pt}
+\titlespacing{\subsubsection}{\sssectionspacingleft pt}{\sssectionspacingtop pt plus 0pt minus 2pt}{\sssectionspacingbottom pt plus 0pt minus 2pt}
+\titlespacing*{\subsubsubsection}{\ssssectionspacingleft pt}{\ssssectionspacingtop pt plus 0pt minus 2pt}{\ssssectionspacingbottom pt plus 0pt minus 2pt}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\paragspacingleft pt}
+	{\paragspacingtop pt \@plus 0pt \@minus 2pt}
+	{\paragspacingbottom pt \@plus 0pt \@minus 2pt}
+	{\color{\paragcolor}\normalfont\paragfontsize\paragfontstyle}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\paragsubspacingleft pt}
+	{\paragsubspacingtop pt \@plus 0pt \@minus 2pt}
+	{\paragsubspacingbottom pt \@plus 0pt \@minus 2pt}
+	{\color{\paragsubcolor}\normalfont\paragsubfontsize\paragsubfontstyle}}
 \makeatother
 
 % -----------------------------------------------------------------------------
@@ -5917,11 +5930,15 @@
 	% -------------------------------------------------------------------------
 	% Estilo de títulos
 	% -------------------------------------------------------------------------
-	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
-	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
-	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
-	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
-	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+	\sectionfont{%
+		\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
+	\subsectionfont{%
+		\color{\ssectioncolor} \ssectionfontsize \ssectionfontstyle \selectfont}
+	\subsubsectionfont{%
+		\color{\sssectioncolor} \sssectionfontsize \sssectionfontstyle \selectfont}
+	\titleformat{\subsubsubsection}{%
+		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle
+	}{\thesubsubsubsection}{1em}{}
 	\def\bibfont {\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
 	% -------------------------------------------------------------------------
@@ -6249,15 +6266,6 @@
 	\clearpage
 	
 	% -------------------------------------------------------------------------
-	% Estilo de títulos - restablece estilos por el índice
-	% -------------------------------------------------------------------------
-	\sectionfont{\color{\titlecolor} \fontsizetitle \styletitle \selectfont}
-	\subsectionfont{\color{\subtitlecolor} \fontsizesubtitle \stylesubtitle \selectfont}
-	\subsubsectionfont{\color{\subsubtitlecolor} \fontsizesubsubtitle \stylesubsubtitle \selectfont}
-	\titleformat{\subsubsubsection}{\color{\ssstitlecolor} \normalfont \fontsizessstitle \stylessstitle}{\thesubsubsubsection}{1em}{}
-	\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-	
-	% -------------------------------------------------------------------------
 	% Crea funciones para numerar objetos
 	% -------------------------------------------------------------------------
 	% Numeración de la sección en los objetos código fuente
@@ -6274,7 +6282,7 @@
 		\def\sectionobjectnumcode {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
-		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\ifthenelse{\equal{\dotaftersnum}{true}}{
 			\def\sectionobjectnumcode {\thesubsubsubsection}
 		}{
 			\def\sectionobjectnumcode {\thesubsubsubsection\sectioncaptiondelimiter}
@@ -6300,7 +6308,7 @@
 		\def\sectionobjectnumeqn {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
-		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\ifthenelse{\equal{\dotaftersnum}{true}}{
 			\def\sectionobjectnumeqn {\thesubsubsubsection}
 		}{
 			\def\sectionobjectnumeqn {\thesubsubsubsection\sectioncaptiondelimiter}
@@ -6326,7 +6334,7 @@
 		\def\sectionobjectnumfig {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
-		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\ifthenelse{\equal{\dotaftersnum}{true}}{
 			\def\sectionobjectnumfig {\thesubsubsubsection}
 		}{
 			\def\sectionobjectnumfig {\thesubsubsubsection\sectioncaptiondelimiter}
@@ -6352,7 +6360,7 @@
 		\def\sectionobjectnumtab {\thesubsubsection\sectioncaptiondelimiter}
 	}{
 	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
-		\ifthenelse{\equal{\showdotaftersnum}{true}}{
+		\ifthenelse{\equal{\dotaftersnum}{true}}{
 			\def\sectionobjectnumtab {\thesubsubsubsection}
 		}{
 			\def\sectionobjectnumtab {\thesubsubsubsection\sectioncaptiondelimiter}
