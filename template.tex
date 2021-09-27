@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.0.0 (26/09/2021)
+% Versión:      1.0.0 (27/09/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -53,10 +53,11 @@
 \usepackage{ifthen}
 
 % Carga el idioma
-\ifthenelse{\equal{\usespanishbabel}{true}}{
-	\usepackage[spanish,es-nosectiondot,es-lcroman,es-noquoting]{babel}}{
-\ifthenelse{\equal{\useenglishbabel}{true}}{
-	\usepackage[english]{babel}}{}
+\usepackage{tracklang}
+\IfTrackedLanguage{spanish}{
+	\usepackage[es-nosectiondot,es-lcroman,es-noquoting]{babel}
+}{ % english, otros
+	\usepackage{babel}
 }
 
 % Cambia el estilo de los títulos
@@ -2927,7 +2928,7 @@
 	\phantomsection%
 	\needspace{3\baselineskip}%
 	\vspace* {3cm}%
-	\noindent {\huge{\textbf{\nomchapter\ \thesection}}} \\%
+	\noindent {\huge{\textbf{\namechapter\ \thesection}}} \\%
 	\vspace* {0.5cm} \\%
 	\noindent {\Huge{\textbf{#1}}} \\%
 	\vspace {0.5cm} \\%
@@ -3749,7 +3750,7 @@
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
 	\phantomsection
-	\changeheadertitle{\nomltappendixsection} % Cambia el nombre del header
+	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
 	\global\def\GLOBALsectionalph {true} % Modifica formato de secciones con sección alph
 	\bookmarksetup{
 		numbered={true},
@@ -5217,15 +5218,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={26/09/2021},
+		Template.Date={27/09/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.0-2-ARTC},
-		Template.Version.Hash={CD8018FA5F31D282AFA551394F0028DD},
+		Template.Version.Dev={1.0.0-3-ARTC},
+		Template.Version.Hash={79AF4CAD7CF0A7C8C14D380AFB5138AE},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -5528,7 +5529,7 @@
 % -----------------------------------------------------------------------------
 % Crea índice de ecuaciones
 % -----------------------------------------------------------------------------
-\newcommand{\listindexequationsname}{\nomlteqn}
+\newcommand{\listindexequationsname}{\namelteqn}
 \newlistof{myindexequations}{equ}{\listindexequationsname}
 \newcommand{\myindexequations}[1]{
 	\addcontentsline{equ}{myindexequations}{\protect\numberline{\theequation}#1}
@@ -5920,18 +5921,19 @@
 	% -------------------------------------------------------------------------
 	% Definición de nombres de objetos
 	% -------------------------------------------------------------------------
-	\renewcommand{\appendixname}{\nomltappendixsection} % Nombre del anexo (título)
+	\renewcommand{\abstractname}{\nameabstract} % Nombre del abstract
+	\renewcommand{\appendixname}{\nameltappendixsection} % Nombre del anexo (título)
 	\renewcommand{\appendixpagename}{\nameappendixsection} % Nombre del anexo en índice
 	\renewcommand{\appendixtocname}{\nameappendixsection} % Nombre del anexo en índice
-	\renewcommand{\contentsname}{\nomltcont} % Nombre del índice
-	\renewcommand{\figurename}{\nomltwfigure} % Nombre de la leyenda de las fig.
-	\renewcommand{\listfigurename}{\nomltfigure} % Nombre del índice de figuras
-	\renewcommand{\listtablename}{\nomlttable} % Nombre del índice de tablas
-	\renewcommand{\lstlistingname}{\nomltwsrc} % Nombre leyenda del código fuente
-	\renewcommand{\lstlistlistingname}{\nomltsrc} % Nombre índice código fuente
+	\renewcommand{\contentsname}{\nameltcont} % Nombre del índice
+	\renewcommand{\figurename}{\nameltwfigure} % Nombre de la leyenda de las fig.
+	\renewcommand{\listfigurename}{\nameltfigure} % Nombre del índice de figuras
+	\renewcommand{\listtablename}{\namelttable} % Nombre del índice de tablas
+	\renewcommand{\lstlistingname}{\nameltwsrc} % Nombre leyenda del código fuente
+	\renewcommand{\lstlistlistingname}{\nameltsrc} % Nombre índice código fuente
 	\renewcommand{\refname}{\namereferences} % Nombre de las referencias (bibtex)
 	\renewcommand{\bibname}{\namereferences} % Nombre de las referencias (natbib)
-	\renewcommand{\tablename}{\nomltwtable} % Nombre de la leyenda de tablas
+	\renewcommand{\tablename}{\nameltwtable} % Nombre de la leyenda de tablas
 	
 	% -------------------------------------------------------------------------
 	% Estilo de títulos
@@ -6193,7 +6195,7 @@
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
-			\fancyhead[R]{\small \thepage\ \nomnpageof \pageref{TotPages}}
+			\fancyhead[R]{\small \thepage\ \namepageof \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6211,7 +6213,7 @@
 		\newcommand{\COREstyledefinition}{
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
-			\fancyhead[R]{\small \thepage\ \nomnpageof \pageref{TotPages}}
+			\fancyhead[R]{\small \thepage\ \namepageof \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -6250,16 +6252,6 @@
 	% -------------------------------------------------------------------------
 	\ifthenelse{\equal{\showlinenumbers}{true}}{
 		\linenumbers}{
-	}
-	
-	% -------------------------------------------------------------------------
-	% Configura el nombre del abstract
-	% -------------------------------------------------------------------------
-	\ifthenelse{\isundefined{\abstractname}}{
-		\newcommand{\abstractname}{\nameabstract}
-		\throwwarning{La variable \noexpand\abstractname no existe, lo que indica que la libreria babel no se ha cargado. Si ha desactivado la configuracion \noexpand\usespanishbabel debe cargar manualmente la libreria babel con algun otro idioma, como por ejemplo \noexpand\usepackage[english]{babel}, o bien define en true la configuracion \noexpand\useenglishbabel}
-	}{
-		\renewcommand{\abstractname}{\nameabstract}
 	}
 	
 }
