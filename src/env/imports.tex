@@ -171,13 +171,6 @@
 	\usepackage[bottom,norule,hang]{footmisc}
 }
 
-% Agrega punto a títulos/subtítulos
-\ifthenelse{\equal{\dotaftersnum}{true}}{
-	\usepackage{secdot}
-	\sectiondot{subsection}
-	\sectiondot{subsubsection}}{
-}
-
 % Referencias
 \ifthenelse{\equal{\backrefpagecite}{true}}{
 	\usepackage[pdfencoding=auto,psdextra,backref=page]{hyperref} % Enlaces, referencias
