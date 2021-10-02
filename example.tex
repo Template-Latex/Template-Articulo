@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Archivo de ejemplo
-% Versión:      1.0.0 (27/09/2021)
+% Versión:      1.0.0 (02/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -15,16 +15,21 @@
 % Las secciones se inician con \section, si se quiere una sección sin número se
 % pueden usar las funciones \sectionanum (sección sin número) o la función
 % \sectionanumnoi para crear el mismo título sin numerar y sin aparecer en el índice
-\section{Informes con \LaTeX}
+\section{Informes con \LaTeX} \label{epic}
 
 % SUB-SECCIÓN
 % Las sub-secciones se inician con \subsection, si se quiere una sub-sección
 % sin número se pueden usar las funciones \subsectionanum (nuevo subtítulo sin
 % numeración) o la función \subsectionanumnoi para crear el mismo subtítulo sin
 % numerar y sin aparecer en el índice
-\subsection{Una breve introducción}
+\subsection{Una breve introducción} \label{epic2}
+\subsubsection{epicccc} \label{epicccccc}
+\subsubsubsection{epicccccccccccc} \label{key}
+\paragraph{niceeeee} \label{key333}
+\subparagraph{jejadsfjdsklf} \label{key3333}
+
 	
-	Este es un párrafo, puede contener múltiples \quotes{Expresiones} así como fórmulas o referencias\footnote{Las referencias se hacen utilizando la expresión \texttt{\textbackslash label}\{etiqueta\}.} como \eqref{eqn:identidad-imposible}. A continuación se muestra un ejemplo de inserción de imágenes (como la Figura \ref{img:testimage}) con el comando \href{https://latex.ppizarror.com/informe.html#hlp-imagen}{\textbackslash insertimage}:
+	Este es un párrafo \ref{epic}, \ref{epic2}, \ref{epicccccc}, \ref{key}, \ref{key333}, \ref{key3333}:  puede contener múltiples \quotes{Expresiones} así como fórmulas o referencias\footnote{Las referencias se hacen utilizando la expresión \texttt{\textbackslash label}\{etiqueta\}.} como \eqref{eqn:identidad-imposible}. A continuación se muestra un ejemplo de inserción de imágenes (como la Figura \ref{img:testimage}) con el comando \href{https://latex.ppizarror.com/informe.html#hlp-imagen}{\textbackslash insertimage}:
 
 	% Para insertar una imagen se puede usar la función \insertimage la cual
 	% toma un primer parámetro opcional para definir una etiqueta (dentro de
