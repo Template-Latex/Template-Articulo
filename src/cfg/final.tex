@@ -226,6 +226,12 @@
 	}
 	
 	% -------------------------------------------------------------------------
+	% Reestablece \cleardoublepage
+	% -------------------------------------------------------------------------
+	% \let\cleardoublepage\oldcleardoublepage
+	\let\cleardoublepage\corecleardoublepage
+	
+	% -------------------------------------------------------------------------
 	% Se restablecen números de página y secciones
 	% -------------------------------------------------------------------------
 	% Se usa número de páginas en arábigo si es que se tenía activado los números romanos
