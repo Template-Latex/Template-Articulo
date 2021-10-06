@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Configuraciones finales
-% Versión:      1.0.0 (02/10/2021)
+% Versión:      1.0.0 (06/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -226,6 +226,17 @@
 	}
 	
 	% -------------------------------------------------------------------------
+	% Agrega páginas dependiendo del formato
+	% -------------------------------------------------------------------------
+	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
+		% \coretriggeronpage{\addemptypagespredocformat}{}%
+	}{
+		\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
+			\coretriggeronpage{\addemptypagespredocformat}{}%
+		}{}
+	}
+	
+	% -------------------------------------------------------------------------
 	% Se restablecen números de página y secciones
 	% -------------------------------------------------------------------------
 	% Se usa número de páginas en arábigo si es que se tenía activado los números romanos
@@ -240,6 +251,11 @@
 	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
+
+	% -----------------------------------------------------------------------------
+	% Modifica comportamiento nuevas páginas en formato twosides
+	% -----------------------------------------------------------------------------
+	\let\cleardoublepage\oldcleardoublepage
 	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
