@@ -2969,9 +2969,6 @@
 	\clearpage
 }
 
-% Define cuál función se ejecuta al insertar páginas en blanco
-\let\addemptypagespredocformat\insertblankpage
-
 % Ejecuta una función dependiendo si la página es par o impar
 %	#1	Par
 %	#2	Impar
@@ -3517,7 +3514,6 @@
 }
 
 % Definiciones básicas
-\def\addemptypagespredoc {false}
 \def\predocpageromannumber {false}
 \def\predocresetpagenumber {false}
 
@@ -5231,7 +5227,7 @@
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
 		Template.Version.Dev={1.0.0-6-ARTC},
-		Template.Version.Hash={482C21EAB79935CF099F99BE13F8EAE2},
+		Template.Version.Hash={BC988BDFB696D5C4E3B32BFBB67FCC64},
 		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -5281,12 +5277,6 @@
 \floatplacement{figure}{\imagedefaultplacement}
 \floatplacement{table}{\tabledefaultplacement}
 \floatplacement{tikz}{\tikzdefaultplacement}
-
-% -----------------------------------------------------------------------------
-% Modifica comportamiento nuevas páginas en formato twosides
-% -----------------------------------------------------------------------------
-\let\oldcleardoublepage\cleardoublepage
-\let\cleardoublepage\clearpage
 
 % -----------------------------------------------------------------------------
 % Configuración de los colores
@@ -6505,17 +6495,6 @@
 	}
 	
 	% -------------------------------------------------------------------------
-	% Agrega páginas dependiendo del formato
-	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\GLOBALtwoside}{true}}{%
-		% \coretriggeronpage{\addemptypagespredocformat}{}%
-	}{
-		\ifthenelse{\equal{\addemptypagespredoc}{true}}{%
-			\coretriggeronpage{\addemptypagespredocformat}{}%
-		}{}
-	}
-	
-	% -------------------------------------------------------------------------
 	% Se restablecen números de página y secciones
 	% -------------------------------------------------------------------------
 	% Se usa número de páginas en arábigo si es que se tenía activado los números romanos
@@ -6530,11 +6509,6 @@
 	
 	\setcounter{section}{0}
 	\setcounter{footnote}{0}
-
-	% -----------------------------------------------------------------------------
-	% Modifica comportamiento nuevas páginas en formato twosides
-	% -----------------------------------------------------------------------------
-	\let\cleardoublepage\oldcleardoublepage
 	
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
