@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.0.0 (13/10/2021)
+% Versión:      0.9.1 (13/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -2148,7 +2148,7 @@
 %	#4	Link de la imagen
 %	#5	Leyenda de la imagen (opcional)
 \newcommand{\addimagelink}[5][]{%
-	\addimageboxedlink[#1]{#2}{#3}{0}{#4}{#5}%
+	\addimagelinkboxed[#1]{#2}{#3}{0}{#4}{#5}%
 }
 
 % Añade una imagen a un env "image" con borde
@@ -2158,7 +2158,7 @@
 %	#4	Ancho de la línea (en pt)
 %	#5	Link de la imagen
 %	#6	Leyenda de la imagen (opcional)
-\newcommand{\addimageboxedlink}[6][]{%
+\newcommand{\addimagelinkboxed}[6][]{%
 	\global\def\GLOBALimagelink {#5}%
 	\addimageboxed[#1]{#2}{#3}{#4}{#6}%
 	\global\def\GLOBALimagelink {}%
@@ -2177,8 +2177,8 @@
 %	#2	Parámetros de la imagen
 %	#3	Ancho de la línea (en pt)
 %	#4	Link de la imagen
-\newcommand{\addimageanumboxedlink}[4]{%
-	\addimageboxedlink{#1}{#2}{#3}{#4}{}%
+\newcommand{\addimageanumlinkboxed}[4]{%
+	\addimagelinkboxed{#1}{#2}{#3}{#4}{}%
 }
 
 % Añade un salto de línea en las imágenes
@@ -5479,9 +5479,9 @@
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.0-9-ARTC},
-		Template.Version.Hash={D8C72F9E2C49ED1A0B9C859DDE83E264},
-		Template.Version.Release={1.0.0},
+		Template.Version.Dev={0.9.1-ARTC},
+		Template.Version.Hash={13BBD0DD32E1F01539CBE0B12EC7EEB6},
+		Template.Version.Release={0.9.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5489,7 +5489,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.0.0 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v0.9.1 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
