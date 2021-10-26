@@ -25,7 +25,7 @@ Template para crear artículos en LaTeX</p>
 </div><br>
 
 <p align="center">
-  <img src="https://latex.ppizarror.com/res/images/collage_articulo.png" alt="Articulo" width="70%" />
+  <img src="https://latex.ppizarror.com/res/images/collage_articulo.jpg" alt="Poster" width="70%" />
 </p>
 
 ## Manual de uso

@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      0.9.1 (13/10/2021)
+% Versión:      0.9.1 (25/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -110,6 +110,7 @@
 % Librerías independientes
 % -----------------------------------------------------------------------------
 \usepackage{animate}       % Imágenes animadas
+\usepackage{amsbsy}        % Símbolos matemáticos en negrita
 \usepackage{amssymb}       % Librerías matemáticas
 \usepackage{amsthm}        % Definición de teoremas
 \usepackage{array}         % Nuevas características a las tablas
@@ -5472,15 +5473,15 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={13/10/2021},
+		Template.Date={25/10/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={0.9.1-ARTC},
-		Template.Version.Hash={13BBD0DD32E1F01539CBE0B12EC7EEB6},
+		Template.Version.Dev={0.9.1-3-ARTC},
+		Template.Version.Hash={847AB0DCD95BE71A776952802A89EAE6},
 		Template.Version.Release={0.9.1},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
@@ -6162,6 +6163,12 @@
 \renewcommand{\labelitemii}{\sitemizeii}
 \renewcommand{\labelitemiii}{\sitemizeiii}
 \renewcommand{\labelitemiv}{\sitemizeiv}
+
+% Márgenes
+\setlength\leftmargini{\sitemsmargini pt}
+\setlength\leftmarginii{\sitemsmarginii pt}
+\setlength\leftmarginiii{\sitemsmarginiii pt}
+\setlength\leftmarginiv{\sitemsmarginiv pt}
 
 % -----------------------------------------------------------------------------
 % Configura métodos aplicados al iniciar el documento
