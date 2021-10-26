@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      0.9.2 (25/10/2021)
+% Versión:      0.9.2 (26/10/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -217,7 +217,10 @@
 % Inserta un espacio vertical en cm con una variación +/-
 %	#1	Espacio (en cm)
 \newcommand{\corevspacevarcm}[1]{%
-	\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%
+	\ifthenelse{\equal{#1}{0}}{}{%
+	\ifthenelse{\equal{#1}{0.0}}{}{%
+		\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%	
+	}}
 }
 
 % Agrega una carpeta al path de imágenes
