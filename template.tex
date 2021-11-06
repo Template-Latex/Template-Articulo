@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      0.9.4 (31/10/2021)
+% Versión:      1.0.0 (05/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -902,6 +902,12 @@
 % Define latex para uso en referencias
 \let\latex\LaTeX
 
+% Nuevas dimensiones
+\newlength{\coregluevarcm}
+\setlength{\coregluevarcm}{0.25 cm}
+\newlength{\corefontwidth}
+\settowidth{\corefontwidth}{template}
+
 % Lanza un mensaje de error
 % 	#1	Función del error
 %	#2	Mensaje
@@ -922,7 +928,7 @@
 %	#3	Valores esperados
 \newcommand{\throwbadconfigondoc}[3]{%
 	\errmessage{#1 \noexpand #2=#2. Valores esperados: #3}%
-	\stop
+	\stop%
 }
 
 % Comprueba si una variable está definida
@@ -951,7 +957,7 @@
 		\else%
 			\errmessage{LaTeX Warning: #2}%
 		\fi}{%
-	}
+	}%
 }
 
 % Lanza un mensaje de error si una variable no ha sido definida
@@ -1025,7 +1031,7 @@
 	\ifthenelse{\equal{\GLOBALenvmulticol}{false}}{%
 		\throwwarning{Esta funcion solo puede usarse dentro de multicols}%
 		\stop}{%
-	}
+	}%
 }
 
 % Chequea que las funciones puedan usarse fuera del entorno anexo
@@ -1033,7 +1039,7 @@
 	\ifthenelse{\equal{\GLOBALenvappendix}{true}}{%
 		\throwwarning{Esta funcion solo puede usarse fuera de anexo}%
 		\stop}{%
-	}
+	}%
 }
 
 % Verifica que una variable sea del estilo "true" o "false"
@@ -1055,16 +1061,13 @@
 	\vspace*{\fill}%
 }
 
-\newlength{\coregluevarcm}
-\setlength{\coregluevarcm}{0.25 cm}
-
 % Inserta un espacio vertical en cm con una variación +/-
 %	#1	Espacio (en cm)
 \newcommand{\corevspacevarcm}[1]{%
 	\ifthenelse{\equal{#1}{0}}{}{%
 	\ifthenelse{\equal{#1}{0.0}}{}{%
 		\vspace{\dimexpr#1 cm plus #1\coregluevarcm minus #1\coregluevarcm}%
-	}}
+	}}%
 }
 
 % Agrega una carpeta al path de imágenes
@@ -1112,61 +1115,61 @@
 % Inserta inverso función seno, sin^-1
 %	#1	Elemento
 \newcommand{\aasin}[1][]{%
-	\ifx\hfuzz#1\hfuzz
+	\ifx\hfuzz#1\hfuzz%
 		\ensuremath{\sin^{-1}#1}
-	\else
+	\else%
 		\ensuremath{{\sin}^{-1}}
-	\fi
+	\fi%
 }
 
 % Inserta inverso función coseno, cos^-1
 %	#1	Elemento
 \newcommand{\aacos}[1][]{%
-	\ifx\hfuzz#1\hfuzz
+	\ifx\hfuzz#1\hfuzz%
 		\ensuremath{\cos^{-1}#1}
-	\else
+	\else%
 		\ensuremath{\cos^{-1}}
-	\fi
+	\fi%
 }
 
 % Inserta inverso función tangente, tan^-1
 %	#1	Elemento
 \newcommand{\aatan}[1][]{%
-	\ifx\hfuzz#1\hfuzz
+	\ifx\hfuzz#1\hfuzz%
 		\ensuremath{\tan^{-1}#1}
-	\else
+	\else%
 		\ensuremath{\tan^{-1}}
-	\fi
+	\fi%
 }
 
 % Inserta inverso función cosecante, csc^-1
 %	#1	Elemento
 \newcommand{\aacsc}[1][]{%
-	\ifx\hfuzz#1\hfuzz
+	\ifx\hfuzz#1\hfuzz%
 		\ensuremath{\csc^{-1}#1}
-	\else
+	\else%
 		\ensuremath{\csc^{-1}}
-	\fi
+	\fi%
 }
 
 % Inserta inverso función secante, sec^-1
 %	#1	Elemento
 \newcommand{\aasec}[1][]{%
-	\ifx\hfuzz#1\hfuzz
+	\ifx\hfuzz#1\hfuzz%
 		\ensuremath{\sec^{-1}#1}
-	\else
+	\else%
 		\ensuremath{\sec^{-1}}
-	\fi
+	\fi%
 }
 
 % Inserta inverso función cotangente, cot^-1
 %	#1	Elemento
 \newcommand{\aacot}[1][]{%
-	\ifx\hfuzz#1\hfuzz
+	\ifx\hfuzz#1\hfuzz%
 		\ensuremath{\cot^{-1}#1}
-	\else
+	\else%
 		\ensuremath{\cot^{-1}}
-	\fi
+	\fi%
 }
 
 % Fracción de derivadas parciales af/ax
@@ -1458,7 +1461,7 @@
 		\ignorespaces%
 	}{%
 		\popQED\endtrivlist\@endpefalse%
-	}
+	}%
 \makeatother
 
 % Función que se ejecuta tras un equation
@@ -1481,15 +1484,15 @@
 	\begin{changemargin}{\captionlrmargin cm}{\captionlrmargin cm}%
 		\ifthenelse{\equal{\equationcaptioncenter}{true}}{%
 			\centering%
-		}{
+		}{%
 			\justifying%
 		}%
 		\textcolor{\captiontextcolor}{%
 			\linespread{0.5}\selectfont{%
 				\begin{\captionfontsize}#1\end{\captionfontsize}%
-			}
+			}%
 		}%
-	\end{changemargin}%
+	\end{changemargin}
 }
 
 % Insertar una ecuación
@@ -1509,10 +1512,10 @@
 	}{%
 		\ifx\hfuzz#1\hfuzz%
 		\else%
-			\throwwarning{Label invalido en ecuacion sin numero}
-		\fi
+			\throwwarning{Label invalido en ecuacion sin numero}%
+		\fi%
 		\insertequationanum{#2}%
-	}
+	}%
 }
 
 % Insertar una ecuación sin número
@@ -1565,11 +1568,11 @@
 		\coreafterequationfn%
 	}{%
 		\ifx\hfuzz#1\hfuzz%
-		\else
-			\throwwarning{Label invalido en ecuacion sin numero}
-		\fi
+		\else%
+			\throwwarning{Label invalido en ecuacion sin numero}%
+		\fi%
 		\insertequationleftanum{#2}%
-	}
+	}%
 }
 
 % Insertar una ecuación sin número alineada a la izquierda
@@ -1602,11 +1605,11 @@
 		\coreafterequationfn%
 	}{%
 		\ifx\hfuzz#1\hfuzz%
-		\else
-			\throwwarning{Label invalido en ecuacion sin numero}
-		\fi
+		\else%
+			\throwwarning{Label invalido en ecuacion sin numero}%
+		\fi%
 		\insertequationrightanum{#2}%
-	}
+	}%
 }
 
 % Insertar una ecuación sin número alineada a la derecha
@@ -1631,7 +1634,7 @@
 	\emptyvarerr{\insertequationcaptioned}{#2}{Ecuacion no definida}%
 	\ifx\hfuzz#3\hfuzz%
 		\insertequation[#1]{#2}%
-	\else
+	\else%
 		\ifthenelse{\equal{\numberedequation}{true}}{%
 			\corevspacevarcm{\marginequationtop}%
 			\begin{samepage}%
@@ -1644,13 +1647,13 @@
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
-			\ifx\hfuzz#1\hfuzz
-			\else
-				\throwwarning{Label invalido en ecuacion sin numero}
-			\fi
-			\insertequationcaptionedanum{#2}{#3}
-		}
-	\fi
+			\ifx\hfuzz#1\hfuzz%
+			\else%
+				\throwwarning{Label invalido en ecuacion sin numero}%
+			\fi%
+			\insertequationcaptionedanum{#2}{#3}%
+		}%
+	\fi%
 }
 
 % Insertar una ecuación con leyenda sin número
@@ -1660,18 +1663,18 @@
 	\emptyvarerr{\insertequationcaptionedanum}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertequationanum{#1}%
-	\else
+	\else%
 		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation*}
 			\ensuremath{#1}%
-		\end{equation*}%
+		\end{equation*}
 		\corevspacevarcm{\margineqncaptiontop}%
 		\coreinsertequationcaption{#2}%
 		\corevspacevarcm{\margineqncaptionbottom}%
 		\end{samepage}
 		\coreafterequationfn%
-	\fi
+	\fi%
 }
 
 % Insertar una ecuación con el ambiente gather
@@ -1689,7 +1692,7 @@
 		\coreafterequationfn%
 	}{%
 		\insertgatheranum{#1}%
-	}
+	}%
 }
 
 % Insertar una ecuación con el ambiente gather sin número
@@ -1713,7 +1716,7 @@
 	\emptyvarerr{\insertgathercaptioned}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertgather{#1}%
-	\else
+	\else%
 		\ifthenelse{\equal{\numberedequation}{true}}{%
 			\corevspacevarcm{\margingathertop}%
 			\begin{samepage}%
@@ -1727,8 +1730,8 @@
 			\coreafterequationfn%
 		}{%
 			\insertgathercaptionedanum{#1}{#2}%
-		}
-	\fi
+		}%
+	\fi%
 }
 
 % Insertar una ecuación (gather) con leyenda sin número
@@ -1738,7 +1741,7 @@
 	\emptyvarerr{\insertgathercaptionedanum}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertgatheranum{#1}%
-	\else
+	\else%
 		\corevspacevarcm{\margingathertop}%
 		\begin{samepage}%
 		\begin{gather*}%
@@ -1749,7 +1752,7 @@
 		\corevspacevarcm{\margingathercaptbottom}%
 		\end{samepage}
 		\coreafterequationfn%
-	\fi
+	\fi%
 }
 
 % Insertar una ecuación con el ambiente gathered
@@ -1768,10 +1771,10 @@
 		\corevspacevarcm{\margingatheredbottom}%
 		\end{samepage}
 	}{%
-		\ifx\hfuzz#1\hfuzz
-		\else
-			\throwwarning{Label invalido en ecuacion (gathered) sin numero}
-		\fi
+		\ifx\hfuzz#1\hfuzz%
+		\else%
+			\throwwarning{Label invalido en ecuacion (gathered) sin numero}%
+		\fi%
 		\corevspacevarcm{\margingatheredtop}%
 		\begin{samepage}%
 		\begin{gather*}%
@@ -1779,7 +1782,7 @@
 		\end{gather*}
 		\corevspacevarcm{\margingatheredbottom}%
 		\end{samepage}
-	}
+	}%
 	\coreafterequationfn%
 }
 
@@ -1805,7 +1808,7 @@
 	\emptyvarerr{\insertgatheredcaptioned}{#2}{Ecuacion no definida}%
 	\ifx\hfuzz#3\hfuzz%
 		\insertgathered[#1]{#2}%
-	\else
+	\else%
 		\ifthenelse{\equal{\numberedequation}{true}}{%
 			\corevspacevarcm{\marginequationtop}%
 			\begin{samepage}%
@@ -1820,13 +1823,13 @@
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
-			\ifx\hfuzz#1\hfuzz
-			\else
+			\ifx\hfuzz#1\hfuzz%
+			\else%
 				\throwwarning{Label invalido en ecuacion (gathered) sin numero}
-			\fi
+			\fi%
 			\insertgatheredcaptionedanum{#2}{#3}%
-		}
-		\fi
+		}%
+	\fi%
 }
 
 % Insertar una ecuación (gathered) con leyenda sin número
@@ -1836,7 +1839,7 @@
 	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}
 	\ifx\hfuzz#2\hfuzz%
 		\insertgatheredanum{#1}%
-	\else
+	\else%
 		\corevspacevarcm{\margingatheredtop}%
 		\begin{samepage}%
 		\begin{gather*}
@@ -1847,7 +1850,7 @@
 		\vspace{\dimexpr-0.05cm + \margingatheredcaptbottom cm}%
 		\end{samepage}
 		\coreafterequationfn%
-	\fi
+	\fi%
 }
 
 % Insertar una ecuación con el ambiente align
@@ -1865,7 +1868,7 @@
 		\coreafterequationfn%
 	}{%
 		\insertalignanum{#1}%
-	}
+	}%
 }
 
 % Insertar una ecuación con el ambiente align sin número
@@ -1889,7 +1892,7 @@
 	\emptyvarerr{\insertaligncaptioned}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertalign{#1}%
-	\else
+	\else%
 		\ifthenelse{\equal{\numberedequation}{true}}{%
 			\corevspacevarcm{\marginaligntop}%
 			\begin{samepage}%
@@ -1903,8 +1906,8 @@
 			\coreafterequationfn%
 		}{%
 			\insertaligncaptionedanum{#1}{#2}%
-		}
-	\fi
+		}%
+	\fi%
 }
 
 % Insertar una ecuación (align) con leyenda sin número
@@ -1914,7 +1917,7 @@
 	\emptyvarerr{\insertaligncaptionedanum}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertalignanum{#1}%
-	\else
+	\else%
 		\corevspacevarcm{\marginaligntop}%
 		\begin{samepage}%
 		\begin{align*}
@@ -1925,7 +1928,7 @@
 		\corevspacevarcm{\marginaligncaptbottom}%
 		\end{samepage}
 		\coreafterequationfn%
-	\fi
+	\fi%
 }
 
 % Insertar una ecuación con el ambiente aligned
@@ -1945,12 +1948,12 @@
 		\end{samepage}
 		\coreafterequationfn%
 	}{%
-		\ifx\hfuzz#1\hfuzz
-		\else
-			\throwwarning{Label invalido en ecuacion (aligned) sin numero}
-		\fi
+		\ifx\hfuzz#1\hfuzz%
+		\else%
+			\throwwarning{Label invalido en ecuacion (aligned) sin numero}%
+		\fi%
 		\insertalignedanum{#2}%
-	}
+	}%
 }
 
 % Insertar una ecuación con el ambiente aligned sin número
@@ -1975,7 +1978,7 @@
 	\emptyvarerr{\insertalignedcaptioned}{#2}{Ecuacion no definida}%
 	\ifx\hfuzz#3\hfuzz%
 		\insertaligned[#1]{#2}%
-	\else
+	\else%
 		\ifthenelse{\equal{\numberedequation}{true}}{%
 			\corevspacevarcm{\marginequationtop}%
 			\begin{samepage}%
@@ -1990,13 +1993,13 @@
 			\end{samepage}
 			\coreafterequationfn%
 		}{%
-			\ifx\hfuzz#1\hfuzz
-			\else
-				\throwwarning{Label invalido en ecuacion (aligned) sin numero}
-			\fi
+			\ifx\hfuzz#1\hfuzz%
+			\else%
+				\throwwarning{Label invalido en ecuacion (aligned) sin numero}%
+			\fi%
 			\insertalignedcaptionedanum{#2}{#3}%
-		}
-	\fi
+		}%
+	\fi%
 }
 
 % Insertar una ecuación (aligned) con leyenda sin número
@@ -2006,7 +2009,7 @@
 	\emptyvarerr{\insertalignedcaptionedanum}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertalignedanum{#1}%
-	\else
+	\else%
 		\corevspacevarcm{\marginequationtop}%
 		\begin{samepage}%
 		\begin{equation}
@@ -2019,10 +2022,15 @@
 		\corevspacevarcm{\marginalignedcaptbottom}%
 		\end{samepage}
 		\coreafterequationfn%
-	\fi
+	\fi%
 }
 
 \global\def\GLOBALimagelink {} % Almacena el link de la imagen
+
+% Calcula largo hspace
+% Regresión entre 35,46446->9 y 52,68402->13,5
+\newlength{\coreimageshspace}
+\setlength{\coreimageshspace}{\dimexpr 9pt + 0.261330719\corefontwidth - 9.26795284pt}
 
 % Añade una imagen a un env "image" con borde
 % 	#1	Label (opcional)
@@ -2045,8 +2053,7 @@
 	\setlength{\fboxsep}{0 pt}%
 	\setlength{\fboxrule}{#4 pt}%
 	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
-		\hspace{\marginimagemultright cm}%
-		\hspace{-0.125cm}%
+		\hspace{\dimexpr \marginimagemultright cm -\coreimageshspace}%
 	}{}%
 	\ifthenelse{\equal{#5}{}}{ % Sin label
 		\ifthenelse{\equal{\GLOBALimagelink}{}}{ % Sin link
@@ -2109,8 +2116,7 @@
 	\setlength{\fboxsep}{0 pt}%
 	\setlength{\fboxrule}{#6 pt}%
 	\ifthenelse{\equal{\GLOBALenvimageadded}{true}}{%
-		\hspace{\marginimagemultright cm}%
-		\hspace{-0.125cm}%
+		\hspace{\dimexpr \marginimagemultright cm -\coreimageshspace}%
 	}{}%
 	\ifthenelse{\equal{#7}{}}{ % Sin label
 		\ifthenelse{\equal{\animatedimageloop}{true}}{ % Con loop
@@ -2269,7 +2275,7 @@
 			\hspace{0cm}%
 			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#5 #1}}{\caption[\GLOBALcaptiondefn]{#5 #1}}%
-		\fi
+		\fi%
 	\end{figure}
 	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
@@ -2345,7 +2351,7 @@
 			\hspace{0cm}%
 			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#7 #1}}{\caption[\GLOBALcaptiondefn]{#7 #1}}%
-		\fi
+		\fi%
 	\end{figure}
 	\corevspacevarcm{\marginimagebottom}%
 	\end{samepage}
@@ -2404,102 +2410,102 @@
 	\ifthenelse{\equal{#5}{bottom}}{%
 		\begin{samepage}%
 		\begin{figure*}[b]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{top}}{%
 		\begin{samepage}%
 		\begin{figure*}[t]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed2}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed2b}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[b]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed2t}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[t]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed3}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed3b}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[b]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed3t}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[t]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed4}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed4b}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 	\ifthenelse{\equal{#5}{fixed4t}}{%
 		\end{multicols}
 		\begin{samepage}%
 		\begin{figure*}[h]
-	}{
+	}{%
 		\errmessage{LaTeX Warning: Posicion de imagen invalida, valores esperados: bottom,top,fixed2,fixed2b,fixed2t,fixed3,fixed3b,fixed3t,fixed4,fixed4b,fixed4t}
 		\stop}}}}}}}}}}
-	}
-		\begingroup
-			\setlength{\fboxsep}{0 pt}
-			\setlength{\fboxrule}{#4 pt}
-			\centering
+	}%
+		\begingroup%
+			\setlength{\fboxsep}{0 pt}%
+			\setlength{\fboxrule}{#4 pt}%
+			\centering%
 			\fbox{\includegraphics[#3]{#2}}%
-		\endgroup
+		\endgroup%
 		\ifx\hfuzz#6\hfuzz%
 			\corevspacevarcm{\captionlessmarginimage}%
-		\else
-			\hspace{0cm}
+		\else%
+			\hspace{0cm}%
 			\corevspacevarcm{\captionmarginimage}%
-			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}
-		\fi
+			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
+		\fi%
 	\end{figure*}
 	\end{samepage}
 	\ifthenelse{\equal{#5}{fixed2}}{%
-		\begin{multicols}{2}
-	}{
+		\begin{multicols}{2}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed2b}}{%
-		\begin{multicols}{2}
-	}{
+		\begin{multicols}{2}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed2t}}{%
-		\begin{multicols}{2}
-	}{
+		\begin{multicols}{2}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed3}}{%
-		\begin{multicols}{3}
-	}{
+		\begin{multicols}{3}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed3b}}{%
-		\begin{multicols}{3}
-	}{
+		\begin{multicols}{3}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed3t}}{%
-		\begin{multicols}{3}
-	}{
+		\begin{multicols}{3}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed4}}{%
-		\begin{multicols}{4}
-	}{
+		\begin{multicols}{4}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed4b}}{%
-		\begin{multicols}{4}
-	}{
+		\begin{multicols}{4}%
+	}{%
 	\ifthenelse{\equal{#5}{fixed4t}}{%
-		\begin{multicols}{4}
-	}{
-	}}}}}}}}}
+		\begin{multicols}{4}%
+	}{%
+	}}}}}}}}}%
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
 }
@@ -2614,7 +2620,7 @@
 		\else%
 			\corevspacevarcm{\captionmarginimage}%
 			\ifthenelse{\equal{\GLOBALcaptiondefn}{EMPTY-VAR}}{\caption{#6 #1}}{\caption[\GLOBALcaptiondefn]{#6 #1}}%
-		\fi
+		\fi%
 	\end{wrapfigure}
 	\setcaptionmargincm{\captionlrmargin}%
 	\resetindexcaption%
@@ -2981,23 +2987,23 @@
 	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\equationrestart}{chap}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}%
 		\setcounter{figure}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
-	}{}
+	}{}%
 	\global\def\GLOBALchapternumenabled {true}%
 	\global\def\GLOBALsectionanumenabled {false}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
@@ -3011,23 +3017,23 @@
 	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\equationrestart}{sec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}%
 		\setcounter{figure}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
-	}{}
+	}{}%
 	\global\def\GLOBALsectionanumenabled {false}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
@@ -3040,23 +3046,23 @@
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\equationrestart}{ssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}%
 		\setcounter{figure}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
-	}{}
+	}{}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
 	\coreintializetitlenumbering%
@@ -3070,23 +3076,23 @@
 	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\equationrestart}{sssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}%
 		\setcounter{figure}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
-	}{}
+	}{}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
 	\coreintializetitlenumbering%
 }{}{}
@@ -3096,23 +3102,23 @@
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\equationrestart}{ssssec}}{ % Reinicia ecuaciones
 		\addtocounter{templateEquations}{\value{equation}}%
 		\setcounter{equation}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{ % Reinicia figuras
 		\addtocounter{templateFigures}{\value{figure}}%
 		\setcounter{figure}{0}%
-	}{}
+	}{}%
 	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{ % Reinicia tablas
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
-	}{}
+	}{}%
 }{}{}
 
 % Insertar un título sin número
@@ -3230,17 +3236,17 @@
 
 % Crea una página vacía sin header o footer
 \newcommand{\insertemptypage}{%
-	\clearpage
-	\thispagestyle{empty}
-	\null
-	\clearpage
+	\clearpage%
+	\thispagestyle{empty}%
+	\null%
+	\clearpage%
 }
 
 % Inserta una página vacía, aunque conserva header, footer y numeración
 \newcommand{\insertblankpage}{%
-	\clearpage
-	\null
-	\clearpage
+	\clearpage%
+	\null%
+	\clearpage%
 }
 
 % Función personalizada \cleardoublepage
@@ -3251,8 +3257,8 @@
 		\else%
 			\emptypagespredocformat%
 		\fi%
-	}{}
-}%
+	}{}%
+}
 
 % Ejecuta una función dependiendo si la página es par o impar
 %	#1	Par
@@ -3262,7 +3268,7 @@
 		#2%
 	}{%
 		#1%
-	}
+	}%
 }
 
 % Añade un archivo pdf con el header
@@ -3376,29 +3382,29 @@
 				\rowcolors{#1}{}{}%
 			}{%
 				\rowcolors{#1}{\tablerowsecondcolor}{}%
-			}
+			}%
 		}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
 				\rowcolors{#1}{}{\tablerowfirstcolor}%
 			}{%
 				\rowcolors{#1}{\tablerowsecondcolor}{\tablerowfirstcolor}%
-			}
-		}
+			}%
+		}%
 	}{ % Usa colores alternados
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
 				\rowcolors{#1}{}{}%
 			}{%
 				\rowcolors{#1}{}{\tablerowsecondcolor}%
-			}
+			}%
 		}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
 				\rowcolors{#1}{\tablerowfirstcolor}{}%
 			}{%
 				\rowcolors{#1}{\tablerowfirstcolor}{\tablerowsecondcolor}%
-			}
-		}
-	}
+			}%
+		}%
+	}%
 	
 	% Actualiza el índice previo
 	\global\def\GLOBALtablerowcolorindex {#1}%
@@ -3412,29 +3418,29 @@
 				\rowcolors{\GLOBALtablerowcolorindex}{}{}%
 			}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{\tablerowsecondcolor}{}%
-			}
+			}%
 		}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{}{\tablerowfirstcolor}%
 			}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{\tablerowsecondcolor}{\tablerowfirstcolor}%
-			}
-		}
+			}%
+		}%
 	}{ % Usa colores alternados
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{}{}%
 			}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{}{\tablerowsecondcolor}%
-			}
+			}%
 		}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{\tablerowfirstcolor}{}%
 			}{%
 				\rowcolors{\GLOBALtablerowcolorindex}{\tablerowfirstcolor}{\tablerowsecondcolor}%
-			}
-		}
-	}
+			}%
+		}%
+	}%
 }
 
 % Activa el color de las filas de las tablas
@@ -3444,7 +3450,7 @@
 		\settablerowcolors{2}%
 	\else%
 		\settablerowcolors{#1}%
-	\fi
+	\fi%
 }
 
 % Desactiva el color de las filas de las tablas
@@ -3456,7 +3462,7 @@
 		\global\def\GLOBALtablerowcolorswitch {true}%
 	}{%
 		\global\def\GLOBALtablerowcolorswitch {false}%
-	}
+	}%
 	\settablerowcolorslast%
 }
 
@@ -3479,26 +3485,26 @@
 %	#1	Orientacion de la página, puede ser 0 o 90. Por defecto es cero
 %	#2	Ancho de la página (cm)
 %	#3	Alto de la página (cm)
-\newcommand{\changepagesize}[3][]{
+\newcommand{\changepagesize}[3][]{%
 	% \emptyvarerr{\changepagesize}{#1}{Orientacion de la pagina}
-	\emptyvarerr{\changepagesize}{#2}{Ancho de la pagina no definida}
-	\emptyvarerr{\changepagesize}{#3}{Altura de la pagina no definida}
-	\ifthenelse{\equal{\compilertype}{lualatex}}{
-		\throwwarning{Funcion no valida en compilador lualatex}
-	}{
-		\clearpage
-		\ifthenelse{\equal{#1}{}}{
-			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#2 cm, paperheight=#3 cm}
-		}{
-		\ifthenelse{\equal{#1}{0}}{
-			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#2 cm, paperheight=#3 cm}
-		}{
-		\ifthenelse{\equal{#1}{90}}{
-			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#3 cm, paperheight=#2 cm}
-		}{
-			\throwbadconfig{Orientacion de pagina no valido}{\changepagesize}{0,90}}}
-		}
-	}
+	\emptyvarerr{\changepagesize}{#2}{Ancho de la pagina no definida}%
+	\emptyvarerr{\changepagesize}{#3}{Altura de la pagina no definida}%
+	\ifthenelse{\equal{\compilertype}{lualatex}}{%
+		\throwwarning{Funcion no valida en compilador lualatex}%
+	}{%
+		\clearpage%
+		\ifthenelse{\equal{#1}{}}{%
+			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#2 cm, paperheight=#3 cm}%
+		}{%
+		\ifthenelse{\equal{#1}{0}}{%
+			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#2 cm, paperheight=#3 cm}%
+		}{%
+		\ifthenelse{\equal{#1}{90}}{%
+			\newgeometry{left=\pagemarginleft cm, top=\pagemargintop cm, right=\pagemarginright cm, bottom=\pagemarginbottom cm, paperwidth=#3 cm, paperheight=#2 cm}%
+		}{%
+			\throwbadconfig{Orientacion de pagina no valido}{\changepagesize}{0,90}}}%
+		}%
+	}%
 }
 
 % Ofrece diferentes formatos de pagina
@@ -3506,84 +3512,84 @@
 %	#1	Indica la rotación, puede ser 0 o 90
 %	#2	Formato de la pagina
 \newcommand{\changepagesizeformat}[2][]{%
-	\emptyvarerr{\changepagesizeformat}{#2}{Formato de pagina no definido}
-	\ifthenelse{\equal{#2}{4A0}}{
-		\changepagesize[#1]{168.2}{237.8}
-	}{
-	\ifthenelse{\equal{#2}{2A0}}{
-		\changepagesize[#1]{118.9}{168.2}
-	}{
-	\ifthenelse{\equal{#2}{A0}}{
-		\changepagesize[#1]{84.1}{118.9}
-	}{
-	\ifthenelse{\equal{#2}{A1}}{
-		\changepagesize[#1]{59.4}{84.1}
-	}{
-	\ifthenelse{\equal{#2}{A2}}{
-		\changepagesize[#1]{42.0}{84.1}
-	}{
-	\ifthenelse{\equal{#2}{A3}}{
-		\changepagesize[#1]{29.7}{42.0}
-	}{
-	\ifthenelse{\equal{#2}{A4}}{
-		\changepagesize[#1]{21.0}{29.7}
-	}{
-	\ifthenelse{\equal{#2}{A5}}{
-		\changepagesize[#1]{14.8}{21.0}
-	}{
-	\ifthenelse{\equal{#2}{A6}}{
-		\changepagesize[#1]{10.5}{14.8}
-	}{
-	\ifthenelse{\equal{#2}{letter}}{
-		\changepagesize[#1]{21.59}{27.94}
-	}{
-	\ifthenelse{\equal{#2}{legal}}{
-		\changepagesize[#1]{21.59}{35.6}
-	}{
-	\ifthenelse{\equal{#2}{foolscap}}{
-		\changepagesize[#1]{20.3}{33.0}
-	}{
-	\ifthenelse{\equal{#2}{executive}}{
-		\changepagesize[#1]{18.41}{26.67}
-	}{
-	\ifthenelse{\equal{#2}{ledger}}{
-		\changepagesize[#1]{27.94}{43.18}
-	}{
-	\ifthenelse{\equal{#2}{tabloid}}{
-		\changepagesize[#1]{43.18}{27.94}
-	}{
-	\ifthenelse{\equal{#2}{ANSIC}}{
-		\changepagesize[#1]{55.9}{43.2}
-	}{
-	\ifthenelse{\equal{#2}{ANSID}}{
-		\changepagesize[#1]{86.4}{55.9}
-	}{
-	\ifthenelse{\equal{#2}{ANSIE}}{
-		\changepagesize[#1]{111.8}{86.4}
-	}{
-	\ifthenelse{\equal{#2}{B0}}{
-		\changepagesize[#1]{100}{141.4}
-	}{
-	\ifthenelse{\equal{#2}{B1}}{
-		\changepagesize[#1]{70.7}{100}
-	}{
-	\ifthenelse{\equal{#2}{B2}}{
-		\changepagesize[#1]{50}{70.7}
-	}{
-	\ifthenelse{\equal{#2}{B3}}{
-		\changepagesize[#1]{35.3}{50}
-	}{
-	\ifthenelse{\equal{#2}{B4}}{
-		\changepagesize[#1]{25}{35.3}
-	}{
-	\ifthenelse{\equal{#2}{B5}}{
-		\changepagesize[#1]{17.6}{25}
-	}{
-	\ifthenelse{\equal{#2}{B6}}{
-		\changepagesize[#1]{12.5}{17.6}
-	}{
-		\throwbadconfig{Estilo de pagina no valido}{\changepagesizeformat}{4A0,2A0,A0,A1,A2,A3,A4,A5,A6,letter,legal,foolscap,executive,ledger,tabloid,ANSIC,ANSID,ANSIE,B0,B1,B2,B3,B4,B5,B6}}}}}}}}}}}}}}}}}}}}}}}}}
-	}
+	\emptyvarerr{\changepagesizeformat}{#2}{Formato de pagina no definido}%
+	\ifthenelse{\equal{#2}{4A0}}{%
+		\changepagesize[#1]{168.2}{237.8}%
+	}{%
+	\ifthenelse{\equal{#2}{2A0}}{%
+		\changepagesize[#1]{118.9}{168.2}%
+	}{%
+	\ifthenelse{\equal{#2}{A0}}{%
+		\changepagesize[#1]{84.1}{118.9}%
+	}{%
+	\ifthenelse{\equal{#2}{A1}}{%
+		\changepagesize[#1]{59.4}{84.1}%
+	}{%
+	\ifthenelse{\equal{#2}{A2}}{%
+		\changepagesize[#1]{42.0}{84.1}%
+	}{%
+	\ifthenelse{\equal{#2}{A3}}{%
+		\changepagesize[#1]{29.7}{42.0}%
+	}{%
+	\ifthenelse{\equal{#2}{A4}}{%
+		\changepagesize[#1]{21.0}{29.7}%
+	}{%
+	\ifthenelse{\equal{#2}{A5}}{%
+		\changepagesize[#1]{14.8}{21.0}%
+	}{%
+	\ifthenelse{\equal{#2}{A6}}{%
+		\changepagesize[#1]{10.5}{14.8}%
+	}{%
+	\ifthenelse{\equal{#2}{letter}}{%
+		\changepagesize[#1]{21.59}{27.94}%
+	}{%
+	\ifthenelse{\equal{#2}{legal}}{%
+		\changepagesize[#1]{21.59}{35.6}%
+	}{%
+	\ifthenelse{\equal{#2}{foolscap}}{%
+		\changepagesize[#1]{20.3}{33.0}%
+	}{%
+	\ifthenelse{\equal{#2}{executive}}{%
+		\changepagesize[#1]{18.41}{26.67}%
+	}{%
+	\ifthenelse{\equal{#2}{ledger}}{%
+		\changepagesize[#1]{27.94}{43.18}%
+	}{%
+	\ifthenelse{\equal{#2}{tabloid}}{%
+		\changepagesize[#1]{43.18}{27.94}%
+	}{%
+	\ifthenelse{\equal{#2}{ANSIC}}{%
+		\changepagesize[#1]{55.9}{43.2}%
+	}{%
+	\ifthenelse{\equal{#2}{ANSID}}{%
+		\changepagesize[#1]{86.4}{55.9}%
+	}{%
+	\ifthenelse{\equal{#2}{ANSIE}}{%
+		\changepagesize[#1]{111.8}{86.4}%
+	}{%
+	\ifthenelse{\equal{#2}{B0}}{%
+		\changepagesize[#1]{100}{141.4}%
+	}{%
+	\ifthenelse{\equal{#2}{B1}}{%
+		\changepagesize[#1]{70.7}{100}%
+	}{%
+	\ifthenelse{\equal{#2}{B2}}{%
+		\changepagesize[#1]{50}{70.7}%
+	}{%
+	\ifthenelse{\equal{#2}{B3}}{%
+		\changepagesize[#1]{35.3}{50}%
+	}{%
+	\ifthenelse{\equal{#2}{B4}}{%
+		\changepagesize[#1]{25}{35.3}%
+	}{%
+	\ifthenelse{\equal{#2}{B5}}{%
+		\changepagesize[#1]{17.6}{25}%
+	}{%
+	\ifthenelse{\equal{#2}{B6}}{%
+		\changepagesize[#1]{12.5}{17.6}%
+	}{%
+		\throwbadconfig{Estilo de pagina no valido}{\changepagesizeformat}{4A0,2A0,A0,A1,A2,A3,A4,A5,A6,letter,legal,foolscap,executive,ledger,tabloid,ANSIC,ANSID,ANSIE,B0,B1,B2,B3,B4,B5,B6}}}}}}}}}}}}}}}}}}}}}}}}}%
+	}%
 }
 
 % Crea variables para guardar configuraciones de columnas
@@ -3689,8 +3695,8 @@
 				\ifthenelse{\equal{\GLOBALtwocolumnap}{r}}{%
 					\hfill\begin{raggedleft}#5\end{raggedleft}%
 				}{%
-					\errmessage{LaTeX Warning: Alineacion columna izquierda incorrecta, valores esperados: c,l,r}
-				}}}
+					\errmessage{LaTeX Warning: Alineacion columna izquierda incorrecta, valores esperados: c,l,r}%
+				}}}%
 			\end{minipage}%
 			\hspace{#4 cm}%
 			\begin{minipage}[t][#1][\GLOBALtwocolumnbv]{#3\linewidth}%
@@ -3703,11 +3709,11 @@
 				\ifthenelse{\equal{\GLOBALtwocolumnbp}{r}}{%
 					\hfill\begin{raggedleft}#6\end{raggedleft}%
 				}{%
-					\errmessage{LaTeX Warning: Alineacion columna derecha incorrecta, valores esperados: c,l,r}
-				}}}
-			\end{minipage}%
-		\end{minipage}%
-	\end{flushleft}%
+					\errmessage{LaTeX Warning: Alineacion columna derecha incorrecta, valores esperados: c,l,r}%
+				}}}%
+			\end{minipage}
+		\end{minipage}
+	\end{flushleft}
 	~ \vspace{-0.5\baselineskip}%
 	\end{samepage}
 	\setcaptionmargincm{\captionlrmargin}%
@@ -3747,9 +3753,9 @@
 				\ifthenelse{\equal{\GLOBALthreecolumnap}{r}}{%
 					\hfill\begin{raggedleft}#7\end{raggedleft}%
 				}{%
-					\errmessage{LaTeX Warning: Alineacion columna izquierda incorrecta, valores esperados: c,l,r}
-				}}}
-			\end{minipage}%
+					\errmessage{LaTeX Warning: Alineacion columna izquierda incorrecta, valores esperados: c,l,r}%
+				}}}%
+			\end{minipage}
 			\hspace{#5 cm}%
 			\begin{minipage}[t][#1][\GLOBALthreecolumnbv]{#3\linewidth}%
 				\ifthenelse{\equal{\GLOBALthreecolumnbp}{c}}{%
@@ -3761,9 +3767,9 @@
 				\ifthenelse{\equal{\GLOBALthreecolumnbp}{r}}{%
 					\hfill\begin{raggedleft}#8\end{raggedleft}%
 				}{%
-					\errmessage{LaTeX Warning: Alineacion columna central incorrecta, valores esperados: c,l,r}
-				}}}
-			\end{minipage}%
+					\errmessage{LaTeX Warning: Alineacion columna central incorrecta, valores esperados: c,l,r}%
+				}}}%
+			\end{minipage}
 			\hspace{#6 cm}%
 			\begin{minipage}[t][#1][\GLOBALthreecolumncv]{#4\linewidth}%
 				\ifthenelse{\equal{\GLOBALthreecolumncp}{c}}{%
@@ -3775,11 +3781,11 @@
 				\ifthenelse{\equal{\GLOBALthreecolumncp}{r}}{%
 					\hfill\begin{raggedleft}#9\end{raggedleft}%
 				}{%
-					\errmessage{LaTeX Warning: Alineacion columna derecha incorrecta, valores esperados: c,l,r}
-				}}}
-			\end{minipage}%
-		\end{minipage}%
-	\end{flushleft}%
+					\errmessage{LaTeX Warning: Alineacion columna derecha incorrecta, valores esperados: c,l,r}%
+				}}}%
+			\end{minipage}
+		\end{minipage}
+	\end{flushleft}
 	~ \vspace{-0.5\baselineskip}%
 	\end{samepage}
 	\setcaptionmargincm{\captionlrmargin}%
@@ -3820,11 +3826,11 @@
 %	#2	Nombre del autor
 %	#3	Institución del autor
 %	#4	Correo
-\newcommand{\addauthor}[4][]{
-	\immediate\write\fileauthornames{\unexpanded{\titleauthorname}[\theauthornumber]\unexpanded{{#2}}\LOCALpercentchar}
+\newcommand{\addauthor}[4][]{%
+	\immediate\write\fileauthornames{\unexpanded{\titleauthorname}[\theauthornumber]\unexpanded{{#2}}\LOCALpercentchar}%
 	\immediate\write\fileauthordata{\unexpanded{\titleauthordata}[\theauthornumber]\unexpanded{{#3}{#4}{#1}}\LOCALpercentchar}%
 	\immediate\write\fileauthornamesdata{\unexpanded{\titleauthornamedata}[\theauthornumber]\unexpanded{{#2}{#3}{#4}{#1}}\LOCALpercentchar}%
-	\stepcounter{authornumber}
+	\stepcounter{authornumber}%
 }
 
 % Define funciones de los estilos de títulos
@@ -3834,21 +3840,21 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
 		\normalsize{#2} \textsuperscript{(#1)}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\titleauthordata}[4][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\vspace{0.025cm}\\}{}%
 		\indent \footnotesize{\textsuperscript{(#1)} #2%
 			\ifthenelse{\equal{#3}{}}{}{, \insertemail{#3}}%
 			\ifthenelse{\equal{#4}{}}{}{, ORCID \href{https://orcid.org/#4}{#4}}}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.6cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}
 				\centering
@@ -3861,10 +3867,10 @@
 				\centering%
 				\input{\jobname.authd}%
 			\end{minipage}
-		\end{center}%
+		\end{center}
 		\vspace{0.05cm}%
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style2}}{
 	\def\LOCALhasname {false}
@@ -3872,7 +3878,7 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
 		\normalsize{#2} \textsuperscript{(#1)}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\titleauthordata}[4][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\vspace{0.025cm}\\}{}%
 		\indent \footnotesize{\textsuperscript{(#1)} #2%
@@ -3880,18 +3886,18 @@
 		\ifthenelse{\equal{#4}{}}{}{, ORCID \href{https://orcid.org/#4}{#4}}}%
 		\def\LOCALhasname {true}%
 		\vspace{-0.05cm}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.7cm}%
 			\input{\jobname.authn}%
 			\vspace{0.2cm}%
-		\end{center}%
+		\end{center}
 		\par%
 		\def\LOCALhasname {false}%
 		\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
@@ -3899,7 +3905,7 @@
 		\end{minipage}
 		\vspace{0.3cm}%
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style3}}{
 	\def\LOCALhasname {false}
@@ -3907,14 +3913,14 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{,\ }{}%
 		\normalsize{#2}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.7cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 				\centering%
@@ -3922,9 +3928,9 @@
 			\end{minipage}
 			\vspace{0.3cm}%
 			\def\LOCALhasname {false}%
-		\end{center}%
+		\end{center}
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style4}}{
 	\def\LOCALhasname {false}
@@ -3932,14 +3938,14 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{,\ }{}%
 		\normalsize{#2}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.7cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 				\centering%
@@ -3953,27 +3959,27 @@
 			\vspace{0.3cm}%
 		\end{center}%
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style5}}{
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthornamedata}[5][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
-		\begin{tabular}[t]{C{4cm}}
-			\normalsize{#2} \\
-			\small{#3} \\
-			\ifthenelse{\equal{#4}{}}{}{\small{\insertemail{#4}} \\}
-			\ifthenelse{\equal{#5}{}}{}{\small{ORCID \href{https://orcid.org/#5}{#5}}}
+		\begin{tabular}[t]{C{4cm}}%
+			\normalsize{#2} \\%
+			\small{#3} \\%
+			\ifthenelse{\equal{#4}{}}{}{\small{\insertemail{#4}} \\}%
+			\ifthenelse{\equal{#5}{}}{}{\small{ORCID \href{https://orcid.org/#5}{#5}}}%
 		\end{tabular}
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.9cm}%
 			\noindent%
 			\settablecellpadding{0}{1.5}%
@@ -3982,96 +3988,96 @@
 					\centering%
 					\input{\jobname.authnd}%
 				\end{minipage}
-			}
+			}%
 			\resettablecellpadding%
 			\def\LOCALhasname {false}%
-		\end{center}%
+		\end{center}
 		\normalsize%
-	}
+	}%
 }{
 	\throwbadconfig{Valor configuracion incorrecto}{\titlestyle}{style1 .. style5}}}}}
 }
 
 % Crea una sección de referencias solo para bibtex
-\newenvironment{references}{
+\newenvironment{references}{%
 	\ifthenelse{\equal{\stylecitereferences}{bibtex}}{ % Verifica configuraciones
-	}{
+	}{%
 		\throwerror{\references}{Solo se puede usar entorno references con estilo citas \noexpand\stylecitereferences=bibtex}
-	}
-	\begingroup
+	}%
+	\begingroup%
 	\ifthenelse{\equal{\bibtexenvrefsecnum}{true}}{ % Se configura las referencias como una sección
-		\section{\namereferences}
-	}{
-		\sectionanum{\namereferences}
-	}
+		\section{\namereferences}%
+	}{%
+		\sectionanum{\namereferences}%
+	}%
 	\renewcommand{\section}[2]{}
 	\begin{thebibliography}{} % Inicia la bibliografía
 		\ifthenelse{\equal{\bibtextextalign}{justify}}{ % Formato ajuste de línea
-		}{
-		\ifthenelse{\equal{\bibtextextalign}{left}}{
-			\raggedright
-		}{
-		\ifthenelse{\equal{\bibtextextalign}{right}}{
-			\raggedleft
-		}{
-		\ifthenelse{\equal{\bibtextextalign}{center}}{
-			\centering
-		}{
-			\throwbadconfig{Ajuste de linea referencias bibtex desconocido}{\bibtextextalign}{justified,left,right,center}}}}
-		}
-	}
+		}{%
+		\ifthenelse{\equal{\bibtextextalign}{left}}{%
+			\raggedright%
+		}{%
+		\ifthenelse{\equal{\bibtextextalign}{right}}{%
+			\raggedleft%
+		}{%
+		\ifthenelse{\equal{\bibtextextalign}{center}}{%
+			\centering%
+		}{%
+			\throwbadconfig{Ajuste de linea referencias bibtex desconocido}{\bibtextextalign}{justified,left,right,center}}}}%
+		}%
+	}%
 	{
 	\end{thebibliography}
 	\endgroup % Termina el grupo
 }
 
 % Crea una sección de anexos
-\newenvironment{appendixd}{
+\newenvironment{appendixd}{%
 	\global\def\GLOBALenvappendix {true}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
-	\phantomsection
+	\phantomsection%
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
 	% Define formato números para appendix
-	\global\def\GLOBALformatnumchapter {\formatnumapchapter}
-	\global\def\GLOBALformatnumsection {\formatnumapsection}
-	\global\def\GLOBALformatnumssection {\formatnumapssection}
-	\global\def\GLOBALformatnumsssection {\formatnumapsssection}
-	\global\def\GLOBALformatnumssssection {\formatnumapssssection}
-	\bookmarksetup{
+	\global\def\GLOBALformatnumchapter {\formatnumapchapter}%
+	\global\def\GLOBALformatnumsection {\formatnumapsection}%
+	\global\def\GLOBALformatnumssection {\formatnumapssection}%
+	\global\def\GLOBALformatnumsssection {\formatnumapsssection}%
+	\global\def\GLOBALformatnumssssection {\formatnumapssssection}%
+	\bookmarksetup{%
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
-	}
-	\appendixtitleon
-	\appendixtitletocon
+	}%
+	\appendixtitleon%
+	\appendixtitletocon%
 	% \addappheadtotoc
-	\bookmarksetupnext{level=part}
+	\bookmarksetupnext{level=part}%
 	\begin{appendices} % Crea la sección
-		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
+		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{%
 			\pdfbookmark{\nameappendixsection}{appendix} % Si false
-		}
+		}%
 		% \setcounter{secnumdepth}{4}
 		% \setcounter{tocdepth}{4}
-		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
-			\counterwithin{equation}{section}
-			\counterwithin{figure}{section}
-			\counterwithin{lstlisting}{section}
-			\counterwithin{table}{section}}{
-		}
-	}{
+		\ifthenelse{\equal{\appendixindepobjnum}{true}}{%
+			\counterwithin{equation}{section}%
+			\counterwithin{figure}{section}%
+			\counterwithin{lstlisting}{section}%
+			\counterwithin{table}{section}}{%
+		}%
+	}{%
 	\end{appendices}
 	% Restablece formato de números
-	\global\def\GLOBALformatnumchapter {\formatnumchapter}
-	\global\def\GLOBALformatnumsection {\formatnumsection}
-	\global\def\GLOBALformatnumssection {\formatnumssection}
-	\global\def\GLOBALformatnumsssection {\formatnumsssection}
-	\global\def\GLOBALformatnumssssection {\formatnumssssection}
+	\global\def\GLOBALformatnumchapter {\formatnumchapter}%
+	\global\def\GLOBALformatnumsection {\formatnumsection}%
+	\global\def\GLOBALformatnumssection {\formatnumssection}%
+	\global\def\GLOBALformatnumsssection {\formatnumsssection}%
+	\global\def\GLOBALformatnumssssection {\formatnumssssection}%
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
-	\bookmarksetup{
+	\bookmarksetup{%
 		numbered={\cfgpdfsecnumbookmarks},
 		openlevel={\cfgbookmarksopenlevel}
-	}
-	\endgroup
+	}%
+	\endgroup%
 }
 
 % Inicia código fuente con parámetros
@@ -4079,79 +4085,79 @@
 %	#2	Estilo de código
 %	#3	Parámetros
 %	#4	Caption
-\newcommand{\coreinitsourcecodep}[4]{
-	\emptyvarerr{\coreinitsourcecodep}{#2}{Estilo de codigo no definido}
-	\checkvalidsourcecodestyle{#2}
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\rightlinenumbers}{
-	}
+\newcommand{\coreinitsourcecodep}[4]{%
+	\emptyvarerr{\coreinitsourcecodep}{#2}{Estilo de codigo no definido}%
+	\checkvalidsourcecodestyle{#2}%
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\rightlinenumbers}{%
+	}%
 	\lstset{
 		backgroundcolor=\color{\sourcecodebgcolor}
-	}
-	\ifthenelse{\equal{\codecaptiontop}{true}}{
-		\ifx\hfuzz#4\hfuzz
-			\ifx\hfuzz#3\hfuzz
+	}%
+	\ifthenelse{\equal{\codecaptiontop}{true}}{%
+		\ifx\hfuzz#4\hfuzz%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\else
-			\ifx\hfuzz#3\hfuzz
+				}%
+			\fi%
+		\else%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					caption={#4 #1},
 					captionpos=t,
 					escapeinside={(*@}{@*)},
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					caption={#4 #1},
 					captionpos=t,
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\fi
-	}{
-		\ifx\hfuzz#4\hfuzz
-			\ifx\hfuzz#3\hfuzz
+				}%
+			\fi%
+		\fi%
+	}{%
+		\ifx\hfuzz#4\hfuzz%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\else
-			\ifx\hfuzz#3\hfuzz
+				}%
+			\fi%
+		\else%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					caption={#4 #1},
 					captionpos=b,
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					caption={#4 #1},
 					captionpos=b,
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\fi	
-	}
+				}%
+			\fi%
+		\fi%
+	}%
 }
 
 % Inserta código fuente con parámetros
@@ -4185,44 +4191,44 @@
 %	#1	Label (opcional)
 %	#2	Estilo de código
 %	#3	Caption
-\newcommand{\coreinitsourcecode}[3]{
-	\emptyvarerr{\coreinitsourcecode}{#2}{Estilo de codigo no definido}
-	\checkvalidsourcecodestyle{#2}
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\rightlinenumbers}{
-	}
+\newcommand{\coreinitsourcecode}[3]{%
+	\emptyvarerr{\coreinitsourcecode}{#2}{Estilo de codigo no definido}%
+	\checkvalidsourcecodestyle{#2}%
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\rightlinenumbers}{%
+	}%
 	\lstset{
 		backgroundcolor=\color{\sourcecodebgcolor}
-	}
+	}%
 	\ifthenelse{\equal{\codecaptiontop}{true}}{
-		\ifx\hfuzz#3\hfuzz
+		\ifx\hfuzz#3\hfuzz%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				style=#2
-			}
-		\else
+			}%
+		\else%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				caption={#3 #1},
 				captionpos=t,
 				style=#2
-			}
-		\fi
-	}{
-		\ifx\hfuzz#3\hfuzz
+			}%
+		\fi%
+	}{%
+		\ifx\hfuzz#3\hfuzz%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				style=#2
-			}
-		\else
+			}%
+		\else%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				caption={#3 #1},
 				captionpos=b,
 				style=#2
-			}
-		\fi
-	}
+			}%
+		\fi%
+	}%
 }
 
 % Inserta código fuente sin parámetros
@@ -4247,32 +4253,32 @@
 	\lstinputlisting{#3}%
 	\ifthenelse{\equal{\showlinenumbers}{true}}{%
 		\leftlinenumbers}{%
-	}
+	}%
 }
 
 % Itemize en negrita
 %	#1	Parámetros opcionales
-\newenvironment{itemizebf}[1][]{
-	\begin{itemize}[font=\bfseries,#1]
-	}{
+\newenvironment{itemizebf}[1][]{%
+	\begin{itemize}[font=\bfseries,#1]%
+	}{%
 	\end{itemize}
 }
 
 % Enumerate en negrita
 %	#1	Parámetros opcionales
-\newenvironment{enumeratebf}[1][]{
-	\begin{enumerate}[font=\bfseries,#1]
-	}{
+\newenvironment{enumeratebf}[1][]{%
+	\begin{enumerate}[font=\bfseries,#1]%
+	}{%
 	\end{enumerate}
 }
 
 % Crea una sección de resumen
-\newenvironment{abstractd}{
+\newenvironment{abstractd}{%
 	% Tipo de título para abstract
-	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
+	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}%
 	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
 	% para que aparezca en el índice utilizar la función \sectionanumheadless
-	\sectionanumnoiheadless{\nameabstract}}{
+	\sectionanumnoiheadless{\nameabstract}}{%
 }
 
 % Crea una sección de imágenes múltiples
@@ -4309,20 +4315,20 @@
 	\end{samepage}
 	
 	% Restablece globales
-	\global\def\GLOBALenvimageinitialized {false}
+	\global\def\GLOBALenvimageinitialized {false}%
 }
 
 % Crea una sección de imágenes múltiples completa dentro de un multicol
 %	#1	Label (opcional)
 %	#2	Posición de la imagen, "bottom", "top"
 %	#3	Caption
-\newenvironment{imagesmc}[3][]{
+\newenvironment{imagesmc}[3][]{%
 	% Modifica globales
-	\def\envimageslabelvar {#1}
-	\def\envimagesmcpos {#2}
-	\def\envimagescaptionvar {#3}
-	\global\def\GLOBALenvimageinitialized {true}
-	\global\def\GLOBALenvimageadded {false}
+	\def\envimageslabelvar {#1}%
+	\def\envimagesmcpos {#2}%
+	\def\envimagescaptionvar {#3}%
+	\global\def\GLOBALenvimageinitialized {true}%
+	\global\def\GLOBALenvimageadded {false}%
 	\checkinsidemulticol%
 	\checkoutsideappendix%
 	
@@ -4354,7 +4360,7 @@
 	\setcaptionmargincm{\captionlrmarginmc}%
 	
 	% Restablece globales
-	\global\def\GLOBALenvimageinitialized {false}
+	\global\def\GLOBALenvimageinitialized {false}%
 }
 
 % -----------------------------------------------------------------------------
@@ -5519,16 +5525,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={31/10/2021},
+		Template.Date={05/11/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={0.9.4-1-ARTC},
-		Template.Version.Hash={E88C5425F86E7CB82969356DE7978A5B},
-		Template.Version.Release={0.9.4},
+		Template.Version.Dev={1.0.0-1-ARTC},
+		Template.Version.Hash={3C6BBF4D1B8AF5CD69DC4414AE6D19B5},
+		Template.Version.Release={1.0.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5536,7 +5542,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v0.9.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.0.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6041,9 +6047,9 @@
 % -----------------------------------------------------------------------------
 % Configuración elementos matemáticos
 % -----------------------------------------------------------------------------
-\newtheoremstyle{miestilo}{\baselineskip}{3pt}{\itshape}{}{\bfseries}{}{.5em}{}
-\newtheoremstyle{miobs}{\baselineskip}{3pt}{}{}{\bfseries}{}{.5em}{}
-\theoremstyle{miestilo}
+\newtheoremstyle{templatetheorem}{\baselineskip}{3pt}{\itshape}{}{\bfseries}{}{.5em}{}
+\newtheoremstyle{templateobs}{\baselineskip}{3pt}{}{}{\bfseries}{}{.5em}{}
+\theoremstyle{templatetheorem}
 
 % Configura números
 \ifthenelse{\equal{\showsectioncaptionmat}{none}}{
@@ -6090,7 +6096,7 @@
 }{
 	\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionmat}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 }
-\theoremstyle{miobs}
+\theoremstyle{templateobs}
 \newtheorem*{ej}{\namemathej}
 \newtheorem*{obs}{\namemathobs}
 
@@ -6251,16 +6257,16 @@
 \makeatother
 
 % Creación de comandos si no existen
-\ifx\DeclareUnicodeCharacter\undefined
+\ifx\DeclareUnicodeCharacter\undefined%
 	\def\DeclareUnicodeCharacter#1#2{%
 		\def\tmp{#2}\uccode`\~="#1 \catcode"#1 \active%
 		\uppercase{\global\let~\tmp}%
 		\uccode`\~=0%
 	}
-\fi
-\ifx\mapsfrom\undefined
-	\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
-\fi
+\fi%
+\ifx\mapsfrom\undefined%
+	\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}%
+\fi%
 
 % Agrega caracteres unicode
 \ifdefined\DeclareUnicodeCharacter
@@ -7067,7 +7073,7 @@
 	% -------------------------------------------------------------------------
 	\ifthenelse{\isundefined{\authorshf}}{%
 		\def\authorshf {}}{%
-	}%
+	}
 	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
 	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{

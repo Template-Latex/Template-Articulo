@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Caracteres Unicode
-% Versión:      0.9.4 (31/10/2021)
+% Versión:      1.0.0 (05/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -40,16 +40,16 @@
 \makeatother
 
 % Creación de comandos si no existen
-\ifx\DeclareUnicodeCharacter\undefined
+\ifx\DeclareUnicodeCharacter\undefined%
 	\def\DeclareUnicodeCharacter#1#2{%
 		\def\tmp{#2}\uccode`\~="#1 \catcode"#1 \active%
 		\uppercase{\global\let~\tmp}%
 		\uccode`\~=0%
 	}
-\fi
-\ifx\mapsfrom\undefined
-	\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
-\fi
+\fi%
+\ifx\mapsfrom\undefined%
+	\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}%
+\fi%
 
 % Agrega caracteres unicode
 \ifdefined\DeclareUnicodeCharacter

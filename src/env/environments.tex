@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Definición de entornos
-% Versión:      0.9.4 (31/10/2021)
+% Versión:      1.0.0 (05/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -10,85 +10,85 @@
 % Licencia MIT:    [https://opensource.org/licenses/MIT]
 
 % Crea una sección de referencias solo para bibtex
-\newenvironment{references}{
+\newenvironment{references}{%
 	\ifthenelse{\equal{\stylecitereferences}{bibtex}}{ % Verifica configuraciones
-	}{
+	}{%
 		\throwerror{\references}{Solo se puede usar entorno references con estilo citas \noexpand\stylecitereferences=bibtex}
-	}
-	\begingroup
+	}%
+	\begingroup%
 	\ifthenelse{\equal{\bibtexenvrefsecnum}{true}}{ % Se configura las referencias como una sección
-		\section{\namereferences}
-	}{
-		\sectionanum{\namereferences}
-	}
+		\section{\namereferences}%
+	}{%
+		\sectionanum{\namereferences}%
+	}%
 	\renewcommand{\section}[2]{}
 	\begin{thebibliography}{} % Inicia la bibliografía
 		\ifthenelse{\equal{\bibtextextalign}{justify}}{ % Formato ajuste de línea
-		}{
-		\ifthenelse{\equal{\bibtextextalign}{left}}{
-			\raggedright
-		}{
-		\ifthenelse{\equal{\bibtextextalign}{right}}{
-			\raggedleft
-		}{
-		\ifthenelse{\equal{\bibtextextalign}{center}}{
-			\centering
-		}{
-			\throwbadconfig{Ajuste de linea referencias bibtex desconocido}{\bibtextextalign}{justified,left,right,center}}}}
-		}
-	}
+		}{%
+		\ifthenelse{\equal{\bibtextextalign}{left}}{%
+			\raggedright%
+		}{%
+		\ifthenelse{\equal{\bibtextextalign}{right}}{%
+			\raggedleft%
+		}{%
+		\ifthenelse{\equal{\bibtextextalign}{center}}{%
+			\centering%
+		}{%
+			\throwbadconfig{Ajuste de linea referencias bibtex desconocido}{\bibtextextalign}{justified,left,right,center}}}}%
+		}%
+	}%
 	{
 	\end{thebibliography}
 	\endgroup % Termina el grupo
 }
 
 % Crea una sección de anexos
-\newenvironment{appendixd}{
+\newenvironment{appendixd}{%
 	\global\def\GLOBALenvappendix {true}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
-	\phantomsection
+	\phantomsection%
 	\changeheadertitle{\nameltappendixsection} % Cambia el nombre del header
 	% Define formato números para appendix
-	\global\def\GLOBALformatnumchapter {\formatnumapchapter}
-	\global\def\GLOBALformatnumsection {\formatnumapsection}
-	\global\def\GLOBALformatnumssection {\formatnumapssection}
-	\global\def\GLOBALformatnumsssection {\formatnumapsssection}
-	\global\def\GLOBALformatnumssssection {\formatnumapssssection}
-	\bookmarksetup{
+	\global\def\GLOBALformatnumchapter {\formatnumapchapter}%
+	\global\def\GLOBALformatnumsection {\formatnumapsection}%
+	\global\def\GLOBALformatnumssection {\formatnumapssection}%
+	\global\def\GLOBALformatnumsssection {\formatnumapsssection}%
+	\global\def\GLOBALformatnumssssection {\formatnumapssssection}%
+	\bookmarksetup{%
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
-	}
-	\appendixtitleon
-	\appendixtitletocon
+	}%
+	\appendixtitleon%
+	\appendixtitletocon%
 	% \addappheadtotoc
-	\bookmarksetupnext{level=part}
+	\bookmarksetupnext{level=part}%
 	\begin{appendices} % Crea la sección
-		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{
+		\ifthenelse{\equal{\showappendixsecindex}{true}}{}{%
 			\pdfbookmark{\nameappendixsection}{appendix} % Si false
-		}
+		}%
 		% \setcounter{secnumdepth}{4}
 		% \setcounter{tocdepth}{4}
-		\ifthenelse{\equal{\appendixindepobjnum}{true}}{
-			\counterwithin{equation}{section}
-			\counterwithin{figure}{section}
-			\counterwithin{lstlisting}{section}
-			\counterwithin{table}{section}}{
-		}
-	}{
+		\ifthenelse{\equal{\appendixindepobjnum}{true}}{%
+			\counterwithin{equation}{section}%
+			\counterwithin{figure}{section}%
+			\counterwithin{lstlisting}{section}%
+			\counterwithin{table}{section}}{%
+		}%
+	}{%
 	\end{appendices}
 	% Restablece formato de números
-	\global\def\GLOBALformatnumchapter {\formatnumchapter}
-	\global\def\GLOBALformatnumsection {\formatnumsection}
-	\global\def\GLOBALformatnumssection {\formatnumssection}
-	\global\def\GLOBALformatnumsssection {\formatnumsssection}
-	\global\def\GLOBALformatnumssssection {\formatnumssssection}
+	\global\def\GLOBALformatnumchapter {\formatnumchapter}%
+	\global\def\GLOBALformatnumsection {\formatnumsection}%
+	\global\def\GLOBALformatnumssection {\formatnumssection}%
+	\global\def\GLOBALformatnumsssection {\formatnumsssection}%
+	\global\def\GLOBALformatnumssssection {\formatnumssssection}%
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
-	\bookmarksetup{
+	\bookmarksetup{%
 		numbered={\cfgpdfsecnumbookmarks},
 		openlevel={\cfgbookmarksopenlevel}
-	}
-	\endgroup
+	}%
+	\endgroup%
 }
 
 % Inicia código fuente con parámetros
@@ -96,79 +96,79 @@
 %	#2	Estilo de código
 %	#3	Parámetros
 %	#4	Caption
-\newcommand{\coreinitsourcecodep}[4]{
-	\emptyvarerr{\coreinitsourcecodep}{#2}{Estilo de codigo no definido}
-	\checkvalidsourcecodestyle{#2}
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\rightlinenumbers}{
-	}
+\newcommand{\coreinitsourcecodep}[4]{%
+	\emptyvarerr{\coreinitsourcecodep}{#2}{Estilo de codigo no definido}%
+	\checkvalidsourcecodestyle{#2}%
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\rightlinenumbers}{%
+	}%
 	\lstset{
 		backgroundcolor=\color{\sourcecodebgcolor}
-	}
-	\ifthenelse{\equal{\codecaptiontop}{true}}{
-		\ifx\hfuzz#4\hfuzz
-			\ifx\hfuzz#3\hfuzz
+	}%
+	\ifthenelse{\equal{\codecaptiontop}{true}}{%
+		\ifx\hfuzz#4\hfuzz%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\else
-			\ifx\hfuzz#3\hfuzz
+				}%
+			\fi%
+		\else%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					caption={#4 #1},
 					captionpos=t,
 					escapeinside={(*@}{@*)},
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					caption={#4 #1},
 					captionpos=t,
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\fi
-	}{
-		\ifx\hfuzz#4\hfuzz
-			\ifx\hfuzz#3\hfuzz
+				}%
+			\fi%
+		\fi%
+	}{%
+		\ifx\hfuzz#4\hfuzz%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\else
-			\ifx\hfuzz#3\hfuzz
+				}%
+			\fi%
+		\else%
+			\ifx\hfuzz#3\hfuzz%
 				\lstset{
 					caption={#4 #1},
 					captionpos=b,
 					style=#2
-				}
-			\else
+				}%
+			\else%
 				\lstset{
 					caption={#4 #1},
 					captionpos=b,
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
-				}
-			\fi
-		\fi	
-	}
+				}%
+			\fi%
+		\fi%
+	}%
 }
 
 % Inserta código fuente con parámetros
@@ -202,44 +202,44 @@
 %	#1	Label (opcional)
 %	#2	Estilo de código
 %	#3	Caption
-\newcommand{\coreinitsourcecode}[3]{
-	\emptyvarerr{\coreinitsourcecode}{#2}{Estilo de codigo no definido}
-	\checkvalidsourcecodestyle{#2}
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\rightlinenumbers}{
-	}
+\newcommand{\coreinitsourcecode}[3]{%
+	\emptyvarerr{\coreinitsourcecode}{#2}{Estilo de codigo no definido}%
+	\checkvalidsourcecodestyle{#2}%
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\rightlinenumbers}{%
+	}%
 	\lstset{
 		backgroundcolor=\color{\sourcecodebgcolor}
-	}
+	}%
 	\ifthenelse{\equal{\codecaptiontop}{true}}{
-		\ifx\hfuzz#3\hfuzz
+		\ifx\hfuzz#3\hfuzz%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				style=#2
-			}
-		\else
+			}%
+		\else%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				caption={#3 #1},
 				captionpos=t,
 				style=#2
-			}
-		\fi
-	}{
-		\ifx\hfuzz#3\hfuzz
+			}%
+		\fi%
+	}{%
+		\ifx\hfuzz#3\hfuzz%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				style=#2
-			}
-		\else
+			}%
+		\else%
 			\lstset{
 				escapeinside={(*@}{@*)},
 				caption={#3 #1},
 				captionpos=b,
 				style=#2
-			}
-		\fi
-	}
+			}%
+		\fi%
+	}%
 }
 
 % Inserta código fuente sin parámetros
@@ -264,32 +264,32 @@
 	\lstinputlisting{#3}%
 	\ifthenelse{\equal{\showlinenumbers}{true}}{%
 		\leftlinenumbers}{%
-	}
+	}%
 }
 
 % Itemize en negrita
 %	#1	Parámetros opcionales
-\newenvironment{itemizebf}[1][]{
-	\begin{itemize}[font=\bfseries,#1]
-	}{
+\newenvironment{itemizebf}[1][]{%
+	\begin{itemize}[font=\bfseries,#1]%
+	}{%
 	\end{itemize}
 }
 
 % Enumerate en negrita
 %	#1	Parámetros opcionales
-\newenvironment{enumeratebf}[1][]{
-	\begin{enumerate}[font=\bfseries,#1]
-	}{
+\newenvironment{enumeratebf}[1][]{%
+	\begin{enumerate}[font=\bfseries,#1]%
+	}{%
 	\end{enumerate}
 }
 
 % Crea una sección de resumen
-\newenvironment{abstractd}{
+\newenvironment{abstractd}{%
 	% Tipo de título para abstract
-	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}
+	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}%
 	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
 	% para que aparezca en el índice utilizar la función \sectionanumheadless
-	\sectionanumnoiheadless{\nameabstract}}{
+	\sectionanumnoiheadless{\nameabstract}}{%
 }
 
 % Crea una sección de imágenes múltiples
@@ -326,20 +326,20 @@
 	\end{samepage}
 	
 	% Restablece globales
-	\global\def\GLOBALenvimageinitialized {false}
+	\global\def\GLOBALenvimageinitialized {false}%
 }
 
 % Crea una sección de imágenes múltiples completa dentro de un multicol
 %	#1	Label (opcional)
 %	#2	Posición de la imagen, "bottom", "top"
 %	#3	Caption
-\newenvironment{imagesmc}[3][]{
+\newenvironment{imagesmc}[3][]{%
 	% Modifica globales
-	\def\envimageslabelvar {#1}
-	\def\envimagesmcpos {#2}
-	\def\envimagescaptionvar {#3}
-	\global\def\GLOBALenvimageinitialized {true}
-	\global\def\GLOBALenvimageadded {false}
+	\def\envimageslabelvar {#1}%
+	\def\envimagesmcpos {#2}%
+	\def\envimagescaptionvar {#3}%
+	\global\def\GLOBALenvimageinitialized {true}%
+	\global\def\GLOBALenvimageadded {false}%
 	\checkinsidemulticol%
 	\checkoutsideappendix%
 	
@@ -371,5 +371,5 @@
 	\setcaptionmargincm{\captionlrmarginmc}%
 	
 	% Restablece globales
-	\global\def\GLOBALenvimageinitialized {false}
+	\global\def\GLOBALenvimageinitialized {false}%
 }

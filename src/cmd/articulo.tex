@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Funciones exclusivas de Template-Articulo
-% Versión:      0.9.4 (31/10/2021)
+% Versión:      1.0.0 (05/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -36,11 +36,11 @@
 %	#2	Nombre del autor
 %	#3	Institución del autor
 %	#4	Correo
-\newcommand{\addauthor}[4][]{
-	\immediate\write\fileauthornames{\unexpanded{\titleauthorname}[\theauthornumber]\unexpanded{{#2}}\LOCALpercentchar}
+\newcommand{\addauthor}[4][]{%
+	\immediate\write\fileauthornames{\unexpanded{\titleauthorname}[\theauthornumber]\unexpanded{{#2}}\LOCALpercentchar}%
 	\immediate\write\fileauthordata{\unexpanded{\titleauthordata}[\theauthornumber]\unexpanded{{#3}{#4}{#1}}\LOCALpercentchar}%
 	\immediate\write\fileauthornamesdata{\unexpanded{\titleauthornamedata}[\theauthornumber]\unexpanded{{#2}{#3}{#4}{#1}}\LOCALpercentchar}%
-	\stepcounter{authornumber}
+	\stepcounter{authornumber}%
 }
 
 % Define funciones de los estilos de títulos
@@ -50,21 +50,21 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
 		\normalsize{#2} \textsuperscript{(#1)}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\titleauthordata}[4][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\vspace{0.025cm}\\}{}%
 		\indent \footnotesize{\textsuperscript{(#1)} #2%
 			\ifthenelse{\equal{#3}{}}{}{, \insertemail{#3}}%
 			\ifthenelse{\equal{#4}{}}{}{, ORCID \href{https://orcid.org/#4}{#4}}}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.6cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}
 				\centering
@@ -77,10 +77,10 @@
 				\centering%
 				\input{\jobname.authd}%
 			\end{minipage}
-		\end{center}%
+		\end{center}
 		\vspace{0.05cm}%
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style2}}{
 	\def\LOCALhasname {false}
@@ -88,7 +88,7 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
 		\normalsize{#2} \textsuperscript{(#1)}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\titleauthordata}[4][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\vspace{0.025cm}\\}{}%
 		\indent \footnotesize{\textsuperscript{(#1)} #2%
@@ -96,18 +96,18 @@
 		\ifthenelse{\equal{#4}{}}{}{, ORCID \href{https://orcid.org/#4}{#4}}}%
 		\def\LOCALhasname {true}%
 		\vspace{-0.05cm}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.7cm}%
 			\input{\jobname.authn}%
 			\vspace{0.2cm}%
-		\end{center}%
+		\end{center}
 		\par%
 		\def\LOCALhasname {false}%
 		\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
@@ -115,7 +115,7 @@
 		\end{minipage}
 		\vspace{0.3cm}%
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style3}}{
 	\def\LOCALhasname {false}
@@ -123,14 +123,14 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{,\ }{}%
 		\normalsize{#2}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.7cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 				\centering%
@@ -138,9 +138,9 @@
 			\end{minipage}
 			\vspace{0.3cm}%
 			\def\LOCALhasname {false}%
-		\end{center}%
+		\end{center}
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style4}}{
 	\def\LOCALhasname {false}
@@ -148,14 +148,14 @@
 		\ifthenelse{\equal{\LOCALhasname}{true}}{,\ }{}%
 		\normalsize{#2}%
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.7cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 				\centering%
@@ -169,27 +169,27 @@
 			\vspace{0.3cm}%
 		\end{center}%
 		\normalsize%
-	}
+	}%
 }{
 \ifthenelse{\equal{\titlestyle}{style5}}{
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthornamedata}[5][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
-		\begin{tabular}[t]{C{4cm}}
-			\normalsize{#2} \\
-			\small{#3} \\
-			\ifthenelse{\equal{#4}{}}{}{\small{\insertemail{#4}} \\}
-			\ifthenelse{\equal{#5}{}}{}{\small{ORCID \href{https://orcid.org/#5}{#5}}}
+		\begin{tabular}[t]{C{4cm}}%
+			\normalsize{#2} \\%
+			\small{#3} \\%
+			\ifthenelse{\equal{#4}{}}{}{\small{\insertemail{#4}} \\}%
+			\ifthenelse{\equal{#5}{}}{}{\small{ORCID \href{https://orcid.org/#5}{#5}}}%
 		\end{tabular}
 		\def\LOCALhasname {true}%
-	}
+	}%
 	\newcommand{\inserttitle}{%
 		\begin{center}%
 			\ifthenelse{\equal{\titlebold}{true}}{%
 				\textbf{\Large{\documenttitle}} \\%
 			}{%
 				\Large{\documenttitle} \\%
-			}
+			}%
 			\vspace{0.9cm}%
 			\noindent%
 			\settablecellpadding{0}{1.5}%
@@ -198,12 +198,12 @@
 					\centering%
 					\input{\jobname.authnd}%
 				\end{minipage}
-			}
+			}%
 			\resettablecellpadding%
 			\def\LOCALhasname {false}%
-		\end{center}%
+		\end{center}
 		\normalsize%
-	}
+	}%
 }{
 	\throwbadconfig{Valor configuracion incorrecto}{\titlestyle}{style1 .. style5}}}}}
 }
