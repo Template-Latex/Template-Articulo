@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.0.3 (23/11/2021)
+% Versión:      1.0.4 (26/11/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -164,6 +164,7 @@
 % -----------------------------------------------------------------------------
 % Librerías con parámetros
 % -----------------------------------------------------------------------------
+\usepackage[export]{adjustbox} % Agrega nuevas etiquetas de posicionado
 \usepackage[makeroom]{cancel} % Cancelar términos en fórmulas
 \usepackage[inline]{enumitem} % Permite enumerar ítems
 \usepackage[subfigure,titles]{tocloft} % Maneja entradas en el índice
@@ -2031,6 +2032,7 @@
 }
 
 \global\def\GLOBALimagelink {} % Almacena el link de la imagen
+\global\def\GLOBALimagenextmarginv {0 cm} % Almacena el margen vertical de las imágenes
 
 % Calcula largo hspace
 % Regresión entre 35,46446->9 y 52,68402->13,5
@@ -2062,23 +2064,32 @@
 	}{}%
 	\ifthenelse{\equal{#5}{}}{ % Sin label
 		\ifthenelse{\equal{\GLOBALimagelink}{}}{ % Sin link
-			\fbox{\includegraphics[#3]{#2}}%
+			\raisebox{\GLOBALimagenextmarginv}{%
+				\fbox{\includegraphics[#3]{#2}}
+			}%
 		}{ % Con link
-			\fbox{\href{\GLOBALimagelink}{\includegraphics[#3]{#2}}}%
+			\raisebox{\GLOBALimagenextmarginv}{%
+				\fbox{\href{\GLOBALimagelink}{\includegraphics[#3]{#2}}}%
+			}%
 		}%
 	}{ % Con label
 		\ifthenelse{\equal{\GLOBALimagelink}{}}{ % Sin link
 			\subfloat[#5]{%
-				\fbox{\includegraphics[#3]{#2}}#1%
+				\raisebox{\GLOBALimagenextmarginv}{%
+					\fbox{\includegraphics[#3]{#2}}#1%
+				}%
 			}%
 		}{ % Con link
 			\subfloat[#5]{%
-				\fbox{\href{\GLOBALimagelink}{\includegraphics[#3]{#2}}#1}%
+				\raisebox{\GLOBALimagenextmarginv}{%
+					\fbox{\href{\GLOBALimagelink}{\includegraphics[#3]{#2}}#1}%
+				}%
 			}%
 		}%
 	}%
 	\endgroup%
 	\global\def\GLOBALenvimageadded {true}%
+	\global\def\GLOBALimagenextmarginv {0 cm}%
 }
 
 % Añade una imagen a un env "image" con borde sin leyenda
@@ -2126,36 +2137,53 @@
 	\ifthenelse{\equal{#7}{}}{ % Sin label
 		\ifthenelse{\equal{\animatedimageloop}{true}}{ % Con loop
 			\ifthenelse{\equal{\animatedimageautoplay}{true}}{ % Con autoplay
-				\fbox{\animategraphics[loop,autoplay,#3]{#4}{#2-}{0}{#5}}%
+				\raisebox{\GLOBALimagenextmarginv}{%
+					\fbox{\animategraphics[loop,autoplay,#3]{#4}{#2-}{0}{#5}}%
+				}%
 			}{ % Sin autoplay
-				\fbox{\animategraphics[loop,#3]{#4}{#2-}{0}{#5}}%
+				\raisebox{\GLOBALimagenextmarginv}{%
+					\fbox{\animategraphics[loop,#3]{#4}{#2-}{0}{#5}}%
+				}%
 			}%
 		}{ % Sin loop
 			\ifthenelse{\equal{\animatedimageautoplay}{true}}{ % Con autoplay
-				\fbox{\animategraphics[autoplay,#3]{#4}{#2-}{0}{#5}}%
+				\raisebox{\GLOBALimagenextmarginv}{%
+					\fbox{\animategraphics[autoplay,#3]{#4}{#2-}{0}{#5}}%
+				}%
 			}{ % Sin autoplay
-				\fbox{\animategraphics[#3]{#4}{#2-}{0}{#5}}%
+				\raisebox{\GLOBALimagenextmarginv}{%
+					\fbox{\animategraphics[#3]{#4}{#2-}{0}{#5}}%
+				}%
 			}%
 		}%
 	}{ % Con label
 		\subfloat[#7]{%
 			\ifthenelse{\equal{\animatedimageloop}{true}}{ % Con loop
 				\ifthenelse{\equal{\animatedimageautoplay}{true}}{ % Con autoplay
-					\fbox{\animategraphics[loop,autoplay,#3]{#4}{#2-}{0}{#5}#1}%
+					\raisebox{\GLOBALimagenextmarginv}{%
+						\fbox{\animategraphics[loop,autoplay,#3]{#4}{#2-}{0}{#5}#1}%
+					}%
 				}{ % Sin autoplay
-					\fbox{\animategraphics[loop,#3]{#4}{#2-}{0}{#5}#1}%
+					\raisebox{\GLOBALimagenextmarginv}{%
+						\fbox{\animategraphics[loop,#3]{#4}{#2-}{0}{#5}#1}%
+					}%
 				}%
 			}{ % Sin loop
 				\ifthenelse{\equal{\animatedimageautoplay}{true}}{ % Con autoplay
-					\fbox{\animategraphics[autoplay,#3]{#4}{#2-}{0}{#5}#1}%
+					\raisebox{\GLOBALimagenextmarginv}{%
+						\fbox{\animategraphics[autoplay,#3]{#4}{#2-}{0}{#5}#1}%
+					}%
 				}{ % Sin autoplay
-					\fbox{\animategraphics[#3]{#4}{#2-}{0}{#5}#1}%
+					\raisebox{\GLOBALimagenextmarginv}{%
+						\fbox{\animategraphics[#3]{#4}{#2-}{0}{#5}#1}%
+					}%
 				}%
 			}%
 		}%
 	}%
 	\endgroup%
 	\global\def\GLOBALenvimageadded {true}%
+	\global\def\GLOBALimagenextmarginv {0 cm}%
 }
 
 % Añade una imagen a un env "image" con borde sin leyenda animada
@@ -2239,6 +2267,13 @@
 	\checkonlyonenvimage%
 	\global\def\GLOBALenvimageadded {false}%
 	~ \\ \vspace*{#1}%
+}
+
+% Establece el margen vertical de la siguiente imagen
+%	#1	Margen vertical
+\newcommand{\setnextimagevmargin}[1]{%
+	\emptyvarerr{\setimagesvmargin}{#1}{Tamaño del margen}%
+	\global\def\GLOBALimagenextmarginv {#1}%
 }
 
 % Insertar una imagen
@@ -2940,6 +2975,13 @@
 \define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
 \makeatother
 
+\global\def\GLOBALtitlerequirechapter {false}
+\global\def\GLOBALtitleinitchapter {false}
+\global\def\GLOBALtitleinitsection {false}
+\global\def\GLOBALtitleinitsubsection {false}
+\global\def\GLOBALtitleinitsubsubsection {false}
+\global\def\GLOBALtitleinitsubsubsubsection {false}
+
 % Activa la numeración en las secciones
 \def\coreintializetitlenumbering {%
 	% Capítulo
@@ -2987,6 +3029,36 @@
 	\hbadness=10000%
 }
 
+% Chequea si los capítulos han sido iniciados
+\def\corecheckchapterinitialized {%
+	\ifthenelse{\equal{\GLOBALtitlerequirechapter}{true}}{%
+		\ifthenelse{\equal{\GLOBALtitleinitchapter}{false}}{%
+			\throwwarning{Se requiere un nuevo capitulo para iniciar las secciones}%
+		}{}%
+	}{}%
+}
+
+% Chequea si una sección han sido iniciada
+\def\corechecksectioninitialized {%
+	\ifthenelse{\equal{\GLOBALtitleinitsection}{false}}{%
+		\throwwarning{Se requiere una nueva seccion}%
+	}{}%
+}
+
+% Chequea si una subsección han sido iniciada
+\def\corechecksubsectioninitialized {%
+	\ifthenelse{\equal{\GLOBALtitleinitsubsection}{false}}{%
+		\throwwarning{Se requiere una nueva subseccion}%
+	}{}%
+}
+
+% Chequea si una subsubsección han sido iniciada
+\def\corechecksubsubsectioninitialized {%
+	\ifthenelse{\equal{\GLOBALtitleinitsubsubsection}{false}}{%
+		\throwwarning{Se requiere una nueva subsubseccion}%
+	}{}%
+}
+
 % Parcha el formato de capítulos
 \pretocmd{\chapter}{%
 	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{ % Reinicia código fuente
@@ -3013,6 +3085,11 @@
 	\global\def\GLOBALsectionanumenabled {false}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
+	\global\def\GLOBALtitleinitchapter {true}%
+	\global\def\GLOBALtitleinitsection {false}%
+	\global\def\GLOBALtitleinitsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\coreintializetitlenumbering%
 }{}{}
 
@@ -3042,6 +3119,11 @@
 	\global\def\GLOBALsectionanumenabled {false}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
+	\global\def\GLOBALtitleinitsection {true}%
+	\global\def\GLOBALtitleinitsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsubsection {false}%
+	\corecheckchapterinitialized%
 	\coreintializetitlenumbering%
 }{}{}
 
@@ -3070,6 +3152,11 @@
 	}{}%
 	\global\def\GLOBALsubsectionanumenabled {false}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
+	\global\def\GLOBALtitleinitsubsection {true}%
+	\global\def\GLOBALtitleinitsubsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsubsection {false}%
+	\corecheckchapterinitialized%
+	\corechecksectioninitialized%
 	\coreintializetitlenumbering%
 }{}{}
 
@@ -3099,11 +3186,16 @@
 		\setcounter{table}{0}%
 	}{}%
 	\global\def\GLOBALsubsubsectionanumenabled {false}%
+	\global\def\GLOBALtitleinitsubsubsection {true}%
+	\global\def\GLOBALtitleinitsubsubsubsection {false}%
+	\corecheckchapterinitialized%
+	\corechecksectioninitialized%
+	\corechecksubsectioninitialized%
 	\coreintializetitlenumbering%
 }{}{}
 
 % Parcha sub-sub-subsecciones
-\pretocmd{\subsubsubsection}{%
+\def\corepatchaftersubsubsubsection {%
 	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{ % Reinicia código fuente
 		\addtocounter{templateListings}{\value{lstlisting}}%
 		\setcounter{lstlisting}{0}%
@@ -3124,7 +3216,12 @@
 		\addtocounter{templateTables}{\value{table}}%
 		\setcounter{table}{0}%
 	}{}%
-}{}{}
+	\global\def\GLOBALtitleinitsubsubsubsection {true}%
+	\corecheckchapterinitialized%
+	\corechecksectioninitialized%
+	\corechecksubsectioninitialized%
+	\corechecksubsubsectioninitialized%
+}
 
 % Insertar un título sin número
 % 	#1	Título
@@ -4045,6 +4142,7 @@
 % Crea una sección de anexos
 \newenvironment{appendixd}{%
 	\global\def\GLOBALenvappendix {true}%
+	\global\def\GLOBALtitlerequirechapter {false}%
 	\begingroup % Inicia el grupo en nueva página y sección
 	% \clearpage
 	\phantomsection%
@@ -4055,6 +4153,12 @@
 	\global\def\GLOBALformatnumssection {\formatnumapssection}%
 	\global\def\GLOBALformatnumsssection {\formatnumapsssection}%
 	\global\def\GLOBALformatnumssssection {\formatnumapssssection}%
+	% Define estado de numeración
+	\global\def\GLOBALtitleinitchapter {false}%
+	\global\def\GLOBALtitleinitsection {false}%
+	\global\def\GLOBALtitleinitsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\bookmarksetup{%
 		numbered={true},
 		openlevel={\thetemplateBookmarksLevelPrev}
@@ -4083,12 +4187,20 @@
 	\global\def\GLOBALformatnumssection {\formatnumssection}%
 	\global\def\GLOBALformatnumsssection {\formatnumsssection}%
 	\global\def\GLOBALformatnumssssection {\formatnumssssection}%
+	% Reestablece estado de numeración
+	\global\def\GLOBALtitleinitchapter {false}%
+	\global\def\GLOBALtitleinitsection {false}%
+	\global\def\GLOBALtitleinitsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsection {false}%
+	\global\def\GLOBALtitleinitsubsubsubsection {false}%
 	\bookmarksetupnext{level={\thetemplateBookmarksLevelPrev}} % Restablece índice marcador
 	\bookmarksetup{%
 		numbered={\cfgpdfsecnumbookmarks},
 		openlevel={\cfgbookmarksopenlevel}
 	}%
 	\endgroup%
+	\global\def\GLOBALenvappendix {false}%
+	\global\def\GLOBALtitlerequirechapter {false}%
 }
 
 % Inicia código fuente con parámetros
@@ -5535,16 +5647,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={23/11/2021},
+		Template.Date={26/11/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.3-ARTC},
-		Template.Version.Hash={2676B03247B872C1582C869C896B8005},
-		Template.Version.Release={1.0.3},
+		Template.Version.Dev={1.0.4-ARTC},
+		Template.Version.Hash={BCA565638623A35E91D525F9101107B8},
+		Template.Version.Release={1.0.4},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5552,7 +5664,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.0.3 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.0.4 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -7065,17 +7177,19 @@
 		\color{\sssectioncolor} \sssectionfontsize \sssectionfontstyle \selectfont%
 	}
 	\titleformat{\subsubsubsection}{%
-		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle
-		}{%
-		\thesubsubsubsection\charaftersectionnum\spacingaftersection}{0em}{%
+		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle%
+	}{%
+		\thesubsubsubsection\charaftersectionnum\spacingaftersection%
+		\corepatchaftersubsubsubsection%
+	}{0em}{%
 	}
 	\def\bibfont {\fontsizerefbibl} % Tamaño de fuente de las referencias
 	
 	% -------------------------------------------------------------------------
 	% Estilo citas
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\stylecitereferences}{apacite}}{
-		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}
+	\ifthenelse{\equal{\stylecitereferences}{apacite}}{%
+		\renewcommand{\BOthers}[1]{\apacitebothers\hbox{}}%
 	}{}
 	
 	% -------------------------------------------------------------------------
