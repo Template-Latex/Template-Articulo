@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Definición de entornos
-% Versión:      1.0.7 (05/12/2021)
+% Versión:      1.0.8 (24/12/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -296,15 +296,6 @@
 	\begin{enumerate}[font=\bfseries,#1]%
 	}{%
 	\end{enumerate}
-}
-
-% Crea una sección de resumen
-\newenvironment{abstractd}{%
-	% Tipo de título para abstract
-	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}%
-	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
-	% para que aparezca en el índice utilizar la función \sectionanumheadless
-	\sectionanumnoiheadless{\nameabstract}}{%
 }
 
 % Crea una sección de imágenes múltiples

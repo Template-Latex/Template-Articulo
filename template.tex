@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.0.7 (05/12/2021)
+% Versión:      1.0.8 (24/12/2021)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -13,11 +13,11 @@
 % CONFIGURACIONES
 % -----------------------------------------------------------------------------
 % Definiciones previas
-\def\iitembcirc {\raisebox{.55\height}{\scriptsize$\bullet$}}
-\def\iitembsquare {\raisebox{.3\height}{\tiny$\blacksquare$}}
-\def\iitemdash {\raisebox{.35\height}{\textendash}}
-\def\iitemcirc {\raisebox{.25\height}{\small$\circ$}}
-\def\iitemdiamond {\raisebox{.25\height}{\small$\diamond$}}
+\def\iitembcirc {\raisebox{0.55\height}{\scriptsize$\bullet$}}
+\def\iitembsquare {\raisebox{0.3\height}{\tiny$\blacksquare$}}
+\def\iitemdash {\raisebox{0.35\height}{\textendash}}
+\def\iitemcirc {\raisebox{0.25\height}{\small$\circ$}}
+\def\iitemdiamond {\raisebox{0.25\height}{\small$\diamond$}}
 
 % Ajustes usuario
 \input{template_config}
@@ -842,7 +842,18 @@
 	\usepackage{showframe}}{
 }
 \ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
-	\usepackage[switch,columnwise,running]{lineno}}{
+	\usepackage[switch,columnwise,running]{lineno}
+	\newcommand*\linenomathpatch[1]{% Parcha entornos
+		\cspreto{#1}{\linenomath}%
+		\cspreto{#1*}{\linenomath}%
+		\csappto{end#1}{\endlinenomath}%
+		\csappto{end#1*}{\endlinenomath}}
+	\linenomathpatch{equation}
+	\linenomathpatch{gather}
+	\linenomathpatch{multline}
+	\linenomathpatch{align}
+	\linenomathpatch{alignat}
+	\linenomathpatch{flalign}}{
 }
 \usepackage{csquotes} % Citas y comillas
 \ifthenelse{\equal{\compilertype}{pdf2latex}}{
@@ -3968,7 +3979,7 @@
 				\centering
 				\input{\jobname.authn}%
 			\end{minipage}
-			\vspace{0.3cm}%
+			\vspace{\titleauthormarginbottom cm}%
 			\def\LOCALhasname {false}%
 			~ \\%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
@@ -4004,7 +4015,7 @@
 			}%
 			\vspace{0.7cm}%
 			\input{\jobname.authn}%
-			\vspace{0.2cm}%
+			\vspace{\titleauthormarginbottom cm}%
 		\end{center}
 		\par%
 		\def\LOCALhasname {false}%
@@ -4034,7 +4045,7 @@
 				\centering%
 				\input{\jobname.authn}%
 			\end{minipage}
-			\vspace{0.3cm}%
+			\vspace{\titleauthormarginbottom cm}%
 			\def\LOCALhasname {false}%
 		\end{center}
 		\normalsize%
@@ -4059,9 +4070,8 @@
 				\centering%
 				\input{\jobname.authn}%
 			\end{minipage}
-			\vspace{0.3cm}%
+			\vspace{\titleauthormarginbottom cm}%
 			\def\LOCALhasname {false}%
-			\vspace{0.1cm}%
 			~ \\%
 			\small{\documentdate} \\
 			\vspace{0.3cm}%
@@ -4104,6 +4114,26 @@
 	}%
 }{
 	\throwbadconfig{Valor configuracion incorrecto}{\titlestyle}{style1 .. style5}}}}}
+}
+
+% Configura el abstract
+\BeforeBeginEnvironment{abstract}{%
+	\vspace{\abstractmargintop cm}%
+}
+\AfterEndEnvironment{abstract}{%
+	\vspace{\abstractmarginbottom cm}%
+}
+
+% Entorno de keywords
+\newenvironment{keywords}{%
+	\begin{small}%
+		\textbf{Keywords:} %
+		\begin{em}%
+		}{
+		\end{em}%
+	\end{small}%
+	\normalfont\selectfont%
+	\vspace{0.3cm}%
 }
 
 % Crea una sección de referencias solo para bibtex
@@ -4393,15 +4423,6 @@
 	\begin{enumerate}[font=\bfseries,#1]%
 	}{%
 	\end{enumerate}
-}
-
-% Crea una sección de resumen
-\newenvironment{abstractd}{%
-	% Tipo de título para abstract
-	\sectionfont{\color{\sectioncolor} \sectionfontsize \sectionfontstyle \selectfont}%
-	% Inserta un título sin número, sin cabecera y sin aparecer en el índice,
-	% para que aparezca en el índice utilizar la función \sectionanumheadless
-	\sectionanumnoiheadless{\nameabstract}}{%
 }
 
 % Crea una sección de imágenes múltiples
@@ -5644,16 +5665,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={05/12/2021},
+		Template.Date={24/12/2021},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.7-ARTC},
-		Template.Version.Hash={AB0F8DF175781DFB5CC0FCE8BE98E5D0},
-		Template.Version.Release={1.0.7},
+		Template.Version.Dev={1.0.8-ARTC},
+		Template.Version.Hash={5D8E0400E39AF7FC60F1165B68CB26B1},
+		Template.Version.Release={1.0.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5661,7 +5682,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.0.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.0.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5691,7 +5712,7 @@
 \setlength{\headheight}{64 pt} % Tamaño de la cabecera sin fancyhdr
 \setlength{\columnsep}{\columnsepwidth em} % Separación entre columnas
 \ifthenelse{\equal{\showlinenumbers}{true}}{
-	\setlength{\linenumbersep}{0.50cm}
+	\setlength{\linenumbersep}{\marginlinenumbers pt}
 	\renewcommand\linenumberfont{\normalfont\tiny\color{\linenumbercolor}}
 	}{
 }
