@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.0.9 (10/01/2022)
+% Versión:      1.1.0 (17/03/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -3004,6 +3004,13 @@
 \global\def\GLOBALtitleinitsubsubsection {false}
 \global\def\GLOBALtitleinitsubsubsubsection {false}
 
+% Configura textos a añadir antes de secciones
+\global\def\GLOBALtitleprechapterstr {}
+\global\def\GLOBALtitlepresectionstr {}
+\global\def\GLOBALtitlepresubsectionstr {}
+\global\def\GLOBALtitlepresubsubsectionstr {}
+\global\def\GLOBALtitlepresubsubsubsectionstr {}
+
 % Activa la numeración en las secciones
 \def\coreintializetitlenumbering {%
 	% Capítulo
@@ -3243,6 +3250,21 @@
 	\corechecksectioninitialized%
 	\corechecksubsectioninitialized%
 	\corechecksubsubsectioninitialized%
+}
+
+% Insertar un capítulo sin número
+% 	#1	Título
+\newcommand{\chapteranum}[1]{%
+	\emptyvarerr{\chapteranum}{#1}{Titulo no definido}%
+	\phantomsection%
+	\needspace{3\baselineskip}%
+	\chapter*{#1}%
+	\addcontentsline{toc}{chapter}{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{chapter}}{}%
+	\changeheadertitle{#1}%
+	\setcounter{section}{0}%
+	\global\def\GLOBALchapternumenabled {false}%
+	\coreintializetitlenumbering%
 }
 
 % Insertar un título sin número
@@ -5676,16 +5698,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={10/01/2022},
+		Template.Date={17/03/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.0.9-ARTC},
-		Template.Version.Hash={5B95BED1836B3FB03973A5268BEFCFBE},
-		Template.Version.Release={1.0.9},
+		Template.Version.Dev={1.1.0-ARTC},
+		Template.Version.Hash={3BC588FD75EDB69787F08075D7445DDB},
+		Template.Version.Release={1.1.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5693,7 +5715,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.0.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.1.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6107,9 +6129,9 @@
 	{\csname #1@cntformat\endcsname} % Control individual
 }
 % Configura secciones
-\newcommand\section@cntformat{\thesection\charaftersectionnum\spacingaftersection}
-\newcommand\subsection@cntformat{\thesubsection\charaftersectionnum\spacingaftersection}
-\newcommand\subsubsection@cntformat{\thesubsubsection\charaftersectionnum\spacingaftersection}
+\newcommand\section@cntformat{\GLOBALtitlepresectionstr\thesection\charaftersectionnum\spacingaftersection}
+\newcommand\subsection@cntformat{\GLOBALtitlepresubsectionstr\thesubsection\charaftersectionnum\spacingaftersection}
+\newcommand\subsubsection@cntformat{\GLOBALtitlepresubsubsectionstr\thesubsubsection\charaftersectionnum\spacingaftersection}
 \makeatother
 
 % -----------------------------------------------------------------------------
@@ -6426,6 +6448,7 @@
 
 % Agrega caracteres unicode
 \ifdefined\DeclareUnicodeCharacter
+\DeclareUnicodeCharacter{000B}{~}
 \DeclareUnicodeCharacter{00A0}{~}
 \DeclareUnicodeCharacter{00A1}{\textexclamdown}
 \DeclareUnicodeCharacter{00A2}{\textcent}
@@ -7213,7 +7236,7 @@
 	\titleformat{\subsubsubsection}{%
 		\color{\ssssectioncolor} \ssssectionfontsz \ssssectionfontstyle%
 	}{%
-		\thesubsubsubsection\charaftersectionnum\spacingaftersection%
+		\GLOBALtitlepresubsubsubsectionstr\thesubsubsubsection\charaftersectionnum\spacingaftersection%
 		\corepatchaftersubsubsubsection%
 	}{0em}{%
 	}
