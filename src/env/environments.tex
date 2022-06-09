@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Definición de entornos
-% Versión:      1.1.4 (04/06/2022)
+% Versión:      1.1.5 (09/06/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -40,6 +40,14 @@
 	{
 	\end{thebibliography}
 	\endgroup % Termina el grupo
+}
+
+% Crea un entorno para definir el tamaño de bloque
+%	#1	Tamaño de fuente en pt
+\newenvironment{fontsizeblock}[1][\documentfontsize]{
+	\changefontsizes{#1 pt}
+}{
+	\changefontsizes{\documentfontsize pt}
 }
 
 % Crea una sección de anexos
