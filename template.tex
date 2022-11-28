@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.1.6 (12/06/2022)
+% Versión:      1.1.7 (28/11/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -842,6 +842,10 @@
 \ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout
 	\usepackage{showframe}}{
 }
+\def\marginequationbottom {0}
+\def\marginequationtop {0}
+\def\margingatherbottom {0}
+\def\margingathertop {0}
 \ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
 	\usepackage[switch,columnwise,running]{lineno}
 	\newcommand*\linenomathpatch[1]{% Parcha entornos
@@ -5763,16 +5767,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={12/06/2022},
+		Template.Date={28/11/2022},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.1.6-3-ARTC},
-		Template.Version.Hash={9C6F7751000C86237D47DFE2BC8BFD76},
-		Template.Version.Release={1.1.6},
+		Template.Version.Dev={1.1.7-ARTC},
+		Template.Version.Hash={7DB1A1A80F140A532719B6DD9EAA19A1},
+		Template.Version.Release={1.1.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5780,7 +5784,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.1.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.1.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Importación de librerías
-% Versión:      1.1.6 (12/06/2022)
+% Versión:      1.1.7 (28/11/2022)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -826,6 +826,10 @@
 \ifthenelse{\equal{\showlayoutlines}{true}}{ % Muestra las líneas del layout
 	\usepackage{showframe}}{
 }
+\def\marginequationbottom {0}
+\def\marginequationtop {0}
+\def\margingatherbottom {0}
+\def\margingathertop {0}
 \ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
 	\usepackage[switch,columnwise,running]{lineno}
 	\newcommand*\linenomathpatch[1]{% Parcha entornos
