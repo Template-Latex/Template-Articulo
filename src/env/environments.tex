@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Definición de entornos
-% Versión:      1.2.4 (29/04/2023)
+% Versión:      1.2.5 (01/06/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -397,4 +397,24 @@
 	\setcaptionmargincm{\captionlrmarginmc}%
 	% Restablece globales
 	\global\def\GLOBALenvimageinitialized {false}%
+}
+
+% Crea un entorno para insertar ecuaciones en el índice
+% 	#1	Label (opcional)
+%	#2	Leyenda de la ecuación
+\newenvironment{equationindex}[2][]{
+	\def\coreequationindexcaption {#2}%
+	\emptyvarerr{\coreequationindexcaption}{#2}{Leyenda no definida}%
+	\corevspacevarcm{\margineqnindextop}%
+	\begin{samepage}%
+		\begin{equation}%
+			\text{#1}%
+		}{
+		\end{equation}
+		\myindexequations{\coreequationindexcaption}%
+		\corevspacevarcm{\margineqnindexbottom}%
+	\end{samepage}
+	\coreinsertequationcaption{\textit{\coreequationindexcaption}}%
+	\addtocounter{templateIndexEquations}{1}%
+	\coreafterequationfn%
 }
