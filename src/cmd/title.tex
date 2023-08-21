@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Funciones para insertar títulos
-% Versión:      1.2.6 (06/07/2023)
+% Versión:      1.2.7 (21/08/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -333,12 +333,37 @@
 	\coreintializetitlenumbering%
 }
 
+% Insertar un título sin número y sin indexar
+% 	#1	Título
+\newcommand{\sectionanumnoi}[1]{%
+	\emptyvarerr{\sectionanumnoi}{#1}{Titulo no definido}%
+	\phantomsection%
+	\needspace{3\baselineskip}%
+	\section*{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
+	\changeheadertitle{#1}%
+	\setcounter{subsection}{0}%
+	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
 % Insertar un título sin número sin cambiar el título del header
 % 	#1	Título
 \newcommand{\sectionanumheadless}[1]{%
 	\emptyvarerr{\sectionanumnoheadless}{#1}{Titulo no definido}%
 	\section*{#1}%
 	\addcontentsline{toc}{section}{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
+	\setcounter{subsection}{0}%
+	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
+% Insertar un título sin número, sin indexar y sin cambiar el título del header
+% 	#1	Título
+\newcommand{\sectionanumnoiheadless}[1]{%
+	\emptyvarerr{\sectionanumnoiheadless}{#1}{Titulo no definido}%
+	\section*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
 	\setcounter{subsection}{0}%
 	\global\def\GLOBALsectionanumenabled {true}%
@@ -357,6 +382,17 @@
 	\coreintializetitlenumbering%
 }
 
+% Insertar un subtítulo sin número y sin indexar
+% 	#1	Subtítulo
+\newcommand{\subsectionanumnoi}[1]{%
+	\emptyvarerr{\subsectionanumnoi}{#1}{Subtitulo no definido}%
+	\subsection*{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}%
+	\setcounter{subsubsection}{0}%
+	\global\def\GLOBALsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
 % Insertar un sub-subtítulo sin número
 % 	#1	Sub-subtítulo
 \newcommand{\subsubsectionanum}[1]{%
@@ -369,12 +405,31 @@
 	\coreintializetitlenumbering%
 }
 
+% Insertar un sub-subtítulo sin número y sin indexar
+% 	#1	Sub-subtítulo
+\newcommand{\subsubsectionanumnoi}[1]{%
+	\emptyvarerr{\subsubsectionanumnoi}{#1}{Sub-subtitulo no definido}%
+	\subsubsection*{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
+	\setcounter{subsubsubsection}{0}%
+	\global\def\GLOBALsubsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
 % Insertar un sub-sub-subtítulo sin número
 % 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanum}[1]{%
 	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}%
 	\subsubsubsection*{#1}%
 	\addcontentsline{toc}{subsubsubsection}{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}%
+}
+
+% Insertar un sub-sub-subtítulo sin número y sin indexar
+% 	#1	Sub-sub-subtítulo
+\newcommand{\subsubsubsectionanumnoi}[1]{%
+	\emptyvarerr{\subsubsubsectionanumnoi}{#1}{Sub-sub-subtitulo no definido}%
+	\subsubsection*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}%
 }
 

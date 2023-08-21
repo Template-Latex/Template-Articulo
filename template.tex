@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.2.6 (06/07/2023)
+% Versión:      1.2.7 (21/08/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -237,7 +237,7 @@
 
 % Dimensiones y geometría del documento
 \ifthenelse{\equal{\compilertype}{lualatex}}{ % En lualatex sólo se puede cambiar 1 vez el margen
-	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,left=\pagemarginleft cm,right=\pagemarginright cm]{geometry}
+	\usepackage[top=\pagemargintop cm,bottom=\pagemarginbottom cm,left=\pagemarginleft cm,right=\pagemarginright cm, footnotesep=\footnotetopmargin cm]{geometry}
 }{ % pdf2latex, xelatex
 	\usepackage{geometry}
 }
@@ -1021,7 +1021,7 @@
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
 		% Geometry no válido en lualatex
 	}{
-		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
+		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm, footnotesep=\footnotetopmargin cm}
 	}
 }
 
@@ -3328,12 +3328,37 @@
 	\coreintializetitlenumbering%
 }
 
+% Insertar un título sin número y sin indexar
+% 	#1	Título
+\newcommand{\sectionanumnoi}[1]{%
+	\emptyvarerr{\sectionanumnoi}{#1}{Titulo no definido}%
+	\phantomsection%
+	\needspace{3\baselineskip}%
+	\section*{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
+	\changeheadertitle{#1}%
+	\setcounter{subsection}{0}%
+	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
 % Insertar un título sin número sin cambiar el título del header
 % 	#1	Título
 \newcommand{\sectionanumheadless}[1]{%
 	\emptyvarerr{\sectionanumnoheadless}{#1}{Titulo no definido}%
 	\section*{#1}%
 	\addcontentsline{toc}{section}{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
+	\setcounter{subsection}{0}%
+	\global\def\GLOBALsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
+% Insertar un título sin número, sin indexar y sin cambiar el título del header
+% 	#1	Título
+\newcommand{\sectionanumnoiheadless}[1]{%
+	\emptyvarerr{\sectionanumnoiheadless}{#1}{Titulo no definido}%
+	\section*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{section}}{}%
 	\setcounter{subsection}{0}%
 	\global\def\GLOBALsectionanumenabled {true}%
@@ -3352,6 +3377,17 @@
 	\coreintializetitlenumbering%
 }
 
+% Insertar un subtítulo sin número y sin indexar
+% 	#1	Subtítulo
+\newcommand{\subsectionanumnoi}[1]{%
+	\emptyvarerr{\subsectionanumnoi}{#1}{Subtitulo no definido}%
+	\subsection*{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsection}}{}%
+	\setcounter{subsubsection}{0}%
+	\global\def\GLOBALsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
 % Insertar un sub-subtítulo sin número
 % 	#1	Sub-subtítulo
 \newcommand{\subsubsectionanum}[1]{%
@@ -3364,12 +3400,31 @@
 	\coreintializetitlenumbering%
 }
 
+% Insertar un sub-subtítulo sin número y sin indexar
+% 	#1	Sub-subtítulo
+\newcommand{\subsubsectionanumnoi}[1]{%
+	\emptyvarerr{\subsubsectionanumnoi}{#1}{Sub-subtitulo no definido}%
+	\subsubsection*{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsection}}{}%
+	\setcounter{subsubsubsection}{0}%
+	\global\def\GLOBALsubsubsectionanumenabled {true}%
+	\coreintializetitlenumbering%
+}
+
 % Insertar un sub-sub-subtítulo sin número
 % 	#1	Sub-sub-subtítulo
 \newcommand{\subsubsubsectionanum}[1]{%
 	\emptyvarerr{\subsubsubsectionanum}{#1}{Sub-sub-subtitulo no definido}%
 	\subsubsubsection*{#1}%
 	\addcontentsline{toc}{subsubsubsection}{#1}%
+	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}%
+}
+
+% Insertar un sub-sub-subtítulo sin número y sin indexar
+% 	#1	Sub-sub-subtítulo
+\newcommand{\subsubsubsectionanumnoi}[1]{%
+	\emptyvarerr{\subsubsubsectionanumnoi}{#1}{Sub-sub-subtitulo no definido}%
+	\subsubsection*{#1}%
 	\ifthenelse{\equal{\anumsecaddtocounter}{true}}{\stepcounter{subsubsubsection}}{}%
 }
 
@@ -5807,16 +5862,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={06/07/2023},
+		Template.Date={21/08/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.2.6-3-ARTC},
-		Template.Version.Hash={E10186EC5BADA989E55EE4755DF76DE5},
-		Template.Version.Release={1.2.6},
+		Template.Version.Dev={1.2.7-ARTC},
+		Template.Version.Hash={C6980EBDE0085949B5B7DE74C2D07A37},
+		Template.Version.Release={1.2.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5824,7 +5879,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.2.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.2.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

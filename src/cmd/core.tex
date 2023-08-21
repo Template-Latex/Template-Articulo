@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Funciones del núcleo del template
-% Versión:      1.2.6 (06/07/2023)
+% Versión:      1.2.7 (21/08/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -162,7 +162,7 @@
 	\ifthenelse{\equal{\compilertype}{lualatex}}{
 		% Geometry no válido en lualatex
 	}{
-		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}
+		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm, footnotesep=\footnotetopmargin cm}
 	}
 }
 
