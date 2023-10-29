@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.2.8 (26/10/2023)
+% Versión:      1.2.9 (29/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -13,6 +13,40 @@
 % CONFIGURACIONES
 % -----------------------------------------------------------------------------
 % Definiciones previas
+\usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
+
+% Definición de colores
+\colorlet{numb}{magenta!60!black}
+\colorlet{punct}{red!60!black}
+\definecolor{beige}{RGB}{210,194,149}
+\definecolor{beigegray}{RGB}{95,87,79}
+\definecolor{boxgray}{RGB}{238,235,233}
+\definecolor{cardinalred}{RGB}{140,21,21}
+\definecolor{coolgray}{RGB}{77,79,83}
+\definecolor{darkbeige}{RGB}{179,153,93}
+\definecolor{darkcardinal}{RGB}{94,48,50}
+\definecolor{darkcyan}{RGB}{0,124,146}
+\definecolor{darkorange}{RGB}{168,101,12}
+\definecolor{darkpurple}{RGB}{83,40,79}
+\definecolor{delim}{RGB}{20,105,176}
+\definecolor{dkcyan}{RGB}{0,123,167}
+\definecolor{dkgray}{RGB}{90,90,90}
+\definecolor{dkgreen}{RGB}{0,150,0}
+\definecolor{footergray}{RGB}{199,209,197}
+\definecolor{gray}{RGB}{127,127,127}
+\definecolor{lbrown}{RGB}{255,252,249}
+\definecolor{lgray}{RGB}{240,240,240}
+\definecolor{lightcardinal}{RGB}{141,60,30}
+\definecolor{lightgray}{RGB}{240,240,240}
+\definecolor{mauve}{RGB}{150,0,210}
+\definecolor{mitdarkgray}{cmyk}{0.48,0.39,0.39,0.04}
+\definecolor{mitlightgray}{cmyk}{0.24,0.20,0.20,0}
+\definecolor{mitred}{cmyk}{0.24,1,0.78,0.17}
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{skyblue}{RGB}{0,152,219}
+\definecolor{treegreen}{RGB}{0,155,118}
+
+% Definiciones en configuraciones
 \def\iitembcirc {\raisebox{0.55\height}{\scriptsize$\bullet$}}
 \def\iitembsquare {\raisebox{0.3\height}{\tiny$\blacksquare$}}
 \def\iitemdash {\raisebox{0.35\height}{\textendash}}
@@ -172,7 +206,6 @@
 \usepackage[figure,table,lstlisting]{totalcount} % Contador de objetos
 \usepackage[normalem]{ulem} % Permite tachar y subrayar
 \usepackage[nointegrals]{wasysym} % Contiene caracteres misceláneos
-\usepackage[dvipsnames,table,usenames]{xcolor} % Paquete de colores avanzado
 
 % -----------------------------------------------------------------------------
 % Librerías condicionales
@@ -424,17 +457,17 @@
 \ifthenelse{\equal{\fontdocument}{coelacanth}}{
 	\usepackage[nf]{coelacanth}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{coelacanthextralight}}{
 	\usepackage[el,nf]{coelacanth}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{coelacanthlight}}{
 	\usepackage[l,nf]{coelacanth}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{comfortaa}}{
 	\usepackage[default]{comfortaa}
@@ -465,22 +498,22 @@
 \ifthenelse{\equal{\fontdocument}{crimsonpro}}{
 	\usepackage{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{crimsonproextralight}}{
 	\usepackage[extralight]{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{crimsonprolight}}{
 	\usepackage[light]{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{crimsonpromedium}}{
 	\usepackage[medium]{CrimsonPro}
 	\let\oldnormalfont\normalfont
-	\def\normalfont{\oldnormalfont\mdseries}
+	\def\normalfont {\oldnormalfont\mdseries}
 }{
 \ifthenelse{\equal{\fontdocument}{cyklop}}{
 	\usepackage{cyklop}
@@ -1018,10 +1051,10 @@
 %	#2	Margen superior
 %	#3	Margen derecho
 %	#4	Margen inferior
-\newcommand{\setpagemargincm}[4]{
-	\ifthenelse{\equal{\compilertype}{lualatex}}{
+\newcommand{\setpagemargincm}[4]{%
+	\ifthenelse{\equal{\compilertype}{lualatex}}{%
 		% Geometry no válido en lualatex
-	}{
+	}{%
 		\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm, footnotesep=\footnotetopmargin cm}
 	}
 }
@@ -1864,7 +1897,7 @@
 % Insertar una ecuación (gathered) con leyenda sin número
 %	#1	Ecuación
 %	#2	Leyenda
-\newcommand{\insertgatheredcaptionedanum}[2]{
+\newcommand{\insertgatheredcaptionedanum}[2]{%
 	\emptyvarerr{\insertgatheredcaptionedanum}{#1}{Ecuacion no definida}%
 	\ifx\hfuzz#2\hfuzz%
 		\insertgatheredanum{#1}%
@@ -3464,11 +3497,11 @@
 }
 
 % Crea un salto de columna en el entorno multicol
-\ifthenelse{\isundefined{\newcolumn}}{
+\ifthenelse{\isundefined{\newcolumn}}{%
 	\newcommand{\newcolumn}{%
 		\checkinsidemulticol\vfill\null\columnbreak%
 	}
-}{
+}{%
 	\renewcommand{\newcolumn}{%
 		\checkinsidemulticol\vfill\null\columnbreak%
 	}
@@ -3665,7 +3698,7 @@
 }
 
 % Alterna los colores de las tablas a la última ejecución
-\newcommand{\settablerowcolorslast}{
+\newcommand{\settablerowcolorslast}{%
 	\ifthenelse{\equal{\GLOBALtablerowcolorswitch}{false}}{ % Usa colores normales
 		\ifthenelse{\equal{\tablerowfirstcolor}{none}}{%
 			\ifthenelse{\equal{\tablerowsecondcolor}{none}}{%
@@ -4103,7 +4136,7 @@
 }
 
 % Define funciones de los estilos de títulos
-\ifthenelse{\equal{\titlestyle}{style1}}{
+\ifthenelse{\equal{\titlestyle}{style1}}{%
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthorname}[2][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
@@ -4140,8 +4173,8 @@
 		\vspace{0.05cm}%
 		\normalsize%
 	}%
-}{
-\ifthenelse{\equal{\titlestyle}{style2}}{
+}{%
+\ifthenelse{\equal{\titlestyle}{style2}}{%
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthorname}[2][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
@@ -4175,8 +4208,8 @@
 		\vspace{0.3cm}%
 		\normalsize%
 	}%
-}{
-\ifthenelse{\equal{\titlestyle}{style3}}{
+}{%
+\ifthenelse{\equal{\titlestyle}{style3}}{%
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthorname}[2][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{,\ }{}%
@@ -4200,8 +4233,8 @@
 		\end{center}
 		\normalsize%
 	}%
-}{
-\ifthenelse{\equal{\titlestyle}{style4}}{
+}{%
+\ifthenelse{\equal{\titlestyle}{style4}}{%
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthorname}[2][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{,\ }{}%
@@ -4228,8 +4261,8 @@
 		\end{center}%
 		\normalsize%
 	}%
-}{
-\ifthenelse{\equal{\titlestyle}{style5}}{
+}{%
+\ifthenelse{\equal{\titlestyle}{style5}}{%
 	\def\LOCALhasname {false}
 	\newcommand{\titleauthornamedata}[5][]{%
 		\ifthenelse{\equal{\LOCALhasname}{true}}{\hspace{\titleauthorspacing cm}}{}%
@@ -4262,7 +4295,7 @@
 		\end{center}
 		\normalsize%
 	}%
-}{
+}{%
 	\throwbadconfig{Valor configuracion incorrecto}{\titlestyle}{style1 .. style5}}}}}
 }
 
@@ -4279,7 +4312,7 @@
 	\begin{small}%
 		\textbf{Keywords:} %
 		\begin{em}%
-		}{
+		}{%
 		\end{em}%
 	\end{small}%
 	\normalfont\selectfont%
@@ -4401,18 +4434,18 @@
 	\ifthenelse{\equal{\showlinenumbers}{true}}{%
 		\rightlinenumbers}{%
 	}%
-	\lstset{
+	\lstset{%
 		backgroundcolor=\color{\sourcecodebgcolor}
 	}%
 	\ifthenelse{\equal{\codecaptiontop}{true}}{%
 		\ifx\hfuzz#4\hfuzz%
 			\ifx\hfuzz#3\hfuzz%
-				\lstset{
+				\lstset{%
 					escapeinside={(*@}{@*)},
 					style=#2
 				}%
 			\else%
-				\lstset{
+				\lstset{%
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
@@ -4420,14 +4453,14 @@
 			\fi%
 		\else%
 			\ifx\hfuzz#3\hfuzz%
-				\lstset{
+				\lstset{%
 					caption={#4 #1},
 					captionpos=t,
 					escapeinside={(*@}{@*)},
 					style=#2
 				}%
 			\else%
-				\lstset{
+				\lstset{%
 					caption={#4 #1},
 					captionpos=t,
 					escapeinside={(*@}{@*)},
@@ -4439,12 +4472,12 @@
 	}{%
 		\ifx\hfuzz#4\hfuzz%
 			\ifx\hfuzz#3\hfuzz%
-				\lstset{
+				\lstset{%
 					escapeinside={(*@}{@*)},
 					style=#2
 				}%
 			\else%
-				\lstset{
+				\lstset{%
 					escapeinside={(*@}{@*)},
 					style=#2,
 					#3
@@ -4452,13 +4485,13 @@
 			\fi%
 		\else%
 			\ifx\hfuzz#3\hfuzz%
-				\lstset{
+				\lstset{%
 					caption={#4 #1},
 					captionpos=b,
 					style=#2
 				}%
 			\else%
-				\lstset{
+				\lstset{%
 					caption={#4 #1},
 					captionpos=b,
 					escapeinside={(*@}{@*)},
@@ -4507,17 +4540,17 @@
 	\ifthenelse{\equal{\showlinenumbers}{true}}{%
 		\rightlinenumbers}{%
 	}%
-	\lstset{
+	\lstset{%
 		backgroundcolor=\color{\sourcecodebgcolor}
 	}%
-	\ifthenelse{\equal{\codecaptiontop}{true}}{
+	\ifthenelse{\equal{\codecaptiontop}{true}}{%
 		\ifx\hfuzz#3\hfuzz%
-			\lstset{
+			\lstset{%
 				escapeinside={(*@}{@*)},
 				style=#2
 			}%
 		\else%
-			\lstset{
+			\lstset{%
 				escapeinside={(*@}{@*)},
 				caption={#3 #1},
 				captionpos=t,
@@ -4526,12 +4559,12 @@
 		\fi%
 	}{%
 		\ifx\hfuzz#3\hfuzz%
-			\lstset{
+			\lstset{%
 				escapeinside={(*@}{@*)},
 				style=#2
 			}%
 		\else%
-			\lstset{
+			\lstset{%
 				escapeinside={(*@}{@*)},
 				caption={#3 #1},
 				captionpos=b,
@@ -4679,14 +4712,14 @@
 % Crea un entorno para insertar ecuaciones en el índice
 % 	#1	Label (opcional)
 %	#2	Leyenda de la ecuación
-\newenvironment{equationindex}[2][]{
+\newenvironment{equationindex}[2][]{%
 	\def\coreequationindexcaption {#2}%
 	\emptyvarerr{\coreequationindexcaption}{#2}{Leyenda no definida}%
 	\corevspacevarcm{\margineqnindextop}%
 	\begin{samepage}%
 		\begin{equation}%
 			\text{#1}%
-		}{
+		}{%
 		\end{equation}
 		\myindexequations{\coreequationindexcaption}%
 		\corevspacevarcm{\margineqnindexbottom}%
@@ -4699,19 +4732,6 @@
 % -----------------------------------------------------------------------------
 % IMPORTACIÓN DE ESTILOS
 % -----------------------------------------------------------------------------
-% Definición de colores
-\colorlet{numb}{magenta!60!black}
-\colorlet{punct}{red!60!black}
-\definecolor{delim}{RGB}{20,105,176}
-\definecolor{dkcyan}{RGB}{0,123,167}
-\definecolor{dkgray}{RGB}{90,90,90}
-\definecolor{dkgreen}{RGB}{0,150,0}
-\definecolor{gray}{RGB}{127,127,127}
-\definecolor{lbrown}{RGB}{255,252,249}
-\definecolor{lgray}{RGB}{240,240,240}
-\definecolor{mauve}{RGB}{150,0,210}
-\definecolor{ocre}{RGB}{243,102,25}
-
 % ABAP
 \lstdefinestyle{abap}{
 	language=ABAP
@@ -5863,16 +5883,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={26/10/2023},
+		Template.Date={29/10/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.2.8-ARTC},
-		Template.Version.Hash={F687DA0488B2860D03928D003BC212B3},
-		Template.Version.Release={1.2.8},
+		Template.Version.Dev={1.2.9-ARTC},
+		Template.Version.Hash={5FD088D840DF4A454F4EAA02EE44E814},
+		Template.Version.Release={1.2.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5880,7 +5900,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.2.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.2.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6054,7 +6074,7 @@
 % Configuración de referencias y citas
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{
-	\def\twocolumnreferencesmargin{-0.35cm}
+	\def\twocolumnreferencesmargin {-0.35cm}
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
 	\newcommand{\shortcite}[1]{\citep{#1}}
@@ -6081,14 +6101,14 @@
 	}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
-	\def\twocolumnreferencesmargin{-0.39cm}
+	\def\twocolumnreferencesmargin {-0.39cm}
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
 	\newcommand{\citep}[1]{\fullcite{#1}}
 	\newcommand{\citet}[1]{\shortcite{#1}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
-	\def\twocolumnreferencesmargin{-0.35cm}
+	\def\twocolumnreferencesmargin {-0.35cm}
 	\bibliographystyle{\bibtexstyle}
 	\newlength{\bibitemsep}
 	\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
@@ -6208,7 +6228,7 @@
 % Configura las fuentes
 % -----------------------------------------------------------------------------
 \makeatletter
-\def\Hv@scale {.95}
+\def\Hv@scale {0.95}
 \makeatother
 
 % -----------------------------------------------------------------------------
@@ -6586,18 +6606,18 @@
 % -----------------------------------------------------------------------------
 % CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
 % -----------------------------------------------------------------------------
-\newcommand{\templatePagecfg}{
+\newcommand{\templatePagecfg}{%
 	
 	% -------------------------------------------------------------------------
 	% Numeración de páginas
 	% -------------------------------------------------------------------------
 	\clearpage
 	\ifthenelse{\equal{\predocpageromannumber}{true}}{ % Si se usan números romanos en el pre-documento
-		\ifthenelse{\equal{\predocpageromanupper}{true}}{
+		\ifthenelse{\equal{\predocpageromanupper}{true}}{%
 			\pagenumbering{Roman}
-		}{
+		}{%
 			\pagenumbering{roman}
-		}}{
+		}}{%
 		\pagenumbering{arabic}
 	}
 	\setcounter{page}{1}
@@ -6612,8 +6632,8 @@
 	% -------------------------------------------------------------------------
 	% Se define el punto decimal
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\pointdecimal}{true}}{
-		\decimalpoint}{
+	\ifthenelse{\equal{\pointdecimal}{true}}{%
+		\decimalpoint}{%
 	}
 	
 	% -------------------------------------------------------------------------
@@ -6669,9 +6689,9 @@
 	}
 	\fancyheadoffset{0pt} % Desactiva el offset de los header-footer
 	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
-	\ifthenelse{\equal{\hfstyle}{style1}}{
+	\ifthenelse{\equal{\hfstyle}{style1}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6679,10 +6699,10 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style2}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style2}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[R]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6690,17 +6710,17 @@
 		}
 		\setlength{\headheight}{49pt}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style3}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style3}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\authorshf: \documenttitlehf}
 			\fancyhead[RE,LO]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyhead[L]{\journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6708,10 +6728,10 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style4}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style4}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\small \textit{\authorshf}}
 			\fancyhead[RE,LO]{\small \textit{\journalname}}
@@ -6719,7 +6739,7 @@
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyhead[C]{\small \journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6727,10 +6747,10 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style5}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style5}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\thepage}
 			\fancyhead[RE]{\authorshf}
@@ -6738,7 +6758,7 @@
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyhead[L]{\journalname}
 			\renewcommand{\headrulewidth}{0.5pt}
@@ -6746,10 +6766,10 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style6}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style6}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[R]{\journalname}
 			\fancyfoot[C]{\thepage}
@@ -6757,10 +6777,10 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style7}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style7}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\textbf{\thepage}}
 			\fancyhead[RE]{\textbf{\authorshf}}
@@ -6768,23 +6788,23 @@
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style8}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style8}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyhead[C]{\journalname}
 			\fancyfoot[C]{\thepage}
@@ -6793,17 +6813,17 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style9}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style9}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE]{\thepage\quad\quad\authorshf}
 			\fancyhead[RO]{\documenttitlehf\quad\quad\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyfoot[L]{\journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6811,10 +6831,10 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style10}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style10}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[C]{\journalname}
 			\fancyfoot[R]{\thepage}
@@ -6822,34 +6842,34 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style11}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style11}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\small \journalname}
 			\fancyhead[LO,RE]{\small \authorshf}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style12}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style12}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\small \thepage}
 			\fancyhead[C]{\small \textit{\authorshf / \journalname}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyhead[C]{\small \journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6857,10 +6877,10 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style13}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style13}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[R]{\small \textit{\documenttitlehf}}
 			\fancyfoot[L]{\small \journalname}
@@ -6868,7 +6888,7 @@
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyfoot[L]{\small \journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6876,17 +6896,17 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style14}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style14}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[C]{\small \journalname}
 			\fancyfoot[R]{\small \thepage\ / \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyhead[C]{\small \journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6894,17 +6914,17 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style15}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style15}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
 			\fancyhead[R]{\small \thepage\ \namepageof \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyfoot[C]{\small \journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6912,17 +6932,17 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style16}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style16}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
 			\fancyhead[R]{\small \thepage\ \namepageof \pageref{TotPages}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\fancypagestyle{portraitstyle}{
+		\fancypagestyle{portraitstyle}{%
 			\fancyhf{}
 			\fancyfoot[C]{\small \journalname}
 			\renewcommand{\headrulewidth}{0pt}
@@ -6930,21 +6950,21 @@
 		}
 		\thispagestyle{portraitstyle}
 		\COREstyledefinition
-	}{
-	\ifthenelse{\equal{\hfstyle}{style17}}{
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style17}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{
+		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
-	}{
+	}{%
 		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style17}}}}}}}}}}}}}}}}}
 	}
 	% Aplica el estilo de página
-	\fancypagestyle{plain}{
+	\fancypagestyle{plain}{%
 		\fancyheadoffset{0pt}
 		\COREstyledefinition
 	}
@@ -6955,8 +6975,8 @@
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\linenumbers}{
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\linenumbers}{%
 	}
 	
 }
@@ -6964,7 +6984,7 @@
 % -----------------------------------------------------------------------------
 % CONFIGURACIONES FINALES
 % -----------------------------------------------------------------------------
-\newcommand{\templateFinalcfg}{
+\newcommand{\templateFinalcfg}{%
 	
 	% -------------------------------------------------------------------------
 	% Se restablecen headers y footers
@@ -6976,90 +6996,90 @@
 	% Crea funciones para numerar objetos
 	% -------------------------------------------------------------------------
 	% Numeración de la sección en los objetos código fuente
-	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{
+	\ifthenelse{\equal{\showsectioncaptioncode}{none}}{%
 		\def\sectionobjectnumcode {}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioncode}{sec}}{%
 		\def\sectionobjectnumcode {\thesection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioncode}{ssec}}{%
 		\def\sectionobjectnumcode {\thesubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioncode}{sssec}}{%
 		\def\sectionobjectnumcode {\thesubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioncode}{ssssec}}{%
 		\def\sectionobjectnumcode {\thesubsubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioncode}{chap}}{%
 		\def\sectionobjectnumcode {\thechapter\sectioncaptiondelimiter}
-	}{
+	}{%
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioncode}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 	
 	% Numeración de la sección en los objetos ecuaciones
-	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{
+	\ifthenelse{\equal{\showsectioncaptioneqn}{none}}{%
 		\def\sectionobjectnumeqn {}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioneqn}{sec}}{%
 		\def\sectionobjectnumeqn {\thesection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioneqn}{ssec}}{%
 		\def\sectionobjectnumeqn {\thesubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioneqn}{sssec}}{%
 		\def\sectionobjectnumeqn {\thesubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioneqn}{ssssec}}{%
 		\def\sectionobjectnumeqn {\thesubsubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptioneqn}{chap}}{%
 		\def\sectionobjectnumeqn {\thechapter\sectioncaptiondelimiter}
-	}{
+	}{%
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptioneqn}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 	
 	% Numeración de la sección en los objetos figuras
-	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{
+	\ifthenelse{\equal{\showsectioncaptionfig}{none}}{%
 		\def\sectionobjectnumfig {}
-	}{
-	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptionfig}{sec}}{%
 		\def\sectionobjectnumfig {\thesection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptionfig}{ssec}}{%
 		\def\sectionobjectnumfig {\thesubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptionfig}{sssec}}{%
 		\def\sectionobjectnumfig {\thesubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptionfig}{ssssec}}{%
 		\def\sectionobjectnumfig {\thesubsubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptionfig}{chap}}{%
 		\def\sectionobjectnumfig {\thechapter\sectioncaptiondelimiter}
-	}{
+	}{%
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptionfig}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 	
 	% Numeración de la sección en los objetos tablas
-	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{
+	\ifthenelse{\equal{\showsectioncaptiontab}{none}}{%
 		\def\sectionobjectnumtab {}
-	}{
-	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptiontab}{sec}}{%
 		\def\sectionobjectnumtab {\thesection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptiontab}{ssec}}{%
 		\def\sectionobjectnumtab {\thesubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptiontab}{sssec}}{%
 		\def\sectionobjectnumtab {\thesubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptiontab}{ssssec}}{%
 		\def\sectionobjectnumtab {\thesubsubsubsection\sectioncaptiondelimiter}
-	}{
-	\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{
+	}{%
+	\ifthenelse{\equal{\showsectioncaptiontab}{chap}}{%
 		\def\sectionobjectnumtab {\thechapter\sectioncaptiondelimiter}
-	}{
+	}{%
 		\throwbadconfig{Valor configuracion incorrecto}{\showsectioncaptiontab}{none,chap,sec,ssec,sssec,ssssec}}}}}}
 	}
 	
@@ -7067,116 +7087,116 @@
 	% Modifica numeración de objetos
 	% -------------------------------------------------------------------------
 	% Código fuente, incluir sección
-	\ifthenelse{\equal{\captionnumcode}{arabic}}{
+	\ifthenelse{\equal{\captionnumcode}{arabic}}{%
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\arabic{lstlisting}}
-	}{
-	\ifthenelse{\equal{\captionnumcode}{alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumcode}{alph}}{%
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\alph{lstlisting}}
-	}{
-	\ifthenelse{\equal{\captionnumcode}{Alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumcode}{Alph}}{%
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\Alph{lstlisting}}
-	}{
-	\ifthenelse{\equal{\captionnumcode}{roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumcode}{roman}}{%
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\roman{lstlisting}}
-	}{
-	\ifthenelse{\equal{\captionnumcode}{Roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumcode}{Roman}}{%
 		\renewcommand{\thelstlisting}{\sectionobjectnumcode\Roman{lstlisting}}
-	}{
+	}{%
 		\throwbadconfig{Tipo numero codigo fuente desconocido}{\captionnumcode}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
 	% Ecuaciones, incluir sección
-	\ifthenelse{\equal{\captionnumequation}{arabic}}{
+	\ifthenelse{\equal{\captionnumequation}{arabic}}{%
 		\renewcommand{\theequation}{\sectionobjectnumeqn\arabic{equation}}
-	}{
-	\ifthenelse{\equal{\captionnumequation}{alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumequation}{alph}}{%
 		\renewcommand{\theequation}{\sectionobjectnumeqn\alph{equation}}
-	}{
-	\ifthenelse{\equal{\captionnumequation}{Alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumequation}{Alph}}{%
 		\renewcommand{\theequation}{\sectionobjectnumeqn\Alph{equation}}
-	}{
-	\ifthenelse{\equal{\captionnumequation}{roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumequation}{roman}}{%
 		\renewcommand{\theequation}{\sectionobjectnumeqn\roman{equation}}
-	}{
-	\ifthenelse{\equal{\captionnumequation}{Roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumequation}{Roman}}{%
 		\renewcommand{\theequation}{\sectionobjectnumeqn\Roman{equation}}
-	}{
+	}{%
 		\throwbadconfig{Tipo numero ecuacion desconocido}{\captionnumequation}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
 	% Figuras, incluir sección
-	\ifthenelse{\equal{\captionnumfigure}{arabic}}{
+	\ifthenelse{\equal{\captionnumfigure}{arabic}}{%
 		\renewcommand{\thefigure}{\sectionobjectnumfig\arabic{figure}}
-	}{
-	\ifthenelse{\equal{\captionnumfigure}{alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumfigure}{alph}}{%
 		\renewcommand{\thefigure}{\sectionobjectnumfig\alph{figure}}
-	}{
-	\ifthenelse{\equal{\captionnumfigure}{Alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumfigure}{Alph}}{%
 		\renewcommand{\thefigure}{\sectionobjectnumfig\Alph{figure}}
-	}{
-	\ifthenelse{\equal{\captionnumfigure}{roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumfigure}{roman}}{%
 		\renewcommand{\thefigure}{\sectionobjectnumfig\roman{figure}}
-	}{
-	\ifthenelse{\equal{\captionnumfigure}{Roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumfigure}{Roman}}{%
 		\renewcommand{\thefigure}{\sectionobjectnumfig\Roman{figure}}
-	}{
+	}{%
 		\throwbadconfig{Tipo numero figura desconocido}{\captionnumfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
 	% Subfiguras, no usar secciones ya que son hijas de figura
-	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{
+	\ifthenelse{\equal{\captionnumsubfigure}{arabic}}{%
 		\renewcommand{\thesubfigure}{\arabic{subfigure}}
-	}{
-	\ifthenelse{\equal{\captionnumsubfigure}{alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubfigure}{alph}}{%
 		\renewcommand{\thesubfigure}{\alph{subfigure}}
-	}{
-	\ifthenelse{\equal{\captionnumsubfigure}{Alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubfigure}{Alph}}{%
 		\renewcommand{\thesubfigure}{\Alph{subfigure}}
-	}{
-	\ifthenelse{\equal{\captionnumsubfigure}{roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubfigure}{roman}}{%
 		\renewcommand{\thesubfigure}{\roman{subfigure}}
-	}{
-	\ifthenelse{\equal{\captionnumsubfigure}{Roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubfigure}{Roman}}{%
 		\renewcommand{\thesubfigure}{\Roman{subfigure}}
-	}{
+	}{%
 		\throwbadconfig{Tipo numero subfigura desconocido}{\captionnumsubfigure}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
 	% Tablas, incluir sección
-	\ifthenelse{\equal{\captionnumtable}{arabic}}{
+	\ifthenelse{\equal{\captionnumtable}{arabic}}{%
 		\renewcommand{\thetable}{\sectionobjectnumtab\arabic{table}}
-	}{
-	\ifthenelse{\equal{\captionnumtable}{alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumtable}{alph}}{%
 		\renewcommand{\thetable}{\sectionobjectnumtab\alph{table}}
-	}{
-	\ifthenelse{\equal{\captionnumtable}{Alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumtable}{Alph}}{%
 		\renewcommand{\thetable}{\sectionobjectnumtab\Alph{table}}
-	}{
-	\ifthenelse{\equal{\captionnumtable}{roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumtable}{roman}}{%
 		\renewcommand{\thetable}{\sectionobjectnumtab\roman{table}}
-	}{
-	\ifthenelse{\equal{\captionnumtable}{Roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumtable}{Roman}}{%
 		\renewcommand{\thetable}{\sectionobjectnumtab\Roman{table}}
-	}{
+	}{%
 		\throwbadconfig{Tipo numero tabla desconocido}{\captionnumtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
 	% Subtablas, no incluir sección ya que son hijas de las tablas
-	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{
+	\ifthenelse{\equal{\captionnumsubtable}{arabic}}{%
 		\renewcommand{\thesubtable}{\arabic{subtable}}
-	}{
-	\ifthenelse{\equal{\captionnumsubtable}{alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubtable}{alph}}{%
 		\renewcommand{\thesubtable}{\alph{subtable}}
-	}{
-	\ifthenelse{\equal{\captionnumsubtable}{Alph}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubtable}{Alph}}{%
 		\renewcommand{\thesubtable}{\Alph{subtable}}
-	}{
-	\ifthenelse{\equal{\captionnumsubtable}{roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubtable}{roman}}{%
 		\renewcommand{\thesubtable}{\roman{subtable}}
-	}{
-	\ifthenelse{\equal{\captionnumsubtable}{Roman}}{
+	}{%
+	\ifthenelse{\equal{\captionnumsubtable}{Roman}}{%
 		\renewcommand{\thesubtable}{\Roman{subtable}}
-	}{
+	}{%
 		\throwbadconfig{Tipo numero subtabla desconocido}{\captionnumsubtable}{arabic,alph,Alph,roman,Roman}}}}}
 	}
 	
@@ -7190,13 +7210,13 @@
 	% Se restablecen números de página y secciones
 	% -------------------------------------------------------------------------
 	% Se usa número de páginas en arábigo si es que se tenía activado los números romanos
-	\ifthenelse{\equal{\predocpageromannumber}{true}}{
-		\renewcommand{\thepage}{\arabic{page}}}{
+	\ifthenelse{\equal{\predocpageromannumber}{true}}{%
+		\renewcommand{\thepage}{\arabic{page}}}{%
 	}
 	
 	% Reinicia número de página
-	\ifthenelse{\equal{\predocresetpagenumber}{true}}{
-		\setcounter{page}{1}}{
+	\ifthenelse{\equal{\predocresetpagenumber}{true}}{%
+		\setcounter{page}{1}}{%
 	}
 	
 	\setcounter{section}{0}
@@ -7205,8 +7225,8 @@
 	% -------------------------------------------------------------------------
 	% Muestra los números de línea
 	% -------------------------------------------------------------------------
-	\ifthenelse{\equal{\showlinenumbers}{true}}{
-		\linenumbers}{
+	\ifthenelse{\equal{\showlinenumbers}{true}}{%
+		\linenumbers}{%
 	}
 	
 	% -------------------------------------------------------------------------

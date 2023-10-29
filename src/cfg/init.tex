@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.8 (26/10/2023)
+% Versión:      1.2.9 (29/10/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -70,16 +70,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={26/10/2023},
+		Template.Date={29/10/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.2.8-ARTC},
-		Template.Version.Hash={F687DA0488B2860D03928D003BC212B3},
-		Template.Version.Release={1.2.8},
+		Template.Version.Dev={1.2.9-ARTC},
+		Template.Version.Hash={5FD088D840DF4A454F4EAA02EE44E814},
+		Template.Version.Release={1.2.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -87,7 +87,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.2.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.2.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -261,7 +261,7 @@
 % Configuración de referencias y citas
 % -----------------------------------------------------------------------------
 \ifthenelse{\equal{\stylecitereferences}{natbib}}{
-	\def\twocolumnreferencesmargin{-0.35cm}
+	\def\twocolumnreferencesmargin {-0.35cm}
 	\bibliographystyle{\natbibrefstyle}
 	\setlength{\bibsep}{\natbibrefsep pt}
 	\newcommand{\shortcite}[1]{\citep{#1}}
@@ -288,14 +288,14 @@
 	}
 }{
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
-	\def\twocolumnreferencesmargin{-0.39cm}
+	\def\twocolumnreferencesmargin {-0.39cm}
 	\bibliographystyle{\apacitestyle}
 	\setlength{\bibitemsep}{\apaciterefsep pt}
 	\newcommand{\citep}[1]{\fullcite{#1}}
 	\newcommand{\citet}[1]{\shortcite{#1}}
 }{
 \ifthenelse{\equal{\stylecitereferences}{bibtex}}{
-	\def\twocolumnreferencesmargin{-0.35cm}
+	\def\twocolumnreferencesmargin {-0.35cm}
 	\bibliographystyle{\bibtexstyle}
 	\newlength{\bibitemsep}
 	\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
@@ -415,7 +415,7 @@
 % Configura las fuentes
 % -----------------------------------------------------------------------------
 \makeatletter
-\def\Hv@scale {.95}
+\def\Hv@scale {0.95}
 \makeatother
 
 % -----------------------------------------------------------------------------
