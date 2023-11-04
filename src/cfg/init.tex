@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Configuración inicial del template
-% Versión:      1.2.9 (29/10/2023)
+% Versión:      1.3.0 (04/11/2023)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -70,16 +70,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={29/10/2023},
+		Template.Date={04/11/2023},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.2.9-ARTC},
-		Template.Version.Hash={5FD088D840DF4A454F4EAA02EE44E814},
-		Template.Version.Release={1.2.9},
+		Template.Version.Dev={1.3.0-ARTC},
+		Template.Version.Hash={BF95EC48309E67136E4F711DD8160D4B},
+		Template.Version.Release={1.3.0},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -87,7 +87,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.2.9 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.3.0 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -144,7 +144,7 @@
 	}
 }{
 	% Color de links sin borde
-	\hypersetup{ % No reorganizar
+	\hypersetup{% No reorganizar
 		hidelinks,
 		colorlinks=true,
 		citecolor=\numcitecolor,
@@ -162,11 +162,11 @@
 % -----------------------------------------------------------------------------
 % Márgenes de las leyendas por defecto
 \setcaptionmargincm{\captionlrmargin}
-\ifthenelse{\equal{\captiontextbold}{true}}{ % Texto en negrita en etiquetas
+\ifthenelse{\equal{\captiontextbold}{true}}{% Texto en negrita en etiquetas
 	\renewcommand{\captiontextbold}{bf}}{
 	\renewcommand{\captiontextbold}{}
 }
-\ifthenelse{\equal{\captiontextsubnumbold}{true}}{ % Número en negritas
+\ifthenelse{\equal{\captiontextsubnumbold}{true}}{% Número en negritas
 	\renewcommand{\captiontextsubnumbold}{bf}}{
 	\renewcommand{\captiontextsubnumbold}{}
 }
@@ -231,24 +231,24 @@
 }
 
 % Alineado de leyendas
-\ifthenelse{\equal{\captionalignment}{justified}}{ % Leyenda justificada
+\ifthenelse{\equal{\captionalignment}{justified}}{% Leyenda justificada
 	\captionsetup{
 		format=plain,
 		justification=justified
 	}
 }{
-\ifthenelse{\equal{\captionalignment}{centered}}{ % Leyenda centrada
+\ifthenelse{\equal{\captionalignment}{centered}}{% Leyenda centrada
 	\captionsetup{
 		justification=centering
 	}
 }{
-\ifthenelse{\equal{\captionalignment}{left}}{ % Leyenda alineada a la izquierda
+\ifthenelse{\equal{\captionalignment}{left}}{% Leyenda alineada a la izquierda
 	\captionsetup{
 		justification=raggedright,
 		singlelinecheck=false
 	}
 }{
-\ifthenelse{\equal{\captionalignment}{right}}{ % Leyenda alineada a la derecha
+\ifthenelse{\equal{\captionalignment}{right}}{% Leyenda alineada a la derecha
 	\captionsetup{
 		justification=raggedleft,
 		singlelinecheck=false
@@ -319,7 +319,7 @@
 \ifthenelse{\equal{\stylecitereferences}{apacite}}{
 	\ifthenelse{\equal{\apaciterefnumber}{true}}{
 		\newcounter{apaciteNumberCounter}
-		\renewcommand{\theapaciteNumberCounter}{ % Formato de número
+		\renewcommand{\theapaciteNumberCounter}{% Formato de número
 			\apaciterefcitecharopen\arabic{apaciteNumberCounter}\apaciterefcitecharclose
 		}
 		\patchcmd{\@lbibitem}{\item[}{\item[\stepcounter{apaciteNumberCounter}{\hss\llap{\theapaciteNumberCounter}\quad}}{}{}
@@ -476,11 +476,11 @@
 	\def\toclevel@subsubsubsection {4}
 	\def\toclevel@paragraph {5}
 	\def\toclevel@subparagraph {6}
-	\ifthenelse{\equal{\charaftersectionnum}{}}{ % Sin caracter
+	\ifthenelse{\equal{\charaftersectionnum}{}}{% Sin caracter
 		\def\l@subsubsubsection {\@dottedtocline{4}{6.97em}{4em}}
 		\def\l@paragraph {\@dottedtocline{5}{10.97em}{5em}}
 		\def\l@subparagraph {\@dottedtocline{6}{14em}{6em}}
-	}{ % Posee caracter, Incremento 0.77+3.35 a 3.35
+	}{% Posee caracter, Incremento 0.77+3.35 a 3.35
 		\def\l@subsubsubsection {\@dottedtocline{4}{7.83em}{4.15em}}
 		\def\l@paragraph {\@dottedtocline{5}{11.98em}{4.92em}}
 		\def\l@subparagraph {\@dottedtocline{6}{14.65em}{5.69em}}
