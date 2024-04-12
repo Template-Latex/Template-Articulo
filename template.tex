@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.3.4 (08/04/2024)
+% Versión:      1.3.5 (12/04/2024)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -262,11 +262,6 @@
 	\usepackage[para]{threeparttable}
 }{
 	\usepackage{threeparttable}
-}
-
-% Indentación del primer párrafo
-\ifthenelse{\equal{\indentfirstpar}{true}}{
-	\usepackage{indentfirst}}{
 }
 
 % -----------------------------------------------------------------------------
@@ -4139,7 +4134,7 @@
 			}{%
 				\Large{\documenttitle} \\%
 			}%
-			\vspace{0.6cm}%
+			\vspace{\titleauthormargintop cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}
 				\centering
 				\input{\jobname.authn}%
@@ -4152,7 +4147,6 @@
 				\input{\jobname.authd}%
 			\end{minipage}
 		\end{center}
-		\vspace{0.05cm}%
 		\normalsize%
 	}%
 }{%
@@ -4178,7 +4172,7 @@
 			}{%
 				\Large{\documenttitle} \\%
 			}%
-			\vspace{0.7cm}%
+			\vspace{\titleauthormargintop cm}%
 			\input{\jobname.authn}%
 			\vspace{\titleauthormarginbottom cm}%
 		\end{center}
@@ -4187,7 +4181,6 @@
 		\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 			\input{\jobname.authd}%
 		\end{minipage}
-		\vspace{0.3cm}%
 		\normalsize%
 	}%
 }{%
@@ -4205,7 +4198,7 @@
 			}{%
 				\Large{\documenttitle} \\%
 			}%
-			\vspace{0.7cm}%
+			\vspace{\titleauthormargintop cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 				\centering%
 				\input{\jobname.authn}%
@@ -4230,7 +4223,7 @@
 			}{%
 				\Large{\documenttitle} \\%
 			}%
-			\vspace{0.7cm}%
+			\vspace{\titleauthormargintop cm}%
 			\begin{minipage}[t]{\titleauthormaxwidth\textwidth}%
 				\centering%
 				\input{\jobname.authn}%
@@ -4238,8 +4231,7 @@
 			\vspace{\titleauthormarginbottom cm}%
 			\def\LOCALhasname {false}%
 			~ \\%
-			\small{\documentdate} \\
-			\vspace{0.3cm}%
+			\small{\documentdate} \\%
 		\end{center}%
 		\normalsize%
 	}%
@@ -4263,7 +4255,7 @@
 			}{%
 				\Large{\documenttitle} \\%
 			}%
-			\vspace{0.9cm}%
+			\vspace{\titleauthormargintop cm}%
 			\noindent%
 			\settablecellpadding{0}{1.5}%
 			\linespread{0.6}\selectfont{%
@@ -5865,16 +5857,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={08/04/2024},
+		Template.Date={12/04/2024},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.3.4-ARTC},
-		Template.Version.Hash={9A6489CDAD56569A7C23624D8261877A},
-		Template.Version.Release={1.3.4},
+		Template.Version.Dev={1.3.5-ARTC},
+		Template.Version.Hash={8200931E6764BF6D5E78734ABB1D6D0C},
+		Template.Version.Release={1.3.5},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5882,7 +5874,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.3.4 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.3.5 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
