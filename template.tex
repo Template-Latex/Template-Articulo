@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.3.7 (23/08/2024)
+% Versión:      1.3.8 (20/01/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -5889,16 +5889,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={23/08/2024},
+		Template.Date={20/01/2025},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.3.7-ARTC},
-		Template.Version.Hash={D4A78D24C2DF91ECE252B26BFB8832E2},
-		Template.Version.Release={1.3.7},
+		Template.Version.Dev={1.3.8-3-ARTC},
+		Template.Version.Hash={62AA7885EAA1A47C25643222C551D64F},
+		Template.Version.Release={1.3.8},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5906,7 +5906,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.3.7 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.3.8 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -5975,6 +5975,10 @@
 \ifthenelse{\equal{\pagescolor}{white}}{}{
 	\pagecolor{\pagescolor}
 }
+\makeatletter % Desactiva color de tablas en entornos matemáticos
+\pretocmd\env@cases{\def\@rowc@lors{}}{}{}
+\pretocmd\start@align{\def\@rowc@lors{}}{}{}
+\makeatother
 
 % -----------------------------------------------------------------------------
 % Configuración de las leyendas
