@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Configuración de página
-% Versión:      1.4.0 (06/09/2025)
+% Versión:      1.4.1 (08/09/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -287,7 +287,7 @@
 			\fancyhf{}
 			\fancyhead[R]{\small \textit{\documenttitlehf}}
 			\fancyfoot[L]{\small \journalname}
-			\fancyfoot[R]{\small \thepage\ / \pageref{TotPages}}
+			\fancyfoot[R]{\small \thepage\ / \getpagerefnumber{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
@@ -305,7 +305,7 @@
 		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[C]{\small \journalname}
-			\fancyfoot[R]{\small \thepage\ / \pageref{TotPages}}
+			\fancyfoot[R]{\small \thepage\ / \getpagerefnumber{TotPages}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -323,7 +323,7 @@
 		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
-			\fancyhead[R]{\small \thepage\ \namepageof \pageref{TotPages}}
+			\fancyhead[R]{\small \thepage \namepageof \getpagerefnumber{TotPages}}
 			\renewcommand{\headrulewidth}{0.5pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -341,7 +341,7 @@
 		\newcommand{\COREstyledefinition}{%
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
-			\fancyhead[R]{\small \thepage\ \namepageof \pageref{TotPages}}
+			\fancyhead[R]{\small \thepage \namepageof \getpagerefnumber{TotPages}}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
@@ -364,7 +364,46 @@
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
 		\COREstyledefinition
 	}{%
-		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style17}}}}}}}}}}}}}}}}}
+	\ifthenelse{\equal{\hfstyle}{style18}}{%
+		\pagestyle{fancy}
+		\newcommand{\COREstyledefinition}{%
+			\fancyhf{}
+			\fancyhead[R]{\small \textit{\documenttitlehf}}
+			\fancyfoot[L]{\small \journalname}
+			\fancyfoot[R]{\small \thepage\ / \getpagerefnumber{TotPages}}
+			\renewcommand{\headrulewidth}{0pt}
+			\renewcommand{\footrulewidth}{0.5pt}
+		}
+		\fancypagestyle{portraitstyle}{%
+			\fancyhf{}
+			\fancyfoot[L]{\small \journalname}
+			\renewcommand{\headrulewidth}{0pt}
+			\renewcommand{\footrulewidth}{0.5pt}
+		}
+		\thispagestyle{portraitstyle}
+		\COREstyledefinition
+	}{%
+	\ifthenelse{\equal{\hfstyle}{style19}}{%
+		\pagestyle{fancy}
+		\newcommand{\COREstyledefinition}{%
+			\fancyhf{}
+			\fancyhead[R]{\small \textit{\documenttitlehf}}
+			\fancyfoot[L]{\small \textit{\authorshf}}
+			\fancyfoot[R]{\small \thepage\ / \getpagerefnumber{TotPages}}
+			\renewcommand{\headrulewidth}{0pt}
+			\renewcommand{\footrulewidth}{0.5pt}
+		}
+		\fancypagestyle{portraitstyle}{%
+			\fancyhf{}
+			\fancyfoot[L]{\small \textit{\authorshf}}
+			\fancyfoot[R]{\small \thepage\ / \getpagerefnumber{TotPages}}
+			\renewcommand{\headrulewidth}{0pt}
+			\renewcommand{\footrulewidth}{0.5pt}
+		}
+		\thispagestyle{portraitstyle}
+		\COREstyledefinition
+	}{%
+		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style19}}}}}}}}}}}}}}}}}}}
 	}
 	% Aplica el estilo de página
 	\fancypagestyle{plain}{%
