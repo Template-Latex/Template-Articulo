@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.4.1 (08/09/2025)
+% Versión:      1.4.2 (07/10/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -314,6 +314,10 @@
 \ifthenelse{\equal{\fontdocument}{libertine}}{
 	\usepackage[libertine]{newtxmath}
 	\usepackage[tt=false]{libertine}
+}{
+\ifthenelse{\equal{\fontdocument}{newtx}}{
+	\usepackage{newtxtext}
+	\usepackage{newtxmath}
 }{
 \ifthenelse{\equal{\fontdocument}{custom}}{
 }{
@@ -757,11 +761,11 @@
 	\usepackage[lf]{venturis}
 	\renewcommand*\familydefault{\sfdefault}
 }{
-	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,carial,arial2,times,mathptmx,helvet,opensans,mathpazo,cambria,libertine,custom}
+	\throwbadconfig[nostop]{Fuente desconocida}{\fontdocument}{(Fuentes recomendadas) lmodern,carial,arial2,times,mathptmx,helvet,opensans,mathpazo,cambria,libertine,newtx,custom}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{(Fuentes adicionales) accanthis,alegreya,alegreyasans,algolrevived,almendra,antpolt,antpoltlight,anttor,anttorcondensed,anttorlight,anttorlightcondensed,arev,arimo,arvo,baskervald,baskervaldx,berasans,beraserif,biolinum,bitter,boisik,bookman,cabin,cabincondensed,cantarell,caladea,carlito,charterbt,chivolight,chivoregular,clara,clearsans,cochineal,coelacanth,coelacanthextralight,coelacanthlight,comfortaa,comicneue,comicneueangular,computerconcrete,computerconcreteeuler,computermodern,computermodernbright,crimson,crimsonpro,crimsonproextralight,crimsonprolight,crimsonpromedium,cyklop}
 	\throwbadconfig[noheader-nostop]{Fuente desconocida}{\fontdocument}{dejavusans,dejavusanscondensed,domitian,droidsans,electrum,erewhon,fbb,fetamont,firasans,firasansnewtxsf,fourier,fouriernc,gfsartemisia,gfsartemisiaeuler,heuristica,iwona,iwonacondensed,iwonalight,iwonalightcondensed,kerkis,kurier,kuriercondensed,kurierlight,kurierlightcondensed,lato,libertinus,librebaskerville,librebodoni,librecaslon,libris,lxfonts}
 	\throwbadconfig[noheader]{Fuente desconocida}{\fontdocument}{merriweather,merriweatherlight,mintspirit,mlmodern,montserratalternatesextralight,montserratalternatesregular,montserratalternatesthin,montserratextralight,montserratlight,montserratregular,montserratthin,newpx,nimbussans,noto,notoserif,opensansserif,overlock,paratype,paratypesanscaption,paratypesansnarrow,pxfonts,quattrocento,raleway,ralewayblack,ralewayextralight,ralewaymedium,ralewaylight,ralewaythin,roboto,robotolight,robotolightcondensed,robotothin,rosario,sourcesanspro,step,stickstoo,uarial,texgyrebonum,txfonts,ugq,universalis,universaliscondensed,venturis}
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }
 
 % -----------------------------------------------------------------------------
@@ -5905,16 +5909,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={08/09/2025},
+		Template.Date={07/10/2025},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.4.1-3-ARTC},
-		Template.Version.Hash={5FB012A1BE47B68F989724A536BE4595},
-		Template.Version.Release={1.4.1},
+		Template.Version.Dev={1.4.2-ARTC},
+		Template.Version.Hash={86B1B45DA5010E04B99785D8BDBC4F72},
+		Template.Version.Release={1.4.2},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5922,7 +5926,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.4.1 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.4.2 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
@@ -6515,10 +6519,10 @@
 % Configura número de objetos en el final del documento
 % -----------------------------------------------------------------------------
 \AtEndDocument{
-	\addtocounter{equation}{\value{templateEquations}}
-	\addtocounter{figure}{\value{templateFigures}}
-	\addtocounter{lstlisting}{\value{templateListings}}
-	\addtocounter{table}{\value{templateTables}}
+	\addtocounter{equation}{\value{templateEquations}}%
+	\addtocounter{figure}{\value{templateFigures}}%
+	\addtocounter{lstlisting}{\value{templateListings}}%
+	\addtocounter{table}{\value{templateTables}}%
 }
 
 % -----------------------------------------------------------------------------
@@ -6571,14 +6575,15 @@
 	\global\def\GLOBALenvmulticol {true}%
 	\setcaptionmargincm{\captionlrmargin}%
 	\addtocounter{multicoldepth}{1}%
+	\coreintializetitlenumbering%
 }
 \AfterEndEnvironment{multicols}{%
 	\def\captionlrmargin {\SOURCEcaptionlrmargin}%
 	\setcaptionmargincm{\captionlrmargin}%
 	\addtocounter{multicoldepth}{-1}
 	\ifnumequal{\number\value{multicoldepth}}{0}{%
-		\global\def\GLOBALenvmulticol {false}
-	}{}
+		\global\def\GLOBALenvmulticol {false}%
+	}{}%
 }
 
 % -----------------------------------------------------------------------------
