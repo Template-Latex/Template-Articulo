@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Funciones para insertar elementos
-% Versión:      1.4.4 (08/11/2025)
+% Versión:      1.4.5 (02/12/2025)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -12,22 +12,6 @@
 % Insertar párrafo
 \newcommand{\newp}{%
 	\hbadness=10000 \vspace{\baselinestretch\baselineskip} \par%
-}
-
-% Crea un salto de columna en el entorno multicol
-\ifthenelse{\isundefined{\newcolumn}}{%
-	\newcommand{\newcolumn}{%
-		\checkinsidemulticol\vfill\null\columnbreak%
-	}
-}{%
-	\renewcommand{\newcolumn}{%
-		\checkinsidemulticol\vfill\null\columnbreak%
-	}
-}
-
-% Salto de página en entorno multicol
-\newcommand{\newpagemulticol}{%
-	\newcolumn\newcolumn\clearpage%
 }
 
 % Redimensiona un ítem
