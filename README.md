@@ -38,4 +38,4 @@ Este proyecto está licenciado bajo la licencia MIT [https://opensource.org/lice
 
 ## Autor
 
-[Pablo Pizarro R.](https://ppizarror.com) | 2021 - 2025
+[Pablo Pizarro R.](https://ppizarror.com) | 2021 - 2026
