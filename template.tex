@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.4.6 (05/06/2026)
+% Versión:      1.4.7 (07/06/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -861,7 +861,11 @@
 \def\margingatherbottom {0}
 \def\margingathertop {0}
 \ifthenelse{\equal{\showlinenumbers}{true}}{ % Muestra los números de línea
-	\usepackage[switch,columnwise,running]{lineno}
+	\ifthenelse{\equal{\linenumberspagereset}{true}}{% Reinicia la numeración en cada página
+		\usepackage[left,pagewise]{lineno}
+	}{% Numeración continua (compatible con multicol)
+		\usepackage[switch,columnwise,running]{lineno}
+	}
 	\newcommand*\linenomathpatch[1]{% Parcha entornos
 		\cspreto{#1}{\linenomath}%
 		\cspreto{#1*}{\linenomath}%
@@ -5941,16 +5945,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={05/06/2026},
+		Template.Date={07/06/2026},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.4.6-ARTC},
-		Template.Version.Hash={8DE13DA05DE9B7926F9EF652266F309B},
-		Template.Version.Release={1.4.6},
+		Template.Version.Dev={1.4.7-2-ARTC},
+		Template.Version.Hash={D74EA9F1820081C3177C2867F35FAD00},
+		Template.Version.Release={1.4.7},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://latex.ppizarror.com/articulo},
 	},
@@ -5958,7 +5962,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.4.6 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.4.7 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},
