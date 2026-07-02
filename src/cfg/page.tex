@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Configuración de página
-% Versión:      1.4.7 (07/06/2026)
+% Versión:      1.4.8 (02/07/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -94,29 +94,29 @@
 	\def\hfheaderimageparamsA {height=\baselineskip} % Tamaño de las imágenes del encabezado estilo 3/13
 	\ifthenelse{\equal{\hfstyle}{style1}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style2}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[R]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\setlength{\headheight}{49pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style3}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\authorshf: \documenttitlehf}
 			\fancyhead[RE,LO]{\thepage}
@@ -130,11 +130,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style4}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\small \textit{\authorshf}}
 			\fancyhead[RE,LO]{\small \textit{\journalname}}
@@ -149,11 +149,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style5}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\thepage}
 			\fancyhead[RE]{\authorshf}
@@ -168,22 +168,22 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style6}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[R]{\journalname}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style7}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\textbf{\thepage}}
 			\fancyhead[RE]{\textbf{\authorshf}}
@@ -197,11 +197,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style8}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyfoot[C]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
@@ -215,11 +215,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style9}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE]{\thepage\quad\quad\authorshf}
 			\fancyhead[RO]{\documenttitlehf\quad\quad\thepage}
@@ -233,22 +233,22 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style10}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[C]{\journalname}
 			\fancyfoot[R]{\thepage}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style11}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\small \journalname}
 			\fancyhead[LO,RE]{\small \authorshf}
@@ -261,11 +261,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style12}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[LE,RO]{\small \thepage}
 			\fancyhead[C]{\small \textit{\authorshf / \journalname}}
@@ -279,11 +279,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style13}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[R]{\small \textit{\documenttitlehf}}
 			\fancyfoot[L]{\small \journalname}
@@ -298,11 +298,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style14}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[C]{\small \journalname}
 			\fancyfoot[R]{\small \thepage\ / \getpagerefnumber{TotPages}}
@@ -316,11 +316,11 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style15}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
 			\fancyhead[R]{\small \thepage \namepageof \getpagerefnumber{TotPages}}
@@ -334,11 +334,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style16}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[L]{\small \textit{\journalname}}
 			\fancyhead[R]{\small \thepage \namepageof \getpagerefnumber{TotPages}}
@@ -352,21 +352,21 @@
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style17}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\renewcommand{\headrulewidth}{0pt}
 			\renewcommand{\footrulewidth}{0pt}
 		}
 		\renewcommand{\sectionmark}[1]{\markboth{##1}{}}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style18}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[R]{\small \textit{\documenttitlehf}}
 			\fancyfoot[L]{\small \journalname}
@@ -381,11 +381,11 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 	\ifthenelse{\equal{\hfstyle}{style19}}{%
 		\pagestyle{fancy}
-		\newcommand{\COREstyledefinition}{%
+		\newcommand{\corestyledefinition}{%
 			\fancyhf{}
 			\fancyhead[R]{\small \textit{\documenttitlehf}}
 			\fancyfoot[L]{\small \textit{\authorshf}}
@@ -401,14 +401,14 @@
 			\renewcommand{\footrulewidth}{0.5pt}
 		}
 		\thispagestyle{portraitstyle}
-		\COREstyledefinition
+		\corestyledefinition
 	}{%
 		\throwbadconfigondoc{Estilo de header-footer incorrecto}{\hfstyle}{style1 .. style19}}}}}}}}}}}}}}}}}}}
 	}
 	% Aplica el estilo de página
 	\fancypagestyle{plain}{%
 		\fancyheadoffset{0pt}
-		\COREstyledefinition
+		\corestyledefinition
 	}
 	% Define estilos por defecto en flotantes
 	\floatpagestyle{plain}
