@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Núcleo del template
-% Versión:      1.4.8 (02/07/2026)
+% Versión:      1.4.9 (12/07/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -4701,7 +4701,7 @@
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
 			\def\envimagescaptioncf {true}%
-		}{}%
+		}{\ifdefined\HCode\ifthenelse{\equal{\envimagescaptionvar}{}}{}{\refstepcounter{figure}}\fi}%
 		\corevspacevarcm{\marginimagemulttop}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -4712,6 +4712,7 @@
 			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
 				\caption[]{\envimagescaptionvar\envimageslabelvar}%
 			}{%
+				\ifdefined\HCode\addtocounter{figure}{-1}\fi%
 				\caption{\envimagescaptionvar\envimageslabelvar}%
 			}%
 		}%
@@ -4754,7 +4755,7 @@
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
 			\def\envimagescaptioncf {true}%
-		}{}%
+		}{\ifdefined\HCode\ifthenelse{\equal{\envimagescaptionvar}{}}{}{\refstepcounter{figure}}\fi}%
 		\corevspacevarcm{\marginimagemulttop}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -4765,6 +4766,7 @@
 			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
 				\caption[]{\envimagescaptionvar\envimageslabelvar}%
 			}{%
+				\ifdefined\HCode\addtocounter{figure}{-1}\fi%
 				\caption{\envimagescaptionvar\envimageslabelvar}%
 			}%
 		}%
@@ -5961,16 +5963,16 @@
 		Template.Author.Email={pablo@ppizarror.com},
 		Template.Author.Web={https://ppizarror.com},
 		Template.Author={Pablo Pizarro R.},
-		Template.Date={02/07/2026},
+		Template.Date={12/07/2026},
 		Template.Encoding={UTF-8},
 		Template.Latex.Compiler={pdflatex},
 		Template.License.Type={MIT},
 		Template.License.Web={https://opensource.org/licenses/MIT},
 		Template.Name={Template-Articulo},
 		Template.Type={Normal},
-		Template.Version.Dev={1.4.8-2-ARTC},
-		Template.Version.Hash={B479E10249FC6576B704D3AA80CC05CB},
-		Template.Version.Release={1.4.8},
+		Template.Version.Dev={1.4.9-ARTC},
+		Template.Version.Hash={A74F0C768D04DAFB4B030D907B75E295},
+		Template.Version.Release={1.4.9},
 		Template.Web.Dev={https://github.com/Template-Latex/Template-Articulo},
 		Template.Web.Manual={https://template-latex.github.io/articulo},
 	},
@@ -5978,7 +5980,7 @@
 	pdfmenubar={\cfgpdfmenubar},
 	pdfpagelayout={\cfgpdflayout},
 	pdfpagemode={\cfgpdfpagemode},
-	pdfproducer={Template-Articulo v1.4.8 | (Pablo Pizarro R.) ppizarror.com},
+	pdfproducer={Template-Articulo v1.4.9 | (Pablo Pizarro R.) ppizarror.com},
 	pdfremotestartview={Fit},
 	pdfstartpage={1},
 	pdfstartview={\cfgpdfpageview},

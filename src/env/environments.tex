@@ -1,6 +1,6 @@
 % Template:     Artículo LaTeX
 % Documento:    Definición de entornos
-% Versión:      1.4.8 (02/07/2026)
+% Versión:      1.4.9 (12/07/2026)
 % Codificación: UTF-8
 %
 % Autor: Pablo Pizarro R.
@@ -330,7 +330,7 @@
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
 			\def\envimagescaptioncf {true}%
-		}{}%
+		}{\ifdefined\HCode\ifthenelse{\equal{\envimagescaptionvar}{}}{}{\refstepcounter{figure}}\fi}%
 		\corevspacevarcm{\marginimagemulttop}%
 		}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -341,6 +341,7 @@
 			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
 				\caption[]{\envimagescaptionvar\envimageslabelvar}%
 			}{%
+				\ifdefined\HCode\addtocounter{figure}{-1}\fi%
 				\caption{\envimagescaptionvar\envimageslabelvar}%
 			}%
 		}%
@@ -383,7 +384,7 @@
 			\ContinuedFloat%
 			\global\def\GLOBALenvimagecf {false}%
 			\def\envimagescaptioncf {true}%
-		}{}%
+		}{\ifdefined\HCode\ifthenelse{\equal{\envimagescaptionvar}{}}{}{\refstepcounter{figure}}\fi}%
 		\corevspacevarcm{\marginimagemulttop}%
 	}{%
 		\setcaptionmargincm{\captionlrmargin}%
@@ -394,6 +395,7 @@
 			\ifthenelse{\equal{\envimagescaptioncf}{true}}{%
 				\caption[]{\envimagescaptionvar\envimageslabelvar}%
 			}{%
+				\ifdefined\HCode\addtocounter{figure}{-1}\fi%
 				\caption{\envimagescaptionvar\envimageslabelvar}%
 			}%
 		}%
