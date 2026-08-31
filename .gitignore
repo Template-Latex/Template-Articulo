@@ -23,9 +23,6 @@ desktop.ini
 __MACOSX/
 .DS_Store
 
-# Ignora proyecto PyCharm
-.idea/
-
 # Ignora archivos compilados de python
 *.pyc
 
@@ -49,6 +46,7 @@ dist/
 *_temp.tex
 
 # Otros
+.git
 .vscode
 
 # Autores
